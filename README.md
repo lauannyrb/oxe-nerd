@@ -42,6 +42,7 @@ Se você gostaria de contribuir para o projeto, siga estas etapas:
 - Renan Carvalho
 - Jonas Oliveira
 - Leticia Tamarindo 
+- Cayc Custodio
 
 ## Protótipo
 
@@ -56,4 +57,5 @@ Equipe de designe:
 - Renan Carvalho
 - Jonas Oliveira
 - Leticia Tamarindo 
+- Cayc Custodio
 - Mayara Costa
