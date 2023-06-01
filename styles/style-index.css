@@ -1,0 +1,52 @@
+/*-------------html todo--------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    
+    
+}
+/* --------------------------------------------- */
+
+/*----------------header-------------------------*/
+header {
+    background-color: #312847;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-oxe-nerd {
+    height: 50px;
+    width: auto;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    
+}
+
+.carrinho img {
+    height: 20px;
+    width: auto;
+}
+/* --------------------------------------------- */
+
+/*-----------------section--------------------------*/
+section {
+    padding-top: 50px;
+}
+
+section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
