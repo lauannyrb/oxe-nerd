@@ -1,0 +1,73 @@
+body{
+    background-color: #fff9f9;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden; /*  Para não aparecer a barra de rolagen*/
+}
+
+.area-login{
+    display: flex; /*Alinhar os itens*/
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Para pegar toda a área disponivel do navegador*/
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #312843;
+    width: 355px; /*Largura*/
+    height: 320px; /*Altura*/
+    padding: 35px; /*Espaço entre as bordas/lados*/
+    border-radius: 10px; /*Deixar as bordas aredondadas*/
+
+}
+
+.login form{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+}
+
+.login input{
+    margin-top: 10px; /* Dar espaço entre os inputs */
+    background-color: #fff9f9;  
+    padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
+    color: black;
+    border:none ; /*Remover as bordas*/
+    height: 45px; /*Definir os tamanhos dos inputs*/
+    outline: none; /*Remover as bordas de quando o usuário clica em uma caixa de texto, fica uma borda*/
+    border-radius: 8px; /*Deixar as bordas aredondadas*/
+}
+
+.login img{
+    width: 100px; /*Tamanho da imagem*/
+    height: auto;
+
+}
+
+input::placeholder{
+    color: black;
+    font-size: 14px; /*Tamanho do texto que tem dentro do input (não o texto que a pessoa escreve)*/
+}
+
+form [type="submit"]{
+    display: block;
+    background-color: #934E9E;
+    font-size: 20px; /*Tamanho da fonte do botão de entrar*/
+    text-transform: uppercase; /*Deixar a fonte em caixa alta*/
+    font-weight: bold; /*Deixar a fonte em negrito*/
+    cursor: pointer /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
+}
+
+p{
+    color: #ffffff;
+}
+a{
+    color: #934E9E;
+    text-decoration: none; /*Remover a barra que fica em baixo do link*/
+    margin-left: 10px;
+}
