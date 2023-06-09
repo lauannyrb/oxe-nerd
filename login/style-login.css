@@ -17,11 +17,12 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #312843;
-    width: 355px; /*Largura*/
-    height: 320px; /*Altura*/
-    padding: 35px; /*Espaço entre as bordas/lados*/
-    border-radius: 10px; /*Deixar as bordas aredondadas*/
+    /* background-color: #F6BFFF; */
+    /* background-color: #312843;*/
+    width: 355px; 
+    height: 400px; 
+    padding: 35px;
+    border-radius: 10px; 
 
 }
 
@@ -36,15 +37,21 @@ body{
     margin-top: 10px; /* Dar espaço entre os inputs */
     background-color: #fff9f9;  
     padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
-    color: black;
-    border:none ; /*Remover as bordas*/
-    height: 45px; /*Definir os tamanhos dos inputs*/
-    outline: none; /*Remover as bordas de quando o usuário clica em uma caixa de texto, fica uma borda*/
-    border-radius: 8px; /*Deixar as bordas aredondadas*/
+    color: #fff9f9;
+    border-color: rgb(194, 192, 192);
+    border-style: solid;
+    height: 50px; /*Definir os tamanhos dos inputs*/
+    border-radius: 40px; /*Deixar as bordas aredondadas*/
+}
+
+span{
+    margin-top: 10px;
+    padding-left: 10px;
+    
 }
 
 .login img{
-    width: 100px; /*Tamanho da imagem*/
+    width: 200px; /*Tamanho da imagem*/
     height: auto;
 
 }
@@ -56,15 +63,21 @@ input::placeholder{
 
 form [type="submit"]{
     display: block;
-    background-color: #934E9E;
+    background-color: #B71ABA;
     font-size: 20px; /*Tamanho da fonte do botão de entrar*/
     text-transform: uppercase; /*Deixar a fonte em caixa alta*/
     font-weight: bold; /*Deixar a fonte em negrito*/
-    cursor: pointer /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
+    cursor: pointer; /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
+    
+}
+
+form [type="submit"]:hover{
+    background: linear-gradient(to right, #312843, #B71ABA);
+
 }
 
 p{
-    color: #ffffff;
+    color: rgb(105, 105, 105);
 }
 a{
     color: #934E9E;
