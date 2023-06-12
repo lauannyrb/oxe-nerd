@@ -47,6 +47,7 @@ body{
 span{
     margin-top: 10px;
     padding-left: 10px;
+    font-weight: bold;
     
 }
 
@@ -63,7 +64,7 @@ input::placeholder{
 
 form [type="submit"]{
     display: block;
-    background-color: #B71ABA;
+    background-color: #934E9E;
     font-size: 20px; /*Tamanho da fonte do botão de entrar*/
     text-transform: uppercase; /*Deixar a fonte em caixa alta*/
     font-weight: bold; /*Deixar a fonte em negrito*/

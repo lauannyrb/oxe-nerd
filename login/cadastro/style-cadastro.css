@@ -17,12 +17,11 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #312843;
+    /* background-color: #312843; */
     width: 355px; /*Largura*/
-    height: 320px; /*Altura*/
+    height: 520px; /*Altura*/
     padding: 35px; /*Espaço entre as bordas/lados*/
     border-radius: 10px; /*Deixar as bordas aredondadas*/
-
 }
 
 .login form{
@@ -36,17 +35,20 @@ body{
     margin-top: 10px; /* Dar espaço entre os inputs */
     background-color: #fff9f9;  
     padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
-    color: black;
-    border:none ; /*Remover as bordas*/
+    color: rgb(20, 20, 20);
+    /* border:none ;  */
     height: 45px; /*Definir os tamanhos dos inputs*/
-    outline: none; /*Remover as bordas de quando o usuário clica em uma caixa de texto, fica uma borda*/
-    border-radius: 8px; /*Deixar as bordas aredondadas*/
+    /* outline: none;  */
+    border-color: rgb(194, 192, 192);
+    border-style: solid;
+    height: 50px; /*Definir os tamanhos dos inputs*/
+    border-radius: 40px; /*Deixar as bordas aredondadas*/
 }
 
-.login img{
-    width: 100px; /*Tamanho da imagem*/
-    height: auto;
 
+.login img{
+    width: 200px; /*Tamanho da imagem*/
+    height: auto;
 }
 
 input::placeholder{
@@ -60,14 +62,17 @@ form [type="submit"]{
     font-size: 20px; /*Tamanho da fonte do botão de entrar*/
     text-transform: uppercase; /*Deixar a fonte em caixa alta*/
     font-weight: bold; /*Deixar a fonte em negrito*/
-    cursor: pointer /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
+    cursor: pointer; /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
+    border: none;
 }
 
-p{
-    color: #ffffff;
+form [type="submit"]:hover{
+    background: linear-gradient(to right, #312843, #B71ABA);
+
 }
-a{
-    color: #934E9E;
-    text-decoration: none; /*Remover a barra que fica em baixo do link*/
-    margin-left: 10px;
+
+span{
+    margin-top: 10px;
+    padding-left: 10px;
+    font-weight: bold;
 }
