@@ -64,6 +64,7 @@ form [type="submit"]{
     font-weight: bold; /*Deixar a fonte em negrito*/
     cursor: pointer; /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
     border: none;
+    color: #fff9f9;
 }
 
 form [type="submit"]:hover{
