@@ -93,6 +93,9 @@ body {
     padding: 15px;
     background-color: #F2F3F4;  
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    margin-left: 2%;
+    margin-bottom: 2%;
   }
   section.container {
     display: inline-block;
