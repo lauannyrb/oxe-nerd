@@ -73,7 +73,7 @@ body {
   
   
   /* ----------Eletronicos-----------  */
-  .titulo {
+  nav.titulo {
     padding-left: 2%;
     width: 15%;
     font-size: 30px;
@@ -82,15 +82,22 @@ body {
     color: #440F5C;
     border-bottom: 1px solid black;
   }
+
+  h2.titulo{
+    font-size: 25px; 
+    padding-left: 2%;  
+    margin-bottom: 2%;
+
+  }
   
   /*---------------Containers de Eletronicos ------------------*/
   .carrossel{
     display: flex; /* Não Consegui trocar esse flex por outro */
     justify-content: center;
     align-items: center;
+    /*padding-left: 20px;*/ /* Deixei comentando pq tava desalinhado  */
   }
-
-  section.cinza{ /*Atribuitos das margins dos containers cinzas*/
+  section.cinza{
     padding: 15px;
     background-color: #F2F3F4;  
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -101,7 +108,6 @@ body {
   section.cinza:nth-child(1){
     margin-left: 0;
   }
-
   section.container {
     display: inline-block;
     margin-left: 2%; 
@@ -140,6 +146,7 @@ body {
     /*font-weight: 5000;  Queria muita a intensidade do negrito 
     mas não foi */
     margin: 0 auto;
+    padding-bottom: 10px;
   }
   
   .btn { /*Botão de comprar*/
@@ -175,7 +182,7 @@ body {
   
 
   
-/*-----------------Footer incio -----------------------------------*/
+  /*-----------------Footer incio -----------------------------------*/
 
 footer {
   background-color: #312847;
@@ -213,4 +220,3 @@ footer strong {
 
 
 /*-----------------Footer fim -----------------------------------*/
-  
