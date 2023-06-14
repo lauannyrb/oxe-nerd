@@ -40,7 +40,7 @@ Se você gostaria de contribuir para o projeto, siga estas etapas:
 - Lauanny Rodrigues
 - Elias Neves
 - Renan Carvalho
-- Jonas Oliveira
+- Jonas Oliveira k
 - Leticia Tamarindo 
 - Cayc Custodio
 

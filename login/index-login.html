@@ -13,17 +13,22 @@
       <div> 
         <img src="./img/logo-sem-fundo.png">
       </div>
-        <form method="post">
+      <form method="post">
         <span>Nome de usuário</span>
         <input type="text" name="nome" placeholder="Digite o seu nome de usuário" autofocus>
         <span>Senha</span>
         <input type="password" senha="senha" placeholder="Digite sua senha...">
-        <input type="submit" value="entrar">
-        
+        <input type="submit" value="entrar" onclick="redirecionar(event)">
       </form>
       <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.html">Criar conta</a></p> 
     </div>
-
   </section>
+
+  <script>
+    function redirecionar(event) {
+      event.preventDefault(); // Impede o envio do formulário
+      window.location.href = "../index.html";
+    }
+  </script>
 </body>
 </html>
