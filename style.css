@@ -160,6 +160,11 @@ p {
 
 }
 
+
+a{
+  text-decoration: none; /*Remover a barra que fica em baixo do link*/
+}
+
 .btn:hover {
   background-color: #f890fa;
 }
