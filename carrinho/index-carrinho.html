@@ -27,17 +27,104 @@
     </header>
     <!-- Fim  -->
 
+    <main>
+        <nav class="titulo"><strong>Meu carrinho <hr></strong></nav>
+        
+        <div class="descricoes1">
+            <span> Produtos</span>
+        </div>
 
+        <div class="descricoes"> 
+            <div class="descricoes2">
+                <span>Quantidade</span>
+                <span>Preço</span>
+                <span>Entrega</span>
+            </div>
+        </div>
+
+
+        <div class="pedido1">
+            <div class="img-pedido"> 
+                <img src="./img/caneco.png" alt="Caneca game"></div>
+            <div class="des-produto">
+                <span class="nome-pedido">Caneca GAMER personalizada</span>
+                <span class="des-pedido">Vendido e Entregue pela OxeNerd</span>
+            </div>
+            <div class="pedido-direita">
+                <input type="number" id="myInput" min="0" max="100" step="1" value="2" oninput="fixValue(this)" />
+                <span class="preco">31,98</span>
+                <span class="entrega">Entre 14 e 19 de Junho</span>                
+            </div>
+
+        </div>
+
+        <!-- ----------------PEdido 2:------------------>
+
+        <div class="pedido2">
+            <div class="img-pedido"> 
+                <img src="./img/memoriaa.png" alt="memoria"></div>
+            <div class="des-produto">
+                <span class="nome-pedido2">MEMORIA  RAM  T-FORCE  DELTA RGB, 8GB
+                    DDR4, 3000MHZ</span>
+                <span class="des-pedido">Vendido e Entregue pela OxeNerd</span>
+            </div>
+            <div class="pedido-direita2">
+                <input type="number" id="myInput" min="0" max="100" step="1" value="1" oninput="fixValue2(this)" />
+                <span class="preco">99,99</span>
+                <span class="entrega">Entre 14 e 19 de Junho</span>                
+            </div>
+
+        </div>
+    <div class="finalizar">
+        <span class="totall">Total</span>   
+        <div class="total">
+             
+            <div class="nome-valores">
+                <span>Valor dos produtos:</span><br>
+                <span>Frete:</span><br>
+                <span>Valor Total:</span>
+            </div>
+            <div class="valores">
+                <span>R$ 31,98</span>
+                <span>R$99,99</span>
+                <span>R$131,97</span>
+            </div>
+
+        </div>
+            <a href="#">
+                <button class="butao">FINALIZAR COMPRA</button>
+            </a>
+    </div>
+
+    
+    </main>
+
+    <script>
+        function fixValue(input) {
+          const fixedValue = 2; // Defina o valor fixo desejado
+          
+          if (input.value != fixedValue) {
+            input.value = fixedValue; // Mantém o valor fixo ao tentar alterar o valor
+          }
+        }
+        function fixValue2(input) {
+          const fixedValue2 = 1; // Defina o valor fixo desejado
+          
+          if (input.value != fixedValue2) {
+            input.value = fixedValue2; // Mantém o valor fixo ao tentar alterar o valor
+          }
+        }
+    </script>
 
 
         <!---------------- Fale Conosco incio ---------------->
     <footer>
-        <h2>Fale Conosco</h2>
+        <!-- <h2>Fale Conosco</h2>
             <div>
             <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
             <img src="../images/Instagram.png" alt="Instagram"><p>@oxe_nerd</p>
             <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
-        </div>
+        </div> -->
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
     </footer>
         <!---------------- Fale Conosco fim ---------------->

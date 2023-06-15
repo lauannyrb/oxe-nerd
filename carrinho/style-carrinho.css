@@ -3,6 +3,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: poppins;
+    height: 100%;
+    width: 100%;
   }
   
   /* --------------------------------------------- */
@@ -53,22 +55,222 @@ body {
   /* --------------------------------------------- */
 
 
+  nav.titulo {
+    padding-left: 2%;
+    width: 50%;
+    font-size: 30px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    color: #440F5C;
+  }
 
 
+/* -------decrições--------------------------------------- */
+
+body main{
+    /* background-color: aquamarine; */
+    width: 1500px;
+    height: 300px;
+    margin: 0 auto; /* Adicione esta linha para centralizar horizontalmente */
+    
+}
+main{
+    /* background-color: aquamarine; */
+    width: 1500px;
+    padding-bottom: 200px;
+}
+
+/* ---- pedido 1 ------- */
+.descricoes1{
+    position: absolute;
+    width: 483px;
+    padding-left: 2%;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 23px;
+    color: #B71ABA;
+}
 
 
+.descricoes2, .descricoes1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 23px;
+    color: #B71ABA;
+}
+
+.descricoes{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.descricoes2 span {
+    margin-right: 60px; /* Adicione essa linha para definir o espaço entre as palavras */
+  }
+
+.pedido1{
+    margin: 0 auto; 
+    width: 1430px;
+    height: 120px;
+    margin-top: 30px;
+    background: rgba(102, 102, 102, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: row;
+}
+
+.img-pedido{
+    margin: 10px;
+}
+.img-pedido img{
+    width: 120px; /* Defina o valor desejado para a largura da imagem */
+    height: auto;
+}
+
+.des-produto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nome-pedido{
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+.des-pedido{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 23px;
+    color: #666666;  
+}
+
+.pedido-direita {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 50%;
+    padding-left: 250px;
+    /* margin-left: 200px; */
+    
+
+}
+  
+
+input[type="number"] {
+    text-align: center; /* Centraliza o texto dentro do input */
+    width: 50px; /* Define a largura do input */
+    height: 50px;
+    font-size: 30px; /* Define o tamanho da fonte */
+    margin: 50px;
+    border: none;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 30px;
+    font-weight: 700;
+    border-radius: 5px;
+}
+
+.preco{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 23px;
+    margin: 50px;
+    /* padding-left: 150px; */
+
+}
+
+.entrega{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 23px;
+    width: 100px;
+    /* padding-left: 500px; */
+}
+
+button{
+  color: white;
+  margin-top: 10px;
+  padding: 8px;
+  background: #B71ABA;
+  border-radius: 5px;
+  }
+
+/* --------- pedido 2 ------------ */
 
 
+.pedido2{
+  margin: 0 auto; 
+  width: 1430px;
+  height: 100px;
+  margin-top: 30px;
+  /* background: rgba(102, 102, 102, 0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  display: flex;
+  flex-direction: row;
+}
+
+.nome-pedido2{
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 18px;
+  line-height: 23px;
+  width: 300px;
+}
+
+.pedido-direita2{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  width: 50%;
+  padding-left: 230px;
+}
 
 
+.totall{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #B71ABA;
+}
 
+.total{
+  margin-bottom: 2px;
+  background: rgba(217, 217, 217, 0.36);
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 
+}
+
+.valores{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: 40px;
+}
 
 /*-----------------Footer incio -----------------------------------*/
 
 footer {
     background-color: #312847;
-    padding: 20px;
+    /* padding: 20px; */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
   
   footer div {
@@ -79,7 +281,7 @@ footer {
   }
   
   footer h2 {
-    margin-right: 10px;
+    margin-right: 0px;
     color: white;
     text-align: center;
   }
