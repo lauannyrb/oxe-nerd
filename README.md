@@ -1,6 +1,8 @@
 # Oxe nerd
 Bem-vindo ao repositório do projeto do nosso site de vendas de produtos nerds! Neste projeto, estaremos desenvolvendo um site onde os usuários poderão consultar uma variedade de produtos relacionados ao universo nerd, incluindo copos, cadeiras gamers, colares, pulseiras, camisas e muito mais. Este arquivo README fornecerá uma visão geral do projeto e guiará você nas etapas necessárias para configurar e executar o site.
 
+Acesse o site oficial da [OXE NERD](https://lauannyrb.github.io/oxe-nerd/) 
+
 ## Funcionalidades do Site
 
 O site de vendas de produtos nerds terá as seguintes funcionalidades:
@@ -38,11 +40,12 @@ Se você gostaria de contribuir para o projeto, siga estas etapas:
 
 ## Time de desenvolvimento:
 - Lauanny Rodrigues
-- Elias Neves
-- Renan Carvalho
-- Jonas Oliveira k
 - Leticia Tamarindo 
 - Cayc Custodio
+- Elias Neves
+- Jonas Oliveira
+- Renan Carvalho
+
 
 ## Protótipo
 
