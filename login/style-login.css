@@ -55,7 +55,7 @@ span{
 }
 
 input::placeholder{
-    color: black;
+    color: rgb(99, 99, 99);
     font-size: 14px; /*Tamanho do texto que tem dentro do input (não o texto que a pessoa escreve)*/
 }
 
@@ -72,6 +72,7 @@ form [type="submit"]{
     cursor: pointer; /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
     color: #fff9f9;
     margin-top: 10px;
+    border: none;
 }
 
 form [type="submit"]:hover{
@@ -86,3 +87,34 @@ a{
     text-decoration: none; /*Remover a barra que fica em baixo do link*/
     margin-left: 10px;
 }
+
+/* Ajuste para tela igual ou inferior a 700px, ajuste em resposividade  */
+@media screen and (max-width: 700px) {
+    .area-login {
+        justify-content: center;
+    }
+
+    .login {
+        width: 100%;
+        border-radius: 0;
+        padding: 20px;
+    }
+
+    .login img {
+        width: 150px;
+    }
+
+    .login form [type="email"] {
+        margin-bottom: 10px;
+    }
+
+    .login input {
+        height: 40px;
+    }
+    
+    form [type="submit"] {
+        font-size: 16px;
+        margin-top: 8px;
+    }
+}
+
