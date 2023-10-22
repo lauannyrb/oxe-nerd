@@ -33,7 +33,7 @@ body{
 
 }
 
-.login input{
+.login input, button{
     margin-top: 4px; /* Dar espaço entre os inputs */
     background-color: #fff9f9;  
     padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
@@ -63,7 +63,7 @@ form [type="email"]{
     margin-bottom: 15px;
 }
 
-form [type="submit"]{
+button{
     display: block;
     background-color: #934E9E;
     font-size: 20px; /*Tamanho da fonte do botão de entrar*/
@@ -75,7 +75,7 @@ form [type="submit"]{
     border: none;
 }
 
-form [type="submit"]:hover{
+button:hover{
     background: linear-gradient(to right, #312843, #B71ABA);
 }
 

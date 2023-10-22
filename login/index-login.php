@@ -20,7 +20,8 @@
         <input type="email" name="email" placeholder="Digite o seu e-mail" autofocus>
         <label>Senha</label>
         <input type="password" senha="senha" placeholder="Digite a sua senha">
-        <input type="submit" value="entrar" onclick="redirecionar(event)">
+        <button type="submit" onclick="redirecionar(event)">entrar </button>
+        <!-- <input type="submit" value="entrar" onclick="redirecionar(event)"> -->
       </form>
       <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.php">Criar conta</a></p> 
     </div>
