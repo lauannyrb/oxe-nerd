@@ -7,7 +7,7 @@
   <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
   <link rel="stylesheet" href="style-login.css">
   <link rel="icon" href="../images/Logo.svg" type="svg">
-  <title>login</title>
+  <title>Login</title>
 </head>
 <body>
   <section class="area-login">
