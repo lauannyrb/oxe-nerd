@@ -13,7 +13,7 @@ body{
     align-items: center;
 }
 
-.login {
+.login{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,7 +34,7 @@ body{
 }
 
 .login input{
-    margin-top: 10px; /* Dar espaço entre os inputs */
+    margin-top: 4px; /* Dar espaço entre os inputs */
     background-color: #fff9f9;  
     padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
     color: #000000;
@@ -45,21 +45,22 @@ body{
 }
 
 span{
-    margin-top: 10px;
     padding-left: 10px;
     font-weight: bold;
-    
 }
 
 .login img{
     width: 200px; /*Tamanho da imagem*/
     height: auto;
-
 }
 
 input::placeholder{
     color: black;
     font-size: 14px; /*Tamanho do texto que tem dentro do input (não o texto que a pessoa escreve)*/
+}
+
+form [type="email"]{
+    margin-bottom: 15px;
 }
 
 form [type="submit"]{
@@ -70,11 +71,11 @@ form [type="submit"]{
     font-weight: bold; /*Deixar a fonte em negrito*/
     cursor: pointer; /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
     color: #fff9f9;
+    margin-top: 10px;
 }
 
 form [type="submit"]:hover{
     background: linear-gradient(to right, #312843, #B71ABA);
-
 }
 
 p{
