@@ -22,7 +22,7 @@
         <input type="password" senha="senha" placeholder="Digite a sua senha">
         <input type="submit" value="entrar" onclick="redirecionar(event)">
       </form>
-      <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.html">Criar conta</a></p> 
+      <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.php">Criar conta</a></p> 
     </div>
     <h1>
       <?php 
