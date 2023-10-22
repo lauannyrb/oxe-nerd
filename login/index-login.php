@@ -24,6 +24,11 @@
       </form>
       <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.html">Criar conta</a></p> 
     </div>
+    <h1>
+      <?php 
+        echo "OIIIIIIIIIII";
+      ?>
+    </h1>
   </section>
 
   <script>
