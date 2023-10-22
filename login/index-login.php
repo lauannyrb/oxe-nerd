@@ -16,9 +16,9 @@
         <img src="./img/logo-sem-fundo.png">
       </div>
       <form action="" method="post">
-        <span>E-mail</span>
+        <label>E-mail</label>
         <input type="email" name="email" placeholder="Digite o seu e-mail" autofocus>
-        <span>Senha</span>
+        <label>Senha</label>
         <input type="password" senha="senha" placeholder="Digite a sua senha">
         <input type="submit" value="entrar" onclick="redirecionar(event)">
       </form>

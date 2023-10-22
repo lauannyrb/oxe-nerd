@@ -32,7 +32,7 @@ body{
 }
 
 .login input{
-    margin: 5px; /* Dar espaço entre os inputs */
+    margin: px; /* Dar espaço entre os inputs */
     background-color: #fff9f9;  
     padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
     color: rgb(20, 20, 20);
@@ -70,9 +70,10 @@ form [type="submit"]:hover{
 
 }
 
-span{
+label{
     margin-top: 10px;
     padding-left: 10px;
+    font-weight: bold;
 }
 
 /* CSS para largura de tela igual ou inferior a 768px (exemplo) */

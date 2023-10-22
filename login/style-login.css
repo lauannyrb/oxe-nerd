@@ -44,7 +44,7 @@ body{
     border-radius: 40px; /*Deixar as bordas aredondadas*/
 }
 
-span{
+label{
     padding-left: 10px;
     font-weight: bold;
 }
