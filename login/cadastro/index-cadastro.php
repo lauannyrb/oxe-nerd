@@ -16,8 +16,8 @@
         <img src="./img/logo-sem-fundo.png">
       </div>
       <form method="post">
-        <span>Nome de usuário</span>
-        <input type="text" name="nome" placeholder="Digite o seu nome" autofocus>
+        <span>Nome</span>
+        <input type="text" name="nome" placeholder="Digite o seu nome completo" autofocus>
         <span>Informe o seu e-mail</span>
         <input type="email" name="email" placeholder="Digite o seu e-mail" > 
         <span>Senha</span>
