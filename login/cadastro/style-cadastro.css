@@ -32,13 +32,11 @@ body{
 }
 
 .login input{
-    margin-top: 10px; /* Dar espaço entre os inputs */
+    margin-bottom: 10px; /* Dar espaço entre os inputs */
     background-color: #fff9f9;  
     padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
     color: rgb(20, 20, 20);
-    /* border:none ;  */
     height: 45px; /*Definir os tamanhos dos inputs*/
-    /* outline: none;  */
     border-color: rgb(194, 192, 192);
     border-style: solid;
     height: 50px; /*Definir os tamanhos dos inputs*/
@@ -52,7 +50,7 @@ body{
 }
 
 input::placeholder{
-    color: black;
+    color: rgb(107, 107, 107);
     font-size: 14px; /*Tamanho do texto que tem dentro do input (não o texto que a pessoa escreve)*/
 }
 
@@ -72,8 +70,42 @@ form [type="submit"]:hover{
 
 }
 
-span{
+label{
     margin-top: 10px;
     padding-left: 10px;
     font-weight: bold;
+}
+
+/* CSS para largura de tela igual ou inferior a 768px (exemplo) */
+@media screen and (max-width: 700px) {
+    .login {
+        width: 100%; /* Aproveitar toda a largura da tela */
+        height: auto; /* Remover a altura fixa para permitir a expansão conforme necessário */
+        padding: 20px; /* Reduzir o espaço interno */
+    }
+
+    .login img {
+        width: 150px; /* Reduzir o tamanho da imagem */
+    }
+
+    .login form [type="email"] {
+        margin-bottom: 10px; /* Reduzir a margem inferior do campo de e-mail */
+    }
+
+    .login input {
+        height: 40px; /* Reduzir a altura dos campos de entrada */
+    }
+    
+    form [type="submit"] {
+        font-size: 16px; /* Reduzir o tamanho da fonte do botão de entrar */
+        margin-top: 8px;
+    }
+}
+
+/* Centralize o conteúdo verticalmente */
+.area-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

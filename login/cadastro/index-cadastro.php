@@ -16,11 +16,11 @@
         <img src="./img/logo-sem-fundo.png">
       </div>
       <form method="post">
-        <span>Nome de usuário</span>
-        <input type="text" name="nome" placeholder="Digite o seu nome" autofocus>
-        <span>Informe o seu e-mail</span>
+        <label>Nome</label>
+        <input type="text" name="nome" placeholder="Digite o seu nome completo" autofocus>
+        <label>Informe o seu e-mail</label>
         <input type="email" name="email" placeholder="Digite o seu e-mail" > 
-        <span>Senha</span>
+        <label>Senha</label>
         <input type="password" senha="senha" placeholder="Digite sua senha">
         <input type="password" senha="senha" placeholder="Confirme a sua senha">
         <input type="submit" value="cadastre-se" onclick="redirecionar(event)">
