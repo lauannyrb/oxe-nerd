@@ -25,7 +25,7 @@ Para configurar o ambiente de desenvolvimento e executar o site em sua máquina 
 `git clone https://github.com/lauannyrb/oxe-nerd.git`
 
 2. Navegue até o diretório raiz do projeto, onde ele foi clonado.
-3. Abra o arquivo `index.html` em seu navegador para visualizar o site.
+3. Abra o arquivo `index.php` em seu navegador para visualizar o site.
 
 ## Contribuição
 
