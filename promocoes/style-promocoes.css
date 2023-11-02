@@ -163,7 +163,7 @@ body {
     background-color: #5094A7;
     width: auto;
     height: auto;
-    padding: 7px 30px;
+    padding: 6px 30px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
@@ -198,11 +198,11 @@ body {
   footer img {
   width: 20px;
   height: 20px;
-  margin-right: 5px;
+  margin-right: -15px;
   }
   
   footer p {
-  margin: 10px;;
+  margin: 20px;;
   color: white;
   }
   
