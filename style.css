@@ -74,13 +74,13 @@ section img {
 /* Anúncios */
 
 img.anuncio{
-  width: 400px;
-  height: 150px;
-  border-radius: 15px;
-  margin-bottom: 10%;
+  width: 590px;
+  height: 173px;
+  border-radius: 20px;
+  margin-bottom: 5%;
 }
 div.container{
-  padding-left: 3%;
+  padding-left: 5%;
 }
 div.container:nth-child(1){
   padding-left: 0;
@@ -88,9 +88,9 @@ div.container:nth-child(1){
 
 img.anuncio:hover{
   border: 3 px solid #B71ABA;
-  border-radius: 15px;
-  width: 400px;
-  height: 150px;
+  border-radius: 20px;
+  width: 590px;
+  height: 173px;
 }
 
 /* ------------------------------ */
@@ -100,7 +100,7 @@ img.anuncio:hover{
 .titulo {
   font-size: 30px;
   margin-top: 2%;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
   padding-left: 2%;
 }
 
@@ -113,13 +113,13 @@ img.anuncio:hover{
 section.container {
   display: inline-block;
   margin-left: 2%; 
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 20px;
   text-align: left;
-  background-color: #F6BFFF;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f890fa;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   max-width: 300px;
+  margin-bottom: 3%;
 }
 section.container:nth-child(1){
   margin-left: 0;
@@ -131,6 +131,7 @@ img.venda {
   width: 300px;
   height: 250px;
   margin-bottom: 10px;
+  border-radius: 20px;
 }
 
 h2 {
@@ -151,23 +152,37 @@ p {
 
 .btn { /*Botão de comprar*/
   display: inline-block;
-  padding: 8px 110px;
+  padding: 10px 70px;
   background-color: #B71ABA;
   color: #fff;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-}
+  margin-right: 10px;
+  margin-bottom: 5px; 
 
+}
+.btn:hover {
+  background-color: #f890fa;
+}
+#carrinho{
+  display: inline;
+  background-color: #5094A7;
+  width: auto;
+  height: auto;
+  padding: 6px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#carrinho:hover{
+  background-color: #6c99a5;
+}    
 
 a{
   text-decoration: none; /*Remover a barra que fica em baixo do link*/
 }
 
-.btn:hover {
-  background-color: #f890fa;
-}
 /*----------------------------------------------------------*/
 
 /*Fale Conosco*/
@@ -189,6 +204,19 @@ section.contato{
 section.box{
   margin-left: 2%; 
 }
+  
+section img.contato {
+  width: 40px;
+  height: 40px;
+  margin-right: -30px;
+  border-radius: 3px;
+  }
+  
+p.contato {
+  margin: 40px;;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  }
 /*--------------------------------------------------------*/
 
 /* Rodapé */
@@ -198,7 +226,7 @@ section.box{
   color: white;
   text-align: center;
   padding: 30px 0;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 /*--------------------------------------------------------*/
