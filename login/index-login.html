@@ -23,19 +23,16 @@
         <button type="submit" onclick="redirecionar(event)">entrar </button>
         <!-- <input type="submit" value="entrar" onclick="redirecionar(event)"> -->
       </form>
-      <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.php">Criar conta</a></p> 
+      <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.html">Criar conta</a></p> 
     </div>
     <h1>
-      <?php 
-        echo "";
-      ?> 
     </h1>
   </section>
 
   <script>
     function redirecionar(event) {
       event.preventDefault(); // Impede o envio do formulário
-      window.location.href = "../index.php";
+      window.location.href = "../index.html";
     }
   </script>
 </body>
