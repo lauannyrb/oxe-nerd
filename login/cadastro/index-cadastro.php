@@ -15,23 +15,25 @@
       <div> 
         <img src="./img/logo-sem-fundo.png">
       </div>
-      <form method="post">
+      <form method="post" action="processa_cadastro.php">
+        <!-- Exibir mensagem de erro, se houver -->
+        <?php
+        session_start();
+        if (isset($_SESSION['cadastro_erro'])) {
+            echo '<div class="mensagem-erro">' . $_SESSION['cadastro_erro'] . '</div>';
+            unset($_SESSION['cadastro_erro']); // Limpar a mensagem de erro
+        }
+        ?>
+
         <label>Nome</label>
         <input type="text" name="nome" placeholder="Digite o seu nome completo" autofocus>
         <label>Informe o seu e-mail</label>
         <input type="email" name="email" placeholder="Digite o seu e-mail" > 
         <label>Senha</label>
-        <input type="password" senha="senha" placeholder="Digite sua senha">
-        <input type="password" senha="senha" placeholder="Confirme a sua senha">
-        <input type="submit" value="cadastre-se" onclick="redirecionar(event)">
+        <input type="password" name="senha" placeholder="Digite sua senha">
+        <input type="submit" value="Cadastre-se">
       </form>
     </div>
   </section>
-  <script>
-    function redirecionar(event) {
-      event.preventDefault(); // Impede o envio do formulário
-      window.location.href = "../../index.html";
-    }
-  </script>
 </body>
 </html>
