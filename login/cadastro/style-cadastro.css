@@ -42,7 +42,12 @@ body{
     height: 50px; /*Definir os tamanhos dos inputs*/
     border-radius: 40px; /*Deixar as bordas aredondadas*/
 }
-
+/* Estilização para mensagens de erro */
+.mensagem-erro {
+    color: #FF0000; /* Cor do texto vermelho */
+    font-size: 14px;
+    margin-top: 5px; /* Espaço entre a mensagem de erro e o campo */
+}
 
 .login img{
     width: 200px; /*Tamanho da imagem*/
