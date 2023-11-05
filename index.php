@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </nav>
     </header>
     <section class="promo">
-        <img src="images\PROMOÇÃO.png" alt="Imagem da Promoção">
+        <img src="images\PROMOÇÃO2.png" alt="Imagem da Promoção">
     </section>
 
 
