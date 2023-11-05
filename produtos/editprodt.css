@@ -1,0 +1,95 @@
+/*-------------html todo--------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: poppins;
+  }
+  
+  /* --------------------------------------------- */
+  
+  /*----------------header-------------------------*/
+  header {
+    background-color: #312847;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo-oxe-nerd {
+    height: 75px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 40px;
+    font-weight: bold;
+  
+  }
+  
+  a.carrinho {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carrinho img {
+    height: 20px;
+    width: auto;
+    margin: 0;
+  }
+  
+  /* --------------------------------------------- */
+
+
+  /*-----------------Footer incio -----------------------------------*/
+
+footer {
+    background-color: #312847;
+    padding: 20px;
+    }
+    
+    footer div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    }
+    
+    footer h2 {
+    margin-right: 10px;
+    color: white;
+    text-align: center;
+    }
+    
+    footer img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    }
+    
+    footer p {
+    margin: 10px;;
+    color: white;
+    }
+    
+    footer strong {
+    display: block;
+    text-align: center;
+    }
+    
+    
+    /*-----------------Footer fim -----------------------------------*/
+  
+         
