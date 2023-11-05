@@ -8,6 +8,7 @@
 
     <title>Carrinho de Compras</title>
 </head>
+
 <body>
 <?php
 session_start();

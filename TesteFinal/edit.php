@@ -44,7 +44,11 @@ if (isset($_SESSION['produtos'])) {
     echo "<p>Nenhum produto cadastrado ainda.</p>";
 }
 
+//qq tá acontecendo mds do céu
+
 ?>
+
+
 
 </body>
 </html>
