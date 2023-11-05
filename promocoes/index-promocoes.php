@@ -9,7 +9,6 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="..../images/oxe-nerd-logo.png" >
 
-    <!-- <title>Promoções</title> -->
 </head>
 
 <body>
@@ -18,10 +17,10 @@
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
             <a class="" href="#"> Promoções </a>
-            <a class="" href="../eletronicos/index-eletronicos.html"> Eletrônicos </a>
-            <a class="" href="../personalizados/index-personalizados.html"> Personalizados </a>
-            <a class="" href="../login/index-login.html"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.html"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
+            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
+            <a class="" href="../login/index-login.php"> Login </a>
+            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
         </nav>
     </header>
     <!-- Fim  -->
