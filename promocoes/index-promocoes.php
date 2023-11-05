@@ -1,3 +1,30 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['comprar'])) {
+        // Coletar informações do produto do formulário
+        $nome = $_POST['nome'];
+        $preco = $_POST['preco'];
+        $imagem = $_POST['imagem'];
+
+        // Criar uma array associativa para representar o produto
+        $produto = [
+            'nome' => $nome,
+            'preco' => $preco,
+            'imagem' => $imagem,
+        ];
+
+        // Verificar se o carrinho já existe na sessão e criar se necessário
+        if (!isset($_SESSION['carrinho'])) {
+            $_SESSION['carrinho'] = [];
+        }
+
+        // Adicionar o produto ao carrinho
+        $_SESSION['carrinho'][] = $produto;
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,11 +49,12 @@
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+            <?php echo count($_SESSION['carrinho']) ?> </a>
         </nav>
     </header>
     <!-- Fim  -->
-
+    
     <!-- Containers dos Promoções -->
     <nav class="titulo"><strong>Promoções<hr></strong></nav>
 
