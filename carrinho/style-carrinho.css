@@ -114,6 +114,7 @@ main{
 }
 
 .pedido1{
+  justify-content: space-between;
   margin: 0 auto; 
   width: 1430px;
   height: 120px;
