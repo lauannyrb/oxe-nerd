@@ -107,7 +107,7 @@ body {
     border-radius: 20px;
     padding: 20px;
     text-align: left;
-    background-color: #f890fa;
+    background-color: #F6BFFF;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     max-width: 300px;
   }
@@ -140,17 +140,18 @@ body {
     /*font-weight: 5000;  Queria muita a intensidade do negrito 
     mas não foi */
     margin: 0 auto;
+    padding-bottom: 10px;
   }
   
   .btn { /*Botão de comprar*/
     display: inline-block;
-    padding: 10px 70px;
+    padding: 10px 110px;
     background-color: #B71ABA;
     color: #fff;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  
+
     margin-right: 10px;
     margin-bottom: 5px; 
   
@@ -163,7 +164,7 @@ body {
     background-color: #5094A7;
     width: auto;
     height: auto;
-    padding: 6px 30px;
+    padding: 7px 30px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
