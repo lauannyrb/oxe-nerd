@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style-eletronicos.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="icon" href="..../images/oxe-nerd-logo.png" >
+    <link rel="icon" href="../images/oxe-nerd-logo.png" >
 
     <!-- <title>Equipamentos e Eletrônicos</title> -->
 </head>
@@ -48,9 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a class="" href="../index.html"> Promoções </a>
             <a class="" href="#"> Eletrônicos </a>
             <!-- <a class="" href="#"> Equipamentos </a> -->
-            <a class="" href="../personalizados/index-personalizados.html"> Personalizados </a>
+            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.html"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.html"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> 
+            <?php echo count($_SESSION['carrinho']) ?>
+    
+        </a>
         </nav>
     </header>
     <!-- Fim  -->

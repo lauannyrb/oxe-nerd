@@ -1,3 +1,8 @@
+<?php 
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -18,11 +23,14 @@
         <nav>
             <div><a class="" href="../index.html"> Promoções </a></div>
             <hr>
-            <a class="" href="../eletronicos/index-eletronicos.html"> Eletrônicos </a>
+            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <!-- <a class="" href=""> Equipamentos </a> -->
-            <a class="" href="../personalizados/index-personalizados.html"> Personalizados </a>
+            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.html"> Login </a>
-            <a class="" href=""> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href=""> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+            <?php echo count($_SESSION['carrinho']) ?>
+        </a>
+        
         </nav>
     </header>
     <!-- Fim  -->
@@ -31,11 +39,11 @@
     <main>
 
     <?php
-session_start();
-
 if(isset($_POST['deletar'])){
     //echo $_POST['indice']; // Exibe o índice do usuário que está sendo excluído
     unset($_SESSION['carrinho'][$_POST['indice']]); // Remove o usuário da sessão com base no índice recebido via POST
+    header("Location: ".$_SERVER['PHP_SELF']);
+
 }
 
 if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
@@ -126,8 +134,8 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
 
     if($total >= 500){ //Frete gratis a partir de R$500 em compras
         echo "   
-        <div class='finalizar'> <!--Espaço para fazer o total do carrinho-->
-        <span class='totall'>Total</span>   
+        <div class='finalizar' style='margin-top: 25px;' > <!--Espaço para fazer o total do carrinho-->
+        <span class='totall'  >Total</span>   
         <div class='total'>  
             <div class='nome-valores'>
                 <span>Valor dos produtos:</span><br>
@@ -158,8 +166,8 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
         
 
         echo "   
-        <div class='finalizar'> <!--Espaço para fazer o total do carrinho-->
-        <span class='totall'>Total</span>   
+        <div class='finalizar' style='margin-top: 25px;'> <!--Espaço para fazer o total do carrinho-->
+        <span class='totall' >Total</span>   
         <div class='total'>  
             <div class='nome-valores'>
                 <span>Valor dos produtos:</span><br>
@@ -220,5 +228,8 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
     </div>
     
     </main>
+
+    
+
 </body>
 </html>
