@@ -114,12 +114,11 @@ img.anuncio:hover{
 section.container {
   display: inline-block;
   margin-left: 2%; 
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 20px;
   text-align: left;
   background-color: #F6BFFF;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   max-width: 300px;
 }
 section.container:nth-child(1){
