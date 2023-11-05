@@ -13,7 +13,7 @@ body{
     align-items: center;
 }
 
-.login {
+.login{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,7 +34,7 @@ body{
 }
 
 .login input{
-    margin-top: 10px; /* Dar espaço entre os inputs */
+    margin-top: 4px; /* Dar espaço entre os inputs */
     background-color: #fff9f9;  
     padding-left: 10px; /*Dar um espaço entre o texto e as bordas da caixa de texto*/
     color: #000000;
@@ -44,22 +44,23 @@ body{
     border-radius: 40px; /*Deixar as bordas aredondadas*/
 }
 
-span{
-    margin-top: 10px;
+label{
     padding-left: 10px;
     font-weight: bold;
-    
 }
 
 .login img{
     width: 200px; /*Tamanho da imagem*/
     height: auto;
-
 }
 
 input::placeholder{
-    color: black;
+    color: rgb(99, 99, 99);
     font-size: 14px; /*Tamanho do texto que tem dentro do input (não o texto que a pessoa escreve)*/
+}
+
+form [type="email"]{
+    margin-bottom: 15px;
 }
 
 form [type="submit"]{
@@ -70,11 +71,12 @@ form [type="submit"]{
     font-weight: bold; /*Deixar a fonte em negrito*/
     cursor: pointer; /*Quando passar o mouse em cima, ficar uma mãozinha, indicando que é um link*/
     color: #fff9f9;
+    margin-top: 10px;
+    border: none;
 }
 
 form [type="submit"]:hover{
     background: linear-gradient(to right, #312843, #B71ABA);
-
 }
 
 p{
@@ -84,4 +86,42 @@ a{
     color: #934E9E;
     text-decoration: none; /*Remover a barra que fica em baixo do link*/
     margin-left: 10px;
+}
+/* Estilização para mensagens de erro */
+.mensagem-erro {
+    color: #FF0000; /* Cor do texto vermelho */
+    font-size: 14px;
+    margin-top: 5px; /* Espaço entre a mensagem de erro e o campo */
+}
+
+
+/* Ajuste para tela igual ou inferior a 700px, ajuste em resposividade  */
+@media screen and (max-width: 700px) {
+    .area-login {
+        justify-content: center;
+    }
+
+    .login {
+        width: 100%;
+        border-radius: 0;
+        padding: 20px;
+    }
+
+    .login img {
+        width: 150px;
+    }
+
+    .login form [type="email"] {
+        margin-bottom: 10px;
+    }
+
+    .login input {
+        height: 40px;
+    }
+    
+    form [type="submit"] {
+        font-size: 16px;
+        margin-top: 8px;
+    }
+    
 }
