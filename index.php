@@ -75,7 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-------------------------------->
 
     <!-- Containers com as promoções-->
-    <nav class="titulo"><strong>Promoções</strong></nav>
+
+    <nav class="titulo">
+        <strong>Promoções</strong>
+        <a href="./promocoes/index-promocoes.php">Ver Mais</a>
+    </nav>
 
     <section id="promocoes" class="carrossel">
         <section class="container">

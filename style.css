@@ -30,7 +30,7 @@ nav {
   align-items: center;
 }
 
-nav a {
+header nav a {
   color: white;
   text-decoration: none;
   margin-left: 40px;
@@ -103,8 +103,14 @@ img.anuncio:hover{
   margin-top: 2%;
   margin-bottom: 2%;
   padding-left: 2%;
+  display: flex;
+  justify-content: space-between;
 }
 
+.titulo a {
+  font-size: 20px;
+  margin-right: 20%;
+}
 /*---------------Containers de Compras ------------------*/
 .carrossel{ /*PRESENTE EM ANUNCIOS TMB*/
   display: flex; /* Não Consegui trocar esse flex por outro */
@@ -203,6 +209,8 @@ section.contato{
 section.box{
   margin-left: 2%; 
 }
+
+
 /*--------------------------------------------------------*/
 
 /* Rodapé */
