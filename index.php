@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['comprar'])) {
+        // Coletar informações do produto do formulário
+        $nome = $_POST['nome'];
+        $preco = $_POST['preco'];
+        $imagem = $_POST['imagem'];
+
+        // Criar uma array associativa para representar o produto
+        $produto = [
+            'nome' => $nome,
+            'preco' => $preco,
+            'imagem' => $imagem,
+        ];
+
+        // Verificar se o carrinho já existe na sessão e criar se necessário
+        if (!isset($_SESSION['carrinho'])) {
+            $_SESSION['carrinho'] = [];
+        }
+
+        // Adicionar o produto ao carrinho
+        $_SESSION['carrinho'][] = $produto;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,23 +40,22 @@
 </head>
 
 <body>
-    <!-- Codigos do Jonas  -->
+
     <header>
         <img class="logo-oxe-nerd" src="images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
         <nav>
             <a class="Promoções" href="#promocoes"> Promoções </a>
-            <a class="" href="./eletronicos/index-eletronicos.html"> Eletrônicos </a>
-            <!-- <a class="Equipamentos" href="#"> Equipamentos </a> -->
-            <a class="" href="./personalizados/index-personalizados.html"> Personalizados </a>
-            <a class="Login" href="./login/index-login.html"> Login </a>
-            <!--  <a class="Canecas" href="ref da aba de canecas"> Canecas </a>-->
-            <a class="carrinho" href="./carrinho/index-carrinho.html"> <img class="carrinho" src="images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
+            <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
+            <a class="Login" href="./login/index-login.php"> Login </a>
+            <a class="carrinho" href="./carrinho/index-carrinho.php"> <img class="carrinho" src="images/carrinho.png" title="carrinho">
+            <?php echo count($_SESSION['carrinho']) ?> </a>
         </nav>
     </header>
     <section class="promo">
         <img src="images\PROMOÇÃO.png" alt="Imagem da Promoção">
     </section>
-    <!-- Fim  -->
+
 
     <!-- Anúncios -->
     <section class="carrossel">

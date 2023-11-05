@@ -45,10 +45,11 @@ a.carrinho {
 }
 
 .carrinho img {
-  height: 20px;
+  height: 25px;
   width: auto;
   margin: 0;
 }
+
 
 /* --------------------------------------------- */
 
@@ -87,7 +88,7 @@ div.container:nth-child(1){
 }
 
 img.anuncio:hover{
-  border: 3 px solid #B71ABA;
+  border: 3px solid #B71ABA;
   border-radius: 15px;
   width: 400px;
   height: 150px;
