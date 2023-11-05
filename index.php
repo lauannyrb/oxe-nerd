@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
         <img class="logo-oxe-nerd" src="images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
         <nav>
-            <!-- <a class="Promoções" href="#promocoes"> Promoções </a> -->
-            <a class="Promoçẽs" href="./promocoes/index-promocoes.php"></a>
+            <a class="Promoções" href="./promocoes/index-promocoes.php"> Promoções</a>
+            <!-- <a class="Promoções" href="#promocoes"> Promoções</a> -->
             <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
             <a class="Login" href="./login/index-login.php"> Login </a>
