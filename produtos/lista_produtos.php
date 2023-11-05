@@ -45,6 +45,12 @@ if (isset($_SESSION['produtos'])) {
         // echo "<td><input type='submit' name ='editar' value='Editar' class='btn' /></td>"; // Botão para editar produto
         // echo "<td><input type='submit' name ='deletar' value='Deletar' class='btn' /></td>"; // Botão para excluir produto
         // echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
+        echo "<form method='post'>";
+        echo "<input type='hidden' name='nome' value='{$produto['nome']}'>";
+        echo "<input type='hidden' name='preco' value='{$produto['preco']}'>";
+        echo "<input type='hidden' name='imagem' value='{$produto['imagem']}'>";
+        echo "<button class='bnt' type='submit' name='comprar'>COMPRAR</button>";
+        echo "</form>";
 
         echo "</form>";
         echo "</div>";

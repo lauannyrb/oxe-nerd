@@ -41,7 +41,7 @@ if (isset($_SESSION['produtos'])) {
         echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
         echo "<form action='adicionar_carrinho.php' method='post'>";
         echo "<input type='hidden' name='produto_key' value='$key'>";
-        echo "<button type='submit' name='add_to_cart'>Adicionar ao Carrinho</button>";
+      //  echo "<button type='submit' name='add_to_cart'>Adicionar ao Carrinho</button>";
         // echo "<td><input type='submit' name ='editar' value='Editar' class='btn' /></td>"; // Botão para editar produto
         // echo "<td><input type='submit' name ='deletar' value='Deletar' class='btn' /></td>"; // Botão para excluir produto
         // echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
