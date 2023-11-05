@@ -30,7 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Armazena o novo usuário no array de usuários
     $_SESSION['usuarios'][] = ['nome' => $nome, 'email' => $email, 'senha' => $senha];
 
-    // $_SESSION['cadastro_sucesso'] = "Cadastro realizado com sucesso!";
-    header("Location: ../index-login.php");
+    // Define a variável de sessão para indicar que o usuário está logado
+    $_SESSION['usuario_logado'] = $nome;
+
+    // Redireciona para a página inicial
+    header("Location: ../../index.php");
+    exit;
 }
 ?>
