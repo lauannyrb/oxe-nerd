@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="carrossel"> <!-- Adicionando no carrinho -->
                     <form method="post">
                         <input type="hidden" name="nome" value="GPU NV RTX3060 12GB 1-CLICK OC GDDR6 192BITS Galax 36NOL7MD1VOC">
-                        <input type="hidden" name="preco" value="2.279.99"> <!-- Substitua pelo preço do produto -->
+                        <input type="hidden" name="preco" value="2279.99"> <!-- Substitua pelo preço do produto -->
                         <input type="hidden" name="imagem" value="../images/img_eletro/rtx.png"> <!-- Substitua pelo caminho da imagem do produto -->
                         <button class="btn" type="submit" name="comprar">COMPRAR </button>
                     </form>
