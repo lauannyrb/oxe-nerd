@@ -105,9 +105,6 @@ if(isset($_POST['editar'])){
         .btn2:hover {
         background-color: #7CBCCE; /* Cor mais clara quando hover (opcional) */
         }
-
-
-
     </style>
 
 <?php

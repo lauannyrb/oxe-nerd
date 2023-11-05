@@ -91,7 +91,7 @@ form .text {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-color: #B71ABA;
   text-align: center;
-  font-size: 12px;
+  font-size: 13.5px;
   margin: 0 auto;  /* Centraliza horizontalmente */
 
 }
@@ -127,7 +127,7 @@ form .text {
   min-height: 100vh;
 }
 
-/* Estilos para o formulário (opcional) */
+/* Estilos para o formulário */
 form {
   background-color: #f0f0f0;
   padding: 50px;
