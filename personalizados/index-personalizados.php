@@ -41,15 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <!-- Header  -->
-        <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
+    <header>
+        <a href="../index.html"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
         <nav>
-            <a class="" href="../index.php"> Promoções </a>
-            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
-            <!-- <a class="" href="#"> Equipamentos </a> -->
-            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="" href="../login/index-login.php"> Login </a>
-            <a class="" href="../TesteFinal/carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <div><a class="" href="../index.html"> Promoções </a></div>
+            <hr>
+            <a class="" href="../eletronicos/index-eletronicos.html"> Eletrônicos </a>
+            <!-- <a class="" href=""> Equipamentos </a> -->
+            <a class="" href="../personalizados/index-personalizados.html"> Personalizados </a>
+            <a class="" href="../login/index-login.html"> Login </a>
+            <a class="" href="../carrinho/index-carrinho.html"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
         </nav>
     </header>
     <!-- Fim  -->
