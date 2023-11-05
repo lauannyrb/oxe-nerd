@@ -1,8 +1,6 @@
 <?php 
 session_start();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,7 +22,6 @@ session_start();
             <div><a class="" href="../index.html"> Promoções </a></div>
             <hr>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
-            <!-- <a class="" href=""> Equipamentos </a> -->
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
             <a class="" href=""> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
@@ -154,17 +151,6 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
         
     }else{
         
-       /*echo "<p> Produtos: R$ " . $total . "</p>";
-        // Adicione o valor do frete ao total, se estiver definido na sessão
-        if (isset($_SESSION['frete'])) {
-            $total += $_SESSION['frete'];
-        }
-        echo "Frete:R$ ".$_SESSION['frete'];
-        echo "<p>Total: R$ " . $total . "</p>";
-*/
-
-        
-
         echo "   
         <div class='finalizar' style='margin-top: 25px;'> <!--Espaço para fazer o total do carrinho-->
         <span class='totall' >Total</span>   
@@ -193,22 +179,6 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
     echo "<p>Seu carrinho de compras está vazio.</p>";
 }
 ?>
-    <!--<div class="finalizar"> Espaço para fazer o total do carrinho
-        <span class="totall">Total</span>   
-        <div class="total">
-             
-            <div class="nome-valores">
-                <span>Valor dos produtos:</span><br>
-                <span>Frete:</span><br>
-                <span>Valor Total:</span>
-            </div>
-            <div class="valores">
-                <span>R$ 31,98</span>
-                <span>R$99,99</span>
-                <span>R$131,97</span>
-            </div>
-
-        </div>-->
 
         <form action="" method="post">
             <label for="frete">Selecione a região que você mora:</label>
@@ -220,16 +190,11 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
                 <option value="frete5">Centro-Oeste R$30</option> 
             </select>
             <input type="submit" name="calcular_frete" value="Calcular Frete">
-        </form>
-      
+        </form>   
             <a href="../pedido/pedido.html">
                 <button class="butao">FINALIZAR COMPRA</button>
             </a>
     </div>
-    
     </main>
-
-    
-
 </body>
 </html>
