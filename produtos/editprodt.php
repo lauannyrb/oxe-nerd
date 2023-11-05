@@ -68,7 +68,7 @@ if(isset($_GET['id'])){
                 Preço: <input type="text" name="preco" value="<?php echo $produto['preco']?>"><br>
                 Imagem: <input type="file" name="imagem" accept="image/*" <?php echo $produto['imagem']?>><br>
             </div>
-            <input type="submit" value="editar" name ='Editar' class='btn' />
+            <input type="submit" value="Editar" name ='editar' class='btn' />
             <a class="btn2" href="../produtos/edit.php"> Voltar </a>
             <a class="btn2" href="../produtos/lista_produtos.php"> Lista de produtos </a>
         </form>  
