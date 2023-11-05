@@ -66,10 +66,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 65,50</s></p>
                 <p class="preco"> <strong>R$45,50</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                        <input type="hidden" name="nome" value="Conjunto camisa namorados GAMER">
+                        <input type="hidden" name="preco" value="55.50"> <!-- Substitua pelo preço do produto -->
+                        <input type="hidden" name="imagem" value="../images/img-promo/camisa.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                        <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
 
@@ -80,10 +82,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 45,00</s></p>
                 <p class="preco"> <strong>R$36,99</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                    <input type="hidden" name="nome" value="Camiseta Homem Aranha Venoms">
+                    <input type="hidden" name="preco" value="35.99"> <!-- Substitua pelo preço do produto -->
+                    <input type="hidden" name="imagem" value="../images/img-promo/camisa_homem_aranha.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                    <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
 
@@ -94,10 +98,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 7.000,39</s></p>
                 <p class="preco"> <strong>R$5.000,39</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                    <input type="hidden" name="nome" value="Placa de Vídeo PNY GeForce RTX 4090 XLR8">
+                    <input type="hidden" name="preco" value="5000.39"> <!-- Substitua pelo preço do produto -->
+                    <input type="hidden" name="imagem" value="../images/img_perso/Caneca.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                    <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
 
@@ -108,10 +114,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 453,02</s></p>
                 <p class="preco"> <strong>R$288,81</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                    <input type="hidden" name="nome" value="Gabinete Gamer Aerocool Bolt Preto RGB Lateral Acrílico">
+                    <input type="hidden" name="preco" value="288.81"> <!-- Substitua pelo preço do produto -->
+                    <input type="hidden" name="imagem" value="../images/img-promo/gabinete.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                    <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
     </section>
@@ -124,10 +132,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 320,45</s></p>
                 <p class="preco"> <strong>R$215,50</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                    <input type="hidden" name="nome" value="Star Guardian Orianna Cosplay Traje League of Legends">
+                    <input type="hidden" name="preco" value="215.50"> <!-- Substitua pelo preço do produto -->
+                    <input type="hidden" name="imagem" value="../images/img-promo/vestido.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                    <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
 
@@ -138,10 +148,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 39,90</s></p>
                 <p class="preco"> <strong>R$21,90</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                    <input type="hidden" name="nome" value="Capinha para celular GAME ZONE Merilin Cases">
+                    <input type="hidden" name="preco" value="21.90"> <!-- Substitua pelo preço do produto -->
+                    <input type="hidden" name="imagem" value="../images/img-promo/capa2.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                    <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
 
@@ -152,10 +164,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 25,99</s></p>
                 <p class="preco"> <strong>R$15,19</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                    <input type="hidden" name="nome" value="Caneca de GAMER personalizada imperdível">
+                    <input type="hidden" name="preco" value="15.19"> <!-- Substitua pelo preço do produto -->
+                    <input type="hidden" name="imagem" value="../images/img-promo/Caneca.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                    <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
 
@@ -166,10 +180,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p><s>R$ 33,75</s></p>
                 <p class="preco"> <strong>R$21,99</strong></p>
                 <p>À vista no PIX</p>
-                <div class="carrossel">
-                    <a href="" class="btn">COMPRAR</a>
-                    <a href=""><img id="carrinho" src="../images/car2.png" title="carrinho"> </a>
-                </div>
+                <form method="post">
+                    <input type="hidden" name="nome" value="Caneca PLAY GAME controle personalizada">
+                    <input type="hidden" name="preco" value="21.99"> <!-- Substitua pelo preço do produto -->
+                    <input type="hidden" name="imagem" value="../images/img-promo/Caneca-play-game.png"> <!-- Substitua pelo caminho da imagem do produto -->
+                    <button class="btn" type="submit" name="comprar">COMPRAR </button>
+                </form>
             </section>
         </section>
     </section>
