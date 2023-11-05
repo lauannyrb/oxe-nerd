@@ -21,7 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($usuario['email'] == $email && password_verify($senha, $usuario['senha'])) {
                 // Login bem-sucedido, redireciona para a página desejada
                 $login_sucesso = true;
+                
+                $_SESSION['usuario_logado'] = $nome; // $nome é o nome do usuário logado
+
                 header("Location: ../index.php");
+                
                 exit;
             }
         }
