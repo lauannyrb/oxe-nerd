@@ -180,6 +180,7 @@ input[type="number"] {
 }
 
 .preco{
+    white-space: nowrap;
     font-style: normal;
     font-weight: 600;
     font-size: 25px;
