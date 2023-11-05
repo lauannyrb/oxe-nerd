@@ -19,14 +19,14 @@ session_start();
 <body>
     <!-- Header  -->
     <header>
-        <a href="../index.html"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
         <nav>
             <div><a class="" href="../index.html"> Promoções </a></div>
             <hr>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <!-- <a class="" href=""> Equipamentos </a> -->
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="" href="../login/index-login.html"> Login </a>
+            <a class="" href="../login/index-login.php"> Login </a>
             <a class="" href=""> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
             <?php echo count($_SESSION['carrinho']) ?>
         </a>

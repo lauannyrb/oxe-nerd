@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <!-- Header  -->
     <header>
-        <a href="../index.html"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="../index.html"> Promoções </a>
+            <a class="" href="../index.php"> Promoções </a>
             <a class="" href="#"> Eletrônicos </a>
             <!-- <a class="" href="#"> Equipamentos </a> -->
-            <a class="" href="../personalizados/index-personalizados.html"> Personalizados </a>
-            <a class="" href="../login/index-login.html"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.html"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
+            <a class="" href="../login/index-login.php"> Login </a>
+            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
         </nav>
     </header>
     <!-- Fim  -->
