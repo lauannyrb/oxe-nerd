@@ -55,54 +55,50 @@ $valor = "";
         }
 
         if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
-            echo "<nav class='titulo'><strong>Meu carrinho <hr></strong></nav>";
-
-            echo "
-        <div class='descricoes1'>
-            <span> Produtos</span>
-        </div>
-
-        <div class='descricoes'> 
-            <div class='descricoes2'>
-                <span>Quantidade</span>
-                <span>Preço</span>
-                <span>Entrega</span>
+        echo "<nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
+            <div class='descricoes1'>
+                <span> Produtos</span>
             </div>
-        </div>";
 
-            foreach ($_SESSION['carrinho'] as $key => $produto) {
+            <div class='descricoes'> 
+                <div class='descricoes2'>
+                    <span>Quantidade</span>
+                    <span>Preço</span>
+                    <span>Entrega</span>
+                </div>
+            </div>";
 
-                echo "<form action='' method='post'>";
-                echo "<div class='pedido1'>";
-                echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
+        foreach ($_SESSION['carrinho'] as $key => $produto) {
 
-                //echo "<h2 class='nome-pedido'>" . $produto['nome'] . "</h2>";
-                //echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
+            echo "<form action='' method='post'>";
+            echo "<div class='pedido1'>";
+            echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
 
-                echo "       
-        <div class='des-produto'>
-                <span class='nome-pedido'>" . $produto['nome'] . "</span>
-                <span class='des-pedido'>Vendido e entregue pela OxeNerd</span>
-            </div>
-        ";
+            echo "       
+                <div class='des-produto'>
+                        <span class='nome-pedido'>" . $produto['nome'] . "</span>
+                        <span class='des-pedido'>Vendido e entregue pela OxeNerd</span>
+                    </div>
+                ";
 
-                echo "       
-        <div class='pedido-direita'>
-                
-            <td>
-            <input style='border: none; cursor: pointer;'' class='remover' type='submit' name ='deletar' value='Remover'/>            
-            </td>
-            <input type='number' id='myInput' min='0' max='100' step='1'   value='1' oninput='fixValue2(this)' />
-                <span class='preco'>R$ " . $produto['preco'] . "</span>
-                <span class='entrega'>Em Dezembro</span>                
-            </div>
-        ";
+            echo "       
+                <div class='pedido-direita'>
+                        
+                    <td>
+                        <input style='border: none; cursor: pointer;'' class='remover' type='submit' name ='deletar' value='Remover'/>         
+                           
+                    </td>
+                    <input type='number' id='myInput' min='0' max='100' step='1'   value='1' oninput='fixValue2(this)' />
+                    <span class='preco'>R$ " . $produto['preco'] . "</span>
+                    <span class='entrega'>Em Dezembro</span>                
+                    </div>
+                ";
 
 
-                echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
-                echo "</div>";
-                echo "</form>";
-            }
+            echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
+            echo "</div>";
+            echo "</form>";
+        }
 
             
             // Teste com frete
@@ -151,49 +147,49 @@ $valor = "";
 
             if ($total >= 500) { //Frete gratis a partir de R$500 em compras
                 echo "   
-        <div class='finalizar' style='margin-top: 25px;' > <!--Espaço para fazer o total do carrinho-->
-        <span class='totall'  >Total</span>   
-        <div class='total'>  
-            <div class='nome-valores'>
-                <span>Valor dos produtos:</span><br>
-                <span>Frete:</span><br>
-                <span>Valor Total:</span><br> 
-                <span>Forma de Pagamento:</span>
-            </div>
-            <div class='valores'>
-                <span>R$ " . $total . "</span>
-                <span>Frete de Graça :D</span>
-                <span>R$ " . $total . "</span>
-                <span>".$valor."</span>
-            </div>
+                    <div class='finalizar' style='margin-top: 25px;' > <!--Espaço para fazer o total do carrinho-->
+                    <span class='totall'  >Total</span>   
+                    <div class='total'>  
+                        <div class='nome-valores'>
+                            <span>Valor dos produtos:</span><br>
+                            <span>Frete:</span><br>
+                            <span>Valor Total:</span><br> 
+                            <span>Forma de Pagamento:</span>
+                        </div>
+                        <div class='valores'>
+                            <span>R$ " . $total . "</span>
+                            <span>Frete de Graça :D</span>
+                            <span>R$ " . $total . "</span>
+                            <span>".$valor."</span>
+                        </div>
 
-        </div>
-        ";
+                    </div>
+                    ";
             } else {
                 echo "   
-        <div class='finalizar' style='margin-top: 25px;'> <!--Espaço para fazer o total do carrinho-->
-        <span class='totall' >Total</span>   
-        <div class='total'>  
-            <div class='nome-valores' >
-                <span>Valor dos produtos:</span><br>
-                <span>Frete:</span><br>
-                <span>Valor Total:</span><br>
-                <span>Forma de Pagamento:</span>
-            </div>
-            <div class='valores'>
-                <span>R$ " . $total . "</span>";
-                if (isset($_SESSION['frete'])) {
-                    $frete = $_SESSION['frete'];
-                    $total += $_SESSION['frete'];
-                }
-                echo "
-                <span>R$ " .  $frete . "</span>
-                <span>R$ " . $total . "</span>
-                <span>". $valor ."</span>
-            </div>
+                    <div class='finalizar' style='margin-top: 25px;'> <!--Espaço para fazer o total do carrinho-->
+                    <span class='totall' >Total</span>   
+                    <div class='total'>  
+                        <div class='nome-valores' >
+                            <span>Valor dos produtos:</span><br>
+                            <span>Frete:</span><br>
+                            <span>Valor Total:</span><br>
+                            <span>Forma de Pagamento:</span>
+                        </div>
+                        <div class='valores'>
+                            <span>R$ " . $total . "</span>";
+                            if (isset($_SESSION['frete'])) {
+                                $frete = $_SESSION['frete'];
+                                $total += $_SESSION['frete'];
+                            }
+                            echo "
+                            <span>R$ " .  $frete . "</span>
+                            <span>R$ " . $total . "</span>
+                            <span>". $valor ."</span>
+                        </div>
 
-        </div>
-        ";
+                    </div>
+                    ";
             }
         } else {
             echo "<p>Seu carrinho de compras está vazio.</p>";
