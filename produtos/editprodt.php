@@ -48,7 +48,8 @@ if(isset($_GET['id'])){
  <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="../index.php"> Promoções </a>
+            <a class="" href="../produtos/cadastro_produtos.html"> Novos produtos </a>
+            <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="#"> Eletrônicos </a>
             <!-- <a class="" href="#"> Equipamentos </a> -->
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>

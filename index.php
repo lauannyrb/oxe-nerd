@@ -55,11 +55,12 @@ if (isset($_SESSION['usuario_logado'])) {
     <header>
         <img class="logo-oxe-nerd" src="images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
         <nav>
+            <a class="" href="./produtos/cadastro_produtos.html"> Novos produtos </a>
             <a class="Promoções" href="./promocoes/index-promocoes.php"> Promoções</a>
             <!-- <a class="Promoções" href="#promocoes"> Promoções</a> -->
             <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
-        <a class="Login" href="./login/index-login.php"><?php echo "Bem-vinde, $nome_usuario"; ?></a>
+            <a class="Login" href="./login/index-login.php"><?php echo "Bem-vindo(a), $nome_usuario"; ?></a>
             <a class="" href="./carrinho/index-carrinho.php"> <img class="carrinho" src="images/carrinho.png" title="carrinho">
             <?php echo count($_SESSION['carrinho']) ?> </a>
         </nav>
