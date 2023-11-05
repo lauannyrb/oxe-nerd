@@ -8,7 +8,7 @@ if (!isset($_SESSION['carrinho'])) {
 $total = 0;
 // Calcula o frete dos itens no carrinho
 $frete = 0;
-$valor = "";
+$valor = "-------------";
 ?>
 
 
@@ -30,7 +30,7 @@ $valor = "";
     <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
         <nav>
-            <div><a class="" href="../index.html"> Promoções </a></div>
+            <div><a class="" href="../index.php"> Promoções </a></div>
             <hr>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <!-- <a class="" href=""> Equipamentos </a> -->
