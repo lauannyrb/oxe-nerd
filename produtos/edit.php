@@ -10,6 +10,7 @@ if(isset($_POST['editar'])){
     echo $_POST['indice']; // Exibe o índice do usuário que está sendo editado
     header('Location: editprodt.php?id='.$_POST['indice']); // Redireciona para a página "editarUsuario.php" com o ID do usuário que será editado na URL
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ if(isset($_POST['editar'])){
     <link rel="stylesheet" href="edit.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="images/Logo.svg" type="svg">
-    <title>Document</title>
+    <title> Edição de produtos </title>
 </head>
 <body>
 
@@ -37,25 +38,71 @@ if(isset($_POST['editar'])){
     </header>
     <!-- Fim  -->
 
+    <style>
+        /* Estilo para centralizar os elementos na tela edit.php */
+        .description {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;    
+        }
+
+        h1 {
+            color: #2d1d55;
+            text-align: center;
+        }
+
+        img .centralizar {
+            width: 350px;
+        }
+
+        .centralizar {
+            background-color: pink;
+            padding: 30px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .btn { /*Botão de editar e deletar produto*/
+        display: inline-block;
+        padding: 10px 70px;
+        background-color: #B71ABA;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border-color: #B71ABA;
+        margin-right: 10px;
+        margin-bottom: 5px; 
+        }
+        .btn:hover {
+        background-color: #f890fa;
+        }
+    </style>
+
+
+
 <?php
 if (isset($_SESSION['produtos'])) {
     echo "<h1>Lista de Produtos</h1>";
 
     foreach ($_SESSION['produtos'] as $key => $produto) {
         
-
+        echo "<div class='description'>";
         echo "<form action='' method='post'>";
         
-        echo "<div>";
+        echo "<div class='centralizar'>";
         echo "<img src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
         echo "<h2>" . $produto['nome'] . "</h2>";
         echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
 
-        echo "<td><input type='submit' name ='editar' value='E'/></td>"; // Botão para editar o usuário
-        echo "<td><input type='submit' name ='deletar' value='D'/></td>"; // Botão para excluir o usuário
-        echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do usuário
+        echo "<td><input type='submit' name ='editar' value='Editar' class='btn' /></td>"; // Botão para editar produto
+        echo "<td><input type='submit' name ='deletar' value='Deletar' class='btn' /></td>"; // Botão para excluir produto
+        echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
 
         echo "</form>";
+        echo "</div>";
         echo "</div>";
     }
 } else {
