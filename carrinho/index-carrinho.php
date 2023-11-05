@@ -19,7 +19,7 @@ session_start();
     <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
         <nav>
-            <div><a class="" href="../index.php"> Promoções </a></div>
+            <div><a class="" href="../promocoes/index-promocoes.php"> Promoções </a></div>
             <hr>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
