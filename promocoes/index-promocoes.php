@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="carrossel"> <!--Primeira linha de produtos-->
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/camisa.png" alt="Imagem de Camisas"> 
+                <img class="venda" src="../images/img-promo/camisa.png" alt="Imagem de Camisas"> 
                 <h2>Conjunto camisa namorados GAMER</h2>
                 <p><s>R$ 65,50</s></p>
                 <p class="preco"> <strong>R$45,50</strong></p>
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/camisa_homem_aranha.png" alt="Imagem de Camisa"> 
+                <img class="venda" src="../images/img-promo/camisa_homem_aranha.png" alt="Imagem de Camisa"> 
                 <h2>Camiseta Homem Aranha Venoms</h2>
                 <p><s>R$ 45,00</s></p>
                 <p class="preco"> <strong>R$36,99</strong></p>
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/placa_video.png" alt="Imagem da placa"> 
+                <img class="venda" src="../images/img-promo/placa_video.png" alt="Imagem da placa"> 
                 <h2>Placa de Vídeo PNY GeForce RTX 4090 XLR8</h2>
                 <p><s>R$ 7.000,39</s></p>
                 <p class="preco"> <strong>R$5.000,39</strong></p>
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/gabinete.png" alt="Imagem de gabinete"> 
+                <img class="venda" src="../images/img-promo/gabinete.png" alt="Imagem de gabinete"> 
                 <h2>Gabinete Gamer Aerocool Bolt Preto RGB Lateral Acrílico</h2>
                 <p><s>R$ 453,02</s></p>
                 <p class="preco"> <strong>R$288,81</strong></p>
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <section class="carrossel"> <!--Segunda linha de produtos-->
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/vestido.png" alt="Imagem de vestido"> 
+                <img class="venda" src="../images/img-promo/vestido.png" alt="Imagem de vestido"> 
                 <h2>Star Guardian Orianna Cosplay Traje League of Legends</h2>
                 <p><s>R$ 320,45</s></p>
                 <p class="preco"> <strong>R$215,50</strong></p>
@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/capa2.png" alt="Imagem de capa"> 
+                <img class="venda" src="../images/img-promo/capa2.png" alt="Imagem de capa"> 
                 <h2>Capinha para celular GAME ZONE Merilin Cases</h2>
                 <p><s>R$ 39,90</s></p>
                 <p class="preco"> <strong>R$21,90</strong></p>
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/Caneca.png" alt="Imagem de uma caneca"> 
+                <img class="venda" src="../images/img-promo/Caneca.png" alt="Imagem de uma caneca"> 
                 <h2>Caneca de GAMER personalizada imperdível</h2>
                 <p><s>R$ 25,99</s></p>
                 <p class="preco"> <strong>R$15,19</strong></p>
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <section class="divisao"> 
             <section class="container">
-                <img class="venda" src="/images/img-promo/Caneca-play-game.png" alt="Imagem de uma caneca"> 
+                <img class="venda" src="../images/img-promo/Caneca-play-game.png" alt="Imagem de uma caneca"> 
                 <h2>Caneca PLAY GAME controle personalizada</h2>
                 <p><s>R$ 33,75</s></p>
                 <p class="preco"> <strong>R$21,99</strong></p>
