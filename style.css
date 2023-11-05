@@ -45,7 +45,7 @@ a.carrinho {
 }
 
 .carrinho img {
-  height: 25px;
+  height: 20px;
   width: auto;
   margin: 0;
 }
@@ -170,6 +170,20 @@ a{
   background-color: #f890fa;
 }
 /*----------------------------------------------------------*/
+
+
+#carrinho{
+  display: inline;
+  background-color: #5094A7;
+  width: auto;
+  height: auto;
+  padding: 6px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#carrinho:hover{
+  background-color: #6c99a5;
+}    
 
 /*Fale Conosco*/
 
