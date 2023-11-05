@@ -73,7 +73,7 @@ section img {
 
 /* Anúncios */
 
-img.anuncio{
+/* img.anuncio{
   width: 400px;
   height: 150px;
   border-radius: 15px;
@@ -91,7 +91,7 @@ img.anuncio:hover{
   border-radius: 15px;
   width: 400px;
   height: 150px;
-}
+} */
 
 /* ------------------------------ */
 
@@ -209,6 +209,8 @@ footer {
   /*-----------------Footer fim -----------------------------------*/
   
   /*----------------------------------------------------------*/
+
+
 
 
 
