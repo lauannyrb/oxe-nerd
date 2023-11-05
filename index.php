@@ -112,13 +112,13 @@ if (isset($_SESSION['usuario_logado'])) {
         <section class="container">
             <img class="venda" src="./images/vestido.png" alt="Imagem de venda">
             <h2>Star Guardian Orianna Cosplay Traje League of Legends</h2>
-            <p><s>R$ 65,50</s></p>
-            <p class="preco"> <strong>R$ 45,50</strong></p>
+            <p><s>R$ 320,45</s></p>
+            <p class="preco"> <strong>R$ 215,50</strong></p>
             <p>À vista no PIX</p>
             <div class="carrossel"> <!-- Adicionando no carrinho -->
                     <form method="post">
                         <input type="hidden" name="nome" value="Star Guardian Orianna Cosplay Traje League of Legends">
-                        <input type="hidden" name="preco" value="45.50"> <!-- Substitua pelo preço do produto -->
+                        <input type="hidden" name="preco" value="215.50"> <!-- Substitua pelo preço do produto -->
                         <input type="hidden" name="imagem" value="../images/vestido.png"> <!-- Substitua pelo caminho da imagem do produto -->
                         <button class="btn" type="submit" name="comprar">COMPRAR </button>
                     </form>
@@ -128,13 +128,13 @@ if (isset($_SESSION['usuario_logado'])) {
         <section class="container">
             <img class="venda" src="images/rtx.png" alt="Imagem de venda">
             <h2>Placa de Vídeo PNY GeForce RTX 4090 XLR8</h2>
-            <p><s>R$ 10.000,50</s></p>
-            <p class="preco"> <strong>R$6.999,99</strong></p>
+            <p><s>R$ 7.000,39</s></p>
+            <p class="preco"> <strong>R$5.000,39</strong></p>
             <p>À vista no PIX</p>
                 <div class="carrossel"> <!-- Adicionando no carrinho -->
                     <form method="post">
                         <input type="hidden" name="nome" value="Placa de Vídeo PNY GeForce RTX 4090 XLR8">
-                        <input type="hidden" name="preco" value="6999.99"> <!-- Substitua pelo preço do produto -->
+                        <input type="hidden" name="preco" value="5000.39"> <!-- Substitua pelo preço do produto -->
                         <input type="hidden" name="imagem" value="../images/rtx.png"> <!-- Substitua pelo caminho da imagem do produto -->
                         <button class="btn" type="submit" name="comprar">COMPRAR </button>
                     </form>
