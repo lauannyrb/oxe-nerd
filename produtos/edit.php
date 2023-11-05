@@ -12,6 +12,7 @@ if(isset($_POST['editar'])){
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,18 +48,20 @@ if(isset($_POST['editar'])){
             text-align: center;    
         }
 
+        /* Estilos para as imagens */
+        .description img {
+            max-width: 200px; /* Defina a largura máxima desejada */
+            max-height: 200px; /* Defina a altura máxima desejada */
+        }
+
         h1 {
             color: #2d1d55;
             text-align: center;
         }
 
-        img .centralizar {
-            width: 350px;
-        }
-
         .centralizar {
-            background-color: pink;
-            padding: 30px 20px;
+            background-color: #fff;
+            padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             margin-bottom: 40px;
@@ -66,7 +69,8 @@ if(isset($_POST['editar'])){
 
         .btn { /*Botão de editar e deletar produto*/
         display: inline-block;
-        padding: 10px 70px;
+        padding: 10px 10px; /* Defina um valor mínimo de largura para os botões */
+        min-width: 120px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
         background-color: #B71ABA;
         color: #fff;
         text-decoration: none;
@@ -74,14 +78,36 @@ if(isset($_POST['editar'])){
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         border-color: #B71ABA;
         margin-right: 10px;
-        margin-bottom: 5px; 
+        margin-left: 10px;
         }
         .btn:hover {
-        background-color: #f890fa;
+        background-color: #f890fa; 
         }
+
+        .btn2 {
+        display: block;
+        padding: 10px 10px; /* Defina um valor mínimo de largura para os botões */
+        min-width: 120px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
+        background-color: #5094A7; /* Cor azul desejada */
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border-color: #8085FF; /* Cor da borda deve corresponder à cor de fundo */
+        margin-top: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 12px;
+        }
+
+        .btn2:hover {
+        background-color: #7CBCCE; /* Cor mais clara quando hover (opcional) */
+        }
+
+
+
     </style>
-
-
 
 <?php
 if (isset($_SESSION['produtos'])) {
@@ -99,6 +125,7 @@ if (isset($_SESSION['produtos'])) {
 
         echo "<td><input type='submit' name ='editar' value='Editar' class='btn' /></td>"; // Botão para editar produto
         echo "<td><input type='submit' name ='deletar' value='Deletar' class='btn' /></td>"; // Botão para excluir produto
+        echo "<a class='btn2' href='../produtos/lista_produtos.php'>Voltar</a>"; // Botão de navegação "Voltar"
         echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
 
         echo "</form>";

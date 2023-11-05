@@ -18,7 +18,6 @@ if(isset($_POST['editar'])){
         }
     }
 
-    
         $produto['nome'] = $nome;
         $produto['preco'] =$preco;
         $produto['imagem'] = $imagem;
@@ -26,14 +25,13 @@ if(isset($_POST['editar'])){
 
 }
 
-
-
 if(isset($_GET['id'])){     
     $produto = $_SESSION['produtos'][$_GET['id']];//vai jogar dentro do key do produtos
 }else{
     die('Acesso incompativel');
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -42,8 +40,7 @@ if(isset($_GET['id'])){
     <link rel="stylesheet" href="editprodt.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="images/Logo.svg" type="svg">
-    <title>Document</title>
-    <title>Document</title>
+    <title> Editando produtos </title>
 </head>
 <body>
 
@@ -52,21 +49,103 @@ if(isset($_GET['id'])){
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
             <a class="" href="../index.php"> Promoções </a>
-            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
+            <a class="" href="#"> Eletrônicos </a>
             <!-- <a class="" href="#"> Equipamentos </a> -->
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+            <?php echo count($_SESSION['carrinho']) ?>
+        </a>
+        
         </nav>
     </header>
     <!-- Fim  -->
 
-    <form action="" method="post" enctype="multipart/form-data">
-        Nome: <input type="text" name="nome" value= "<?php echo $produto['nome'] ?>"/><br>
-        Preço: <input type="text" name="preco" value="<?php echo $produto['preco']?>"><br>
-        Imagem: <input type="file" name="imagem" accept="image/*" <?php echo $produto['imagem']?>><br>
-        <input type="submit" value="editar" name ='editar'/>
-    </form>    
+    <div class="cadastro">
+        <form class="" action="" method="post" enctype="multipart/form-data">
+            <div class="text"> 
+                Nome: <input type="text" name="nome" value= "<?php echo $produto['nome'] ?>"/><br>
+                Preço: <input type="text" name="preco" value="<?php echo $produto['preco']?>"><br>
+                Imagem: <input type="file" name="imagem" accept="image/*" <?php echo $produto['imagem']?>><br>
+            </div>
+            <input type="submit" value="editar" name ='Editar' class='btn' />
+            <a class="btn2" href="../produtos/edit.php"> Voltar </a>
+            <a class="btn2" href="../produtos/lista_produtos.php"> Lista de produtos </a>
+        </form>  
+    </div>  
+
+<style>
+
+form .text {
+    margin-bottom: 30px;
+}
+
+.btn { /*Botões*/
+  display: flex;
+  padding: 10px 70px;
+  background-color: #B71ABA;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-color: #B71ABA;
+  text-align: center;
+  font-size: 12px;
+  margin: 0 auto;  /* Centraliza horizontalmente */
+
+}
+.btn:hover {
+  background-color: #f890fa;
+}
+
+.btn2 { /*Botões*/
+  display: inline-block;
+  padding: 10px 40px; /* Defina um valor mínimo de largura para os botões */
+  min-width: 120px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
+  background-color: #5094A7;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-color: #B71ABA;
+  margin-top: 20px;
+  margin-right: 10px; 
+  font-size: 12px;
+
+}
+.btn2:hover {
+  background-color: #7CBCCE;
+}
+
+/* Estilos para centralizar o conteúdo */
+.cadastro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Estilos para o formulário (opcional) */
+form {
+  background-color: #f0f0f0;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 15px;
+  color: #2d1d55;
+}
+
+input {
+  border-radius: 10px;
+  border-color: #f0f0f0;
+}
+
+
+</style>
 
     <!---------------- Fale Conosco incio ---------------->
  <footer>
