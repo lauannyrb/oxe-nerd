@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style-promocoes.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="icon" href="..../images/oxe-nerd-logo.png" >
+    <link rel="icon" href="../images/oxe-nerd-logo.png" >
+    <title>Promoções</title>
 
 </head>
 

@@ -35,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style-eletronicos.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="icon" href="..../images/oxe-nerd-logo.png" >
+    <link rel="icon" href="../images/oxe-nerd-logo.png" >
+    <title>Eletrônicos</title>
 
     <!-- <title>Equipamentos e Eletrônicos</title> -->
 </head>
