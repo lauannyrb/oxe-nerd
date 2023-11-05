@@ -30,7 +30,7 @@
   <script>
     function redirecionar(event) {
       event.preventDefault(); // Impede o envio do formulário
-      window.location.href = "../../index.html";
+      window.location.href = "../../index.php";
     }
   </script>
 </body>
