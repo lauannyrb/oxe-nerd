@@ -4,7 +4,6 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $senha = $_POST["senha"];
-    $nome = $_SESSION['usuario_logado']['nome'];
 
     // Verifique se algum campo está vazio
     if (empty($email) || empty($senha)) {
@@ -14,9 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verifique as credenciais do usuário
-    if (verificarCredenciais($email, $senha)) {
+    if (verificarCredenciais($email, $senha, $nome)) {
         // Credenciais corretas, redirecione para a página de perfil
-        $_SESSION['usuario_logado'] = ['email' => $email, 'nome' => $usuario['nome']];
         header("Location: ../perfil.php");
         exit;
     } else {
@@ -33,11 +31,10 @@ function verificarCredenciais($email, $senha) {
     
     foreach ($usuarios_cadastrados as $usuario) {
         if ($usuario['email'] === $email && $usuario['senha'] === $senha) { 
-            $usuario['nome'] = $_SESSION['usuario_logado']['nome'];     
+            $_SESSION['usuario_logado'] = $usuario; 
             return true; // Credenciais válidas
         }
     }
-
     return false; // Credenciais inválidas
 }
 
