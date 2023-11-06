@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a class="" href="#"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
             <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
-            <?php echo count($_SESSION['carrinho']) ?> </a>
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
         </nav>
     </header>
     <!-- Fim  -->

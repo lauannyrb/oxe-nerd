@@ -38,7 +38,7 @@ $valor = "";
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
             <a class="" href="#"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
-                <?php echo count($_SESSION['carrinho']) ?>
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
             </a>
 
         </nav>
