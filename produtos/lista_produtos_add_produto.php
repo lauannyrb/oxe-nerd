@@ -6,6 +6,34 @@
     <title>Produtos</title>
     <link rel="stylesheet" href="lista_produtos.css">
 </head>
+
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['comprar'])) {
+        // Coletar informações do produto do formulário
+        $nome = $_POST['nome'];
+        $preco = $_POST['preco'];
+        $imagem = $_POST['imagem'];
+
+        // Criar uma array associativa para representar o produto
+        $produto = [
+            'nome' => $nome,
+            'preco' => $preco,
+            'imagem' => $imagem,
+        ];
+
+        // Verificar se o carrinho já existe na sessão e criar se necessário
+        if (!isset($_SESSION['carrinho'])) {
+            $_SESSION['carrinho'] = [];
+        }
+
+        // Adicionar o produto ao carrinho
+        $_SESSION['carrinho'][] = $produto;
+    }
+}
+?>
 <body>
 
     <!-- Header  -->
@@ -18,34 +46,16 @@
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
             <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
-            
         </nav>
     </header>
     <!-- Fim  -->
-    <?php
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
-    if (isset($_SESSION['carrinho'])) {
-        $nome = $_POST['nome'];
-        $preco = $_POST['preco'];
-        $imagem = $_POST['imagem'];
-
-        $produto = [
-            'nome' => $nome,
-            'preco' => $preco,
-            'imagem' => $imagem,
-        ];
-
-        $_SESSION['carrinho'][] = $produto;
-    }
-}
-?>
+ 
 <?php
-session_start();
+
+
 
 if (isset($_SESSION['produtos'])) {
-    echo "<h1>Lista de Produtos</h1>    ";
+    echo "<h1>Lista de Produtos<button><a href='../produtos/edit.php'>Editar Produtos </a></button><button><a href='../produtos/cadastro_produtos.html'>Cadastro de Produtos</a></button></h1>    ";
 
 
     foreach ($_SESSION['produtos'] as $key => $produto) {
@@ -58,7 +68,6 @@ if (isset($_SESSION['produtos'])) {
         echo "<img src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
         echo "<h2>" . $produto['nome'] . "</h2>";
         echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
-
         echo "<form method='post'>";
         echo "<input type='hidden' name='nome' value='{$produto['nome']}'>";
         echo "<input type='hidden' name='preco' value='{$produto['preco']}'>";
@@ -68,6 +77,22 @@ if (isset($_SESSION['produtos'])) {
         echo "</div>";
         echo "</div>";
 
+
+
+
+
+
+
+
+
+
+        // echo "<div class='produto'>";
+        // echo "<img src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
+        // echo "<h2>" . $produto['nome'] . "</h2>";
+        // echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
+        
+        // echo "</form>";
+        // echo "</div>";
     }
 } else {
     echo "<p>Nenhum produto cadastrado ainda.</p>";

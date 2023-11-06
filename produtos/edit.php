@@ -123,7 +123,7 @@ if (isset($_SESSION['produtos'])) {
 
         echo "<td><input type='submit' name ='editar' value='Editar' class='btn' /></td>"; // Botão para editar produto
         echo "<td><input type='submit' name ='deletar' value='Deletar' class='btn' /></td>"; // Botão para excluir produto
-        echo "<a class='btn2' href='../produtos/lista_produtos.php'>Voltar</a>"; // Botão de navegação "Voltar"
+        echo "<a class='btn2' href='../produtos/lista_produtos_add_produto.php'>Voltar</a>"; // Botão de navegação "Voltar"
         echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
 
         echo "</form>";

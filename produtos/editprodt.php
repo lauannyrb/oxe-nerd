@@ -71,7 +71,7 @@ if(isset($_GET['id'])){
             </div>
             <input type="submit" value="Editar" name ='editar' class='btn' />
             <a class="btn2" href="../produtos/edit.php"> Voltar </a>
-            <a class="btn2" href="../produtos/lista_produtos.php"> Lista de produtos </a>
+            <a class="btn2" href="../produtos/lista_produtos_add_produto.php"> Lista de produtos </a>
         </form>  
     </div>  
 
