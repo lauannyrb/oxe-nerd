@@ -7,7 +7,7 @@ if (isset($_POST['nome']) && isset($_POST['preco'])) {
 
     // Verifique se uma imagem foi enviada
     if (isset($_FILES['imagem'])) {
-        $targetDir = "uploads/"; //nome da pasta para as imagens
+        $targetDir = "../carrinho/uploads/"; //nome da pasta para as imagens
         $targetFile = $targetDir . basename($_FILES["imagem"]["name"]);
 
         if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $targetFile)) {
@@ -26,5 +26,5 @@ if (isset($_POST['nome']) && isset($_POST['preco'])) {
     $_SESSION['produtos'][] = $produto;
 }
 
-header("Location: lista_produtos.php");
+header("Location: lista_produtos_add_produto.php");
 ?>

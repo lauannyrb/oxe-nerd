@@ -13,6 +13,6 @@ if (isset($_POST['add_to_cart']) && isset($_POST['produto_key'])) {
     $_SESSION['carrinho'][] = $_SESSION['produtos'][$produto_key];
 }
 
-header("Location: lista_produtos.php");
+header("Location: lista_produtos_add_produto.php");
 
 ?>
