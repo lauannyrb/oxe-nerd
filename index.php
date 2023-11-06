@@ -26,17 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<?php
-session_start();
-
-// Verifique se o usuário está logado
-if (isset($_SESSION['usuario_logado'])) {
-    $nome_usuario = $_SESSION['usuario_logado'];
-} else {
-    $nome_usuario = "Faça login";
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +48,7 @@ if (isset($_SESSION['usuario_logado'])) {
             <!-- <a class="Promoções" href="#promocoes"> Promoções</a> -->
             <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
-        <a class="Login" href="./login/index-login.php"><?php echo "Bem-vinde, $nome_usuario"; ?></a>
+            <a class="Login" href="./login/index-login.php"> Login</a>
             <a class="" href="./carrinho/index-carrinho.php"> <img class="carrinho" src="images/carrinho.png" title="carrinho">
             <?php echo count($_SESSION['carrinho']) ?> </a>
         </nav>
