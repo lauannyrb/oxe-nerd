@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
             <a class="" href="../produtos/cadastro_produtos.html"> Novos produtos </a>
-            <a class="" href="#"> Promoções </a>
+            <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
