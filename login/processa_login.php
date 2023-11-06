@@ -4,6 +4,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $senha = $_POST["senha"];
+    $nome = $_SESSION['usuario_logado']['nome'];
 
     // Verifique se algum campo está vazio
     if (empty($email) || empty($senha)) {
@@ -12,32 +13,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Verifica se a sessão de usuários está definida
-    if (isset($_SESSION['usuarios'])) {
-        $usuarios = $_SESSION['usuarios'];
-        $login_sucesso = false;
-
-        foreach ($usuarios as $usuario) {
-            if ($usuario['email'] == $email && password_verify($senha, $usuario['senha'])) {
-                // Login bem-sucedido, redireciona para a página desejada
-                $login_sucesso = true;
-                
-                $_SESSION['usuario_logado'] = $nome; // $nome é o nome do usuário logado
-
-                header("Location: ../index.php");
-                
-                exit;
-            }
-        }
-
-        if (!$login_sucesso) {
-            $_SESSION['login_erro'] = "E-mail ou senha incorretos.";
-        }
+    // Verifique as credenciais do usuário
+    if (verificarCredenciais($email, $senha)) {
+        // Credenciais corretas, redirecione para a página de perfil
+        $_SESSION['usuario_logado'] = ['email' => $email, 'nome' => $usuario['nome']];
+        header("Location: ../perfil.php");
+        exit;
     } else {
-        $_SESSION['login_erro'] = "Nenhum usuário cadastrado.";
+        $_SESSION['login_erro'] = "Credenciais inválidas.";
+        header("Location: index-login.php");
+        exit;
+    }
+}
+
+// Função para verificar as credenciais (simulação)
+function verificarCredenciais($email, $senha) {
+    // Substitua esta simulação pela lógica real de verificação de credenciais
+    $usuarios_cadastrados = $_SESSION['usuarios'];
+    
+    foreach ($usuarios_cadastrados as $usuario) {
+        if ($usuario['email'] === $email && $usuario['senha'] === $senha) { 
+            $usuario['nome'] = $_SESSION['usuario_logado']['nome'];     
+            return true; // Credenciais válidas
+        }
     }
 
-    header("Location: index-login.php");
-    exit;
+    return false; // Credenciais inválidas
 }
+
 ?>

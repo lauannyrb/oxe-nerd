@@ -29,7 +29,7 @@ $valor = "";
 <body>
     <!-- Header  -->
     <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
+        <a href="/index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
         <nav>
             <a class="" href="../produtos/cadastro_produtos.html"> Novos produtos </a>
             <div><a class="" href="../promocoes/index-promocoes.php"> Promoções </a></div>

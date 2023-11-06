@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['comprar'])) {
         // Coletar informações do produto do formulário
@@ -23,17 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['carrinho'][] = $produto;
     }
 }
-?>
-
-<?php
-session_start();
-
 // Verifique se o usuário está logado
-if (isset($_SESSION['usuario_logado'])) {
-    $nome_usuario = $_SESSION['usuario_logado'];
+if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+    $nome_usuario = $_SESSION['usuario_logado']['nome'];
 } else {
     $nome_usuario = "Faça login";
 }
+
 ?>
 
 <!DOCTYPE html>

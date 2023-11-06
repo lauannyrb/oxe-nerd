@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Cadastrar-se'])){
     $nome = $_POST["nome"];
     $email = $_POST["email"];
     $senha = $_POST["senha"]; // Agora você deve pegar o campo senha
@@ -12,29 +12,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: index-cadastro.php");
         exit;
     }
-    // Verifica se a sessão já está definida
-    if (!isset($_SESSION['usuarios'])) {
-        $_SESSION['usuarios'] = [];
-    }
-
-    // Verifica se o email já está cadastrado
-    $usuarios = $_SESSION['usuarios'];
-    foreach ($usuarios as $usuario) {
-        if ($usuario['email'] == $email) {
+    // Verifique se o email já está cadastrado (simulação)
+    $usuarios_cadastrados = isset($_SESSION['usuarios']) ? $_SESSION['usuarios'] : [];
+    
+    foreach ($usuarios_cadastrados as $usuario) {
+        if ($usuario['email'] === $email) {
             $_SESSION['cadastro_erro'] = "Este email já está cadastrado.";
             header("Location: index-cadastro.php");
             exit;
         }
     }
 
-    // Armazena o novo usuário no array de usuários
-    $_SESSION['usuarios'][] = ['nome' => $nome, 'email' => $email, 'senha' => $senha];
+    // Cadastra o novo usuário
+    $usuarios_cadastrados[] = ['nome' => $nome, 'email' => $email, 'senha' => $senha];
+    $_SESSION['usuarios'] = $usuarios_cadastrados;
 
-    // Define a variável de sessão para indicar que o usuário está logado
-    $_SESSION['usuario_logado'] = $nome;
+    // Redireciona para a página de perfil
+    $_SESSION['usuario_logado'] = ['nome' => $nome, 'email' => $email];
+    header("Location: perfil.php");
 
-    // Redireciona para a página inicial
-    header("Location: ../../index.php");
     exit;
 }
+    
 ?>

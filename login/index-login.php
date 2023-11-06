@@ -25,10 +25,10 @@
         }
         ?>
 
-        <label>E-mail</label>
-        <input type="email" name="email" placeholder="Digite o seu e-mail" autofocus>
-        <label>Senha</label>
-        <input type="password" name="senha" placeholder="Digite a sua senha">
+        <label for="email">E-mail</label>
+        <input type="email" name="email" required placeholder="Digite o seu e-mail" autofocus>
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" required placeholder="Digite a sua senha">
         <input type="submit" value="Entrar">
       </form>
       <p>Ainda não tem um conta?<a href="./cadastro/index-cadastro.php">Criar conta</a></p> 
