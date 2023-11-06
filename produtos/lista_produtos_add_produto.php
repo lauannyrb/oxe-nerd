@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="stylesheet" href="lista_produtos.css">
 </head>
 
@@ -37,18 +38,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <!-- Header  -->
-  <header>
+    <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="../index.php"> Promoções </a>
+            <a class="" href="../produtos/cadastro_produtos.html"> Novos produtos </a>
+            <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
-            <!-- <a class="" href="#"> Equipamentos </a> -->
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
         </nav>
     </header>
     <!-- Fim  -->
+    
  
 <?php
 

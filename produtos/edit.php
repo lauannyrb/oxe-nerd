@@ -32,10 +32,10 @@ if(isset($_POST['editar'])){
             <a class="" href="../produtos/cadastro_produtos.html"> Novos produtos </a>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
-            <!-- <a class="" href="#"> Equipamentos </a> -->
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="" href="../login/index-login.php"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
+            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
         </nav>
     </header>
     <!-- Fim  -->
