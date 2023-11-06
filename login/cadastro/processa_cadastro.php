@@ -29,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Cadastrar-se'])){
 
     // Redireciona para a página de perfil
     $_SESSION['usuario_logado'] = ['nome' => $nome, 'email' => $email];
-    header("Location: perfil.php");
+            header("Location: ../perfil.php");
+
 
     exit;
 }
