@@ -26,5 +26,5 @@ if (isset($_POST['nome']) && isset($_POST['preco'])) {
     $_SESSION['produtos'][] = $produto;
 }
 
-header("Location: lista_produtos.php");
+header("Location: lista_produtos_add_produto.php");
 ?>
