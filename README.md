@@ -16,6 +16,7 @@ O site de vendas de produtos nerds terá as seguintes funcionalidades:
 O site de vendas de produtos nerds será desenvolvido utilizando as seguintes tecnologias:
 
 - **Front-end**: Utilizaremos HTML, CSS e JavaScript puro para criar a interface do usuário interativa e responsiva.
+- **Back-end**: Desenvolvido em PHP.
 
 ## Configuração do Ambiente de Desenvolvimento
 
@@ -49,7 +50,7 @@ Se você gostaria de contribuir para o projeto, siga estas etapas:
 
 ## Protótipo
 
-Link para visualização do proótipo no Figma do site:
+Link para visualização do protótipo no Figma do site:
 
 https://www.figma.com/file/F28ioo99Q4N2RDjPZUBgUh/Untitled?type=design&node-id=0%3A1&t=V2n2WpbPonMfioAS-1
 
