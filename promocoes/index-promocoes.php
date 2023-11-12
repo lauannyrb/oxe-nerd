@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+// Verificar se o formulário de logout foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
+    // Encerrar a sessão
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['comprar'])) {
         // Coletar informações do produto do formulário
@@ -24,6 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['carrinho'][] = $produto;
     }
 }
+// Verificar se o usuário está logado
+$nome_usuario = "Faça login";
+
+if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+    $nome_usuario = $_SESSION['usuario_logado']['nome'];
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +65,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="" href="../login/index-login.php"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
-            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
+            <?php echo "Bem-vindo(a), $nome_usuario"; ?>
+        </a>
+
+        <?php
+        // Adicionar link de logout se o usuário estiver logado
+        if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+            echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
+        }
+        ?>
+
+        <a class="" href="../carrinho/index-carrinho.php">
+            <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
+        </a>
         </nav>
     </header>
     <!-- Fim  -->
