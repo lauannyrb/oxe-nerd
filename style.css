@@ -35,7 +35,10 @@ header nav a {
   text-decoration: none;
   margin-left: 40px;
   font-weight: bold;
+}
 
+nav a:hover {
+  text-decoration: underline;
 }
 
 a.carrinho {
@@ -44,7 +47,13 @@ a.carrinho {
   align-items: center;
 }
 
-.carrinho img {
+.carrinho img{
+  height: 20px;
+  width: auto;
+  margin: 0;
+}
+
+.sair{
   height: 20px;
   width: auto;
   margin: 0;
