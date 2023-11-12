@@ -2,11 +2,11 @@
 session_start();
 
 // Verificar se o formulário de logout foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     // Encerrar a sessão
     session_unset();
     session_destroy();
-    header("Location: ./index.php"); // Redirecionar para a página inicial
+    header("Location: ./index.php"); // Redirecionar para a página inicial após o logout
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -35,17 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Verificar se o usuário está logado
 $nome_usuario = "Faça login";
-$sair_html = '';
 
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
-
-    // Se o usuário estiver logado, mostra o formulário de logout
-    $sair_html = '<form method="post" style="display:inline;">
-                    <button type="submit" name="logout"> <img class="sair" src="images/sair-branco.png"> </button>
-                  </form>';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -70,13 +63,15 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         <a class="Promoções" href="./promocoes/index-promocoes.php"> Promoções</a>
         <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
         <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
-        <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil.php?perfil' : './login/index-login.php'; ?>">
+        <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil/perfil.php?perfil' : './login/index-login.php'; ?>">
             <?php echo "Bem-vindo(a), $nome_usuario"; ?>
         </a>
 
         <?php
         // Adicionar link de logout se o usuário estiver logado
-        echo isset($_SESSION['usuario_logado']) ? '<a class="" href="./logout.php"> <img class="sair" src="images/sair-branco.png"> </a>' : '';
+        if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+            echo '<a class="" href="?logout=true"> <img class="sair" src="images/sair-branco.png"> </a>';
+        }
         ?>
 
         <a class="" href="./carrinho/index-carrinho.php">
@@ -85,6 +80,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </a>
     </nav>
 </header>
+
 
 
     <section class="promo">
