@@ -9,32 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['comprar'])) {
-        // Coletar informações do produto do formulário
-        $nome = $_POST['nome'];
-        $preco = $_POST['preco'];
-        $imagem = $_POST['imagem'];
-
-        // Criar uma array associativa para representar o produto
-        $produto = [
-            'nome' => $nome,
-            'preco' => $preco,
-            'imagem' => $imagem,
-        ];
-
-        // Verificar se o carrinho já existe na sessão e criar se necessário
-        if (!isset($_SESSION['carrinho'])) {
-            $_SESSION['carrinho'] = [];
-        }
-
-        // Adicionar o produto ao carrinho
-        $_SESSION['carrinho'][] = $produto;
-    }
-}
-
 // Verificar se o usuário está logado
 $nome_usuario = "Faça login";
+$email_usuario = $_SESSION['usuario_logado']['email'];
 
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
@@ -92,16 +69,18 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 
     </form>
     <!---------------- Fale Conosco ---------------->
-    <h2 class="contato">Fale Conosco</h2>
-
-    <section class="contato">
-        <section class="box">82 99714-3090</section>
-        <section class="box">@oxe_nerd</section>
-        <section class="box">oxenerdbr@outlook.com</section>
-    </section>
-    <footer class="roda">
-        <strong>OXE NERD<BR>Todos os direitos reservados</strong>
+    <footer>
+        <h2>Fale Conosco</h2>
+        <div>
+            <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
+            <img src="../images/Instagram.png" alt="Instagram"><p>@oxe_nerd</p>
+            <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
+        </div>
+        <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
     </footer>
+    <!---------------- Fale Conosco fim ---------------->
+
+
 </body>
 
 </html>
