@@ -1,5 +1,13 @@
 <?php
-session_start(); // Inicia a sessão para trabalhar com variáveis de sessão
+session_start();
+
+// Verificar se o formulário de logout foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
+    // Encerrar a sessão
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
+}
 
 if(isset($_POST['deletar'])){
     //echo $_POST['indice']; // Exibe o índice do usuário que está sendo excluído
@@ -9,6 +17,13 @@ if(isset($_POST['deletar'])){
 if(isset($_POST['editar'])){
     echo $_POST['indice']; // Exibe o índice do usuário que está sendo editado
     header('Location: editprodt.php?id='.$_POST['indice']); // Redireciona para a página "editarUsuario.php" com o ID do usuário que será editado na URL
+}
+
+// Verificar se o usuário está logado
+$nome_usuario = "Faça login";
+
+if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+    $nome_usuario = $_SESSION['usuario_logado']['nome'];
 }
 
 ?>
@@ -33,10 +48,21 @@ if(isset($_POST['editar'])){
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="" href="../login/index-login.php"> Login </a>
-            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
-            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
-        </nav>
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
+            <?php echo "Bem-vindo(a), $nome_usuario"; ?>
+        </a>
+
+        <?php
+        // Adicionar link de logout se o usuário estiver logado
+        if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+            echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
+        }
+        ?>
+
+        <a class="" href="../carrinho/index-carrinho.php">
+            <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
+        </a>
     </header>
     <!-- Fim  -->
 
