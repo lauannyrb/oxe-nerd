@@ -47,18 +47,15 @@ a.carrinho {
   align-items: center;
 }
 
-.carrinho img{
+.carrinho img, .sair{
   height: 20px;
   width: auto;
   margin: 0;
 }
 
-.sair{
-  height: 20px;
-  width: auto;
-  margin: 0;
+nav a:hover {
+  text-decoration: underline;
 }
-
 
 /* --------------------------------------------- */
 
