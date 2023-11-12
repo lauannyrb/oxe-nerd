@@ -44,7 +44,7 @@ $valor = "";
 <body>
     <!-- Header  -->
     <header>
-        <a href="/index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
         <nav>
             <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
             <div><a class="" href="../promocoes/index-promocoes.php"> Promoções </a></div>
@@ -113,7 +113,7 @@ $valor = "";
                         <input style='border: none; cursor: pointer;'' class='remover' type='submit' name ='deletar' value='Remover'/>         
                            
                     </td>
-                    <input type='number' id='myInput' min='0' max='100' step='1'   value='1' oninput='fixValue2(this)' />
+                    <input type='number' id='myInput' min='1' max='1' step='1'   value='1' oninput='fixValue2(this)' />
                     <span class='preco'>R$ " . $produto['preco'] . "</span>
                     <span class='entrega'>Em Dezembro</span>                
                     </div>
