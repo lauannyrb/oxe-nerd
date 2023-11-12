@@ -32,7 +32,7 @@ $email_usuario = $_SESSION['usuario_logado']['email'];
     <header>
         <a href="./index.php"><img class="logo-oxe-nerd" src="images/oxe-nerd-logo.png" title="Logo da Oxe Nerd" ></a>
         <nav>
-            <a class="" href="./produtos/cadastro_produtos.html"> Novos produtos </a>
+            <a class="" href="./produtos/cadastro_produtos.php"> Novos produtos </a>
             <a class="Promoções" href="./promocoes/index-promocoes.php"> Promoções</a>
             <!-- <a class="Promoções" href="#promocoes"> Promoções</a> -->
             <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
