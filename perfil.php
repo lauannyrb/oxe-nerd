@@ -39,7 +39,7 @@ $email_usuario = $_SESSION['usuario_logado']['email'];
             <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
             <a class="Login" href="./login/index-login.php"><?php echo "Bem-vindo(a), $nome_usuario"; ?></a>
             <a class="" href="./carrinho/index-carrinho.php"> <img class="carrinho" src="images/carrinho.png" title="carrinho">
-                <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
         </nav>
     </header>
 

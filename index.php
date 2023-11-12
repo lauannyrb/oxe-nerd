@@ -23,9 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['carrinho'][] = $produto;
     }
 }
+
 // Verifique se o usuário está logado
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
+
+    // Se o usuário estiver logado, redirecione para o perfil
+    if (isset($_GET['perfil'])) {
+        header("Location: ./perfil.php");
+        exit();
+    }
 } else {
     $nome_usuario = "Faça login";
 }
@@ -52,12 +59,16 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         <nav>
             <a class="" href="./produtos/cadastro_produtos.html"> Novos produtos </a>
             <a class="Promoções" href="./promocoes/index-promocoes.php"> Promoções</a>
-            <!-- <a class="Promoções" href="#promocoes"> Promoções</a> -->
             <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="Login" href="./login/index-login.php"><?php echo "Bem-vindo(a), $nome_usuario"; ?></a>
-            <a class="" href="./carrinho/index-carrinho.php"> <img class="carrinho" src="images/carrinho.png" title="carrinho">
-            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil.php?perfil' : './login/index-login.php'; ?>">
+                <?php echo "Bem-vindo(a), $nome_usuario"; ?>
+            </a>
+            <?php echo isset($_SESSION['usuario_logado']) ? '<a class="" href="./logout.php"> <img class="sair" src="images/sair-branco.png"> </a>' : ''; ?>
+            <a class="" href="./carrinho/index-carrinho.php">
+                <img class="carrinho" src="images/carrinho.png" title="carrinho">
+                <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
+            </a>
         </nav>
     </header>
     <section class="promo">
