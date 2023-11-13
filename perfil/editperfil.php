@@ -23,7 +23,6 @@ $email_usuario = $_SESSION['usuario_logado']['email'];
 ?>
 
 <?php
-session_start();
 
 if (!isset($_SESSION['usuario_logado'])) {
     // Redirecionar para a página de login se o usuário não estiver logado
