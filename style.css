@@ -37,10 +37,6 @@ header nav a {
   font-weight: bold;
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
-
 a.carrinho {
   display: flex;
   justify-content: center;
