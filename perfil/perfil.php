@@ -9,15 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
 }
 
-// Verificar se o usuário está logado
 $nome_usuario = "Faça login";
 $email_usuario = "";
-$senha_usuario = ""; // Adicionado para pegar a senha
+$senha_usuario = "Senha não disponível";
 
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
     $email_usuario = $_SESSION['usuario_logado']['email'];
-    $senha_usuario = $_SESSION['usuario_logado']['senha'];
+    $senha_usuario = isset($_SESSION['usuario_logado']['senha']) ? $_SESSION['usuario_logado']['senha'] : $senha_usuario;
 }
 ?>
 
