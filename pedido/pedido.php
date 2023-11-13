@@ -54,9 +54,9 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         <h1 class="oba">Oba, o seu pedido foi confirmado!<hr></h1>
         <div>
             <!-- aa -->
-            <img src="../images/img_pedido/Like.png" alt="Like  ">
+            <img src="../images/img_pedido/Like.png" alt="Like">
             <div class="detalhes">
-                <h2>Data da Compra : 06/11/2023</h2>
+                <h2>Data da Compra : 13/11/2023</h2>
                 <h2>Situação do Pedido : Pedido Confirmado </h2>
                 <h2>Pedido : #2023UN3P</h2>
             </div>                        

@@ -182,9 +182,9 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <h2 class="contato">Fale Conosco</h2>
 
     <section class="contato"> 
-        <section class="box">82 99714-3090</section>
-        <section class="box">@oxe_nerd</section>
-        <section class="box">oxenerdbr@outlook.com</section>
+        <img class="contato" src="images/whats_roxo.png" alt="Whatsapp"><p class="contato">82 99714-3090</p>
+        <img class="contato" src="images/insta_roxo.png" alt="Instagram"><p class="contato">@oxe_nerd</p>
+        <img class="contato" src="images/mail_roxo.png" alt="E-Mail"><p class="contato">oxenerdbr@outlook.com</p>
     </section>
 
     <footer class="roda">

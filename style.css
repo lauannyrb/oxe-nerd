@@ -49,7 +49,7 @@ a.carrinho {
   margin: 0;
 }
 
-nav a:hover {
+header a:hover {
   background-color: #555;
   padding: 10px 20px;
   border-radius: 5px;
@@ -193,14 +193,15 @@ a{
 #carrinho:hover{
   background-color: #6c99a5;
 }    
-
 /*Fale Conosco*/
+
 
 h2.contato{
   display: block;
   font-size: 30px;
   margin-bottom: 10px;
   padding-left: 2%;
+
 }
 
 section.contato{
@@ -214,8 +215,20 @@ section.box{
   margin-left: 2%; 
 }
 
-
+section img.contato {
+  width: 40px;
+  height: auto;
+  margin-right: -30px;
+  border-radius: 3px;
+}
+  
+p.contato {
+  margin: 40px;;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+}
 /*--------------------------------------------------------*/
+
 
 /* Rodapé */
 
