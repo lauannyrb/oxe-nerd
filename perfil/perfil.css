@@ -53,6 +53,7 @@ body {
   
 
 /* Perfil */
+
 form {
   max-width: 600px;
   margin: 50px auto;
@@ -72,7 +73,7 @@ p {
   color: #555;
 }
 
-form a {
+form a, input[type="submit"]  {
   display: inline-block;
   padding: 10px 20px;
   text-align: center;
@@ -87,6 +88,10 @@ form a:hover {
   background-color: #555;
 }
 
+input[type="submit"]:hover {
+  background-color: #555;
+}
+
 nav a:hover {
   background-color: #555;
   padding: 10px 20px;
@@ -94,8 +99,85 @@ nav a:hover {
   transition: background-color 0.3s;
 }
 
-  /* ---------------Footer------------------------------ */
-  
+.area-login {
+  display: flex; /* Alinhar os itens */
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px; /* Largura */
+  padding: 35px; /* Espaço entre as bordas/lados */
+  border-radius: 10px; /* Deixar as bordas arredondadas */
+}
+
+.login form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+/* Adicionado estilo para as informações do perfil */
+.login p, form a, input[type="submit"]{
+  margin-bottom: 10px;
+}
+
+/* Estilização específica para os campos de informação do perfil */
+.login p span, input[type="submit"] {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+/* Adicionado espaço entre o botão Editar e o botão Sair */
+.login a {
+  margin: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: #312847;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  background-color: #312847;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* ---------------Footer------------------------------ */  
 
 footer {
   

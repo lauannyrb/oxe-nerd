@@ -11,10 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
 
 // Verificar se o usuário está logado
 $nome_usuario = "Faça login";
-$email_usuario = $_SESSION['usuario_logado']['email'];
+$email_usuario = "";
+$senha_usuario = ""; // Adicionado para pegar a senha
 
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
+    $email_usuario = $_SESSION['usuario_logado']['email'];
+    $senha_usuario = $_SESSION['usuario_logado']['senha'];
 }
 ?>
 
@@ -57,18 +60,24 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </nav>
     </header>
 
-    <form action="" method="post">
+    <div class="area-login">
+        <div class="login">
+            <form action="" method="post">
 
-        <h1>Perfil do Usuário</h1>
-        <p>Nome: <?= $nome_usuario ?></p>
-        <p>Email: <?= $email_usuario ?></p>
-        <!-- Outras informações do perfil aqui -->
+                <h1>Perfil do Usuário</h1>
+                <p><span>Nome:</span> <?= $nome_usuario ?></p>
+                <p><span>Email:</span> <?= $email_usuario ?></p>
+                <p><span>Senha:</span> <?= $senha_usuario ?></p> 
 
-        <a href="editperfil.php" name ='editar'>Edite seu Perfil</a>
-        <a href="logout.php">Sair</a>
+                <!-- Outras informações do perfil aqui -->
+                <a href="editperfil.php" name='editar'>Editar</a>
+                <a href="logout.php">Excluir</a>
 
-    </form>
-    <!---------------- Fale Conosco ---------------->
+            </form>
+        </div>
+    </div>
+
+    <!-- Fale Conosco -->
     <footer>
         <h2>Fale Conosco</h2>
         <div>
@@ -78,9 +87,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </div>
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
     </footer>
-    <!---------------- Fale Conosco fim ---------------->
-
-
+    <!-- Fale Conosco fim -->
 </body>
 
 </html>
