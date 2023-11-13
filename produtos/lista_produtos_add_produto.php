@@ -86,7 +86,11 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 
 
 if (isset($_SESSION['produtos'])) {
-    echo "<h1>Lista de Produtos<button><a href='../produtos/edit.php'>Editar Produtos </a></button><button><a href='../produtos/cadastro_produtos.php'>Cadastro de Produtos</a></button></h1>    ";
+    echo "<h1>Lista de Produtos </h1>
+    <div class='navegation'>
+        <button> <a href='../produtos/edit.php'>Editar Produtos </a></button>
+        <button> <a href='../produtos/cadastro_produtos.php'>Cadastro de Produtos</a></button>
+    </div>";
 
 
     foreach ($_SESSION['produtos'] as $key => $produto) {
@@ -108,22 +112,6 @@ if (isset($_SESSION['produtos'])) {
         echo "</div>";
         echo "</div>";
 
-
-
-
-
-
-
-
-
-
-        // echo "<div class='produto'>";
-        // echo "<img src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
-        // echo "<h2>" . $produto['nome'] . "</h2>";
-        // echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
-        
-        // echo "</form>";
-        // echo "</div>";
     }
 } else {
     echo "<p>Nenhum produto cadastrado ainda.</p>";
@@ -141,6 +129,20 @@ if (isset($_SESSION['produtos'])) {
             text-align: center;    
         }
 
+         /* Estilos para as imagens */
+        .description img {
+            max-width: 200px; /* Defina a largura máxima desejada */
+            max-height: 200px; /* Defina a altura máxima desejada */
+        }
+
+        .navegation {
+            align-items: center;
+            margin: 0 auto;
+            text-align: center;
+            gap: 3px;
+            margin-bottom: 25px;
+        }
+        
         h1 {
             color: #2d1d55;
             text-align: center;
