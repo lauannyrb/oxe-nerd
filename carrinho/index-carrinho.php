@@ -10,6 +10,87 @@ $total = 0;
 // Calcula o frete dos itens no carrinho
 $frete = 0;
 $valor = "";
+
+if (isset($_POST['deletar'])) {
+    //echo $_POST['indice']; // Exibe o índice do usuário que está sendo excluído
+    unset($_SESSION['carrinho'][$_POST['indice']]); // Remove o usuário da sessão com base no índice recebido via POST
+    header("Location: " . $_SERVER['PHP_SELF']);
+}
+
+
+if (isset($_POST['remover_1'])) {
+    $indice = $_POST['indice'];
+
+    // Verifique se o índice existe no carrinho
+    if (isset($_SESSION['carrinho'][$indice])) {
+        // Reduza a quantidade do produto em 1
+        $_SESSION['quantidades'][$indice] = max(0, $_SESSION['quantidades'][$indice] - 1);
+
+        // Se a quantidade chegar a 0, remova o produto do carrinho
+        if ($_SESSION['quantidades'][$indice] == 0) {
+            unset($_SESSION['carrinho'][$indice]);
+            unset($_SESSION['quantidades'][$indice]);
+        }
+    }else{
+        header("Location: " . $_SERVER['PHP_SELF']);
+    }
+}
+
+if (isset($_POST['aumentar_quantidade'])) {
+    $indice_produto = $_POST['indice'];
+
+    // Verifique se a quantidade já foi definida na sessão
+    if (!isset($_SESSION['quantidades'][$indice_produto])) {
+        $_SESSION['quantidades'][$indice_produto] = 1;
+    } else {
+        $_SESSION['quantidades'][$indice_produto]++;
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+}
+
+    
+// Teste com frete
+if (isset($_POST['calcular_frete'])) {
+    $opcao_frete = $_POST['frete'];
+
+    // Você pode associar o valor do frete à opção selecionada
+    $opcoes_fretes = [
+        'frete1' => 20.00, //Nordeste
+        'frete2' => 15.00, //Norte
+        'frete3' => 35.00, //Sul
+        'frete4' => 50.00, //Sudeste
+        'frete5' => 30.00, //Centro-Oeste
+    ];
+
+    // Verifique se a opção de frete selecionada está no array de opções
+    if (array_key_exists($opcao_frete, $opcoes_fretes)) {
+        $valor_frete = $opcoes_fretes[$opcao_frete];
+    } else {
+        // Caso a opção de frete não seja encontrada, defina o frete como zero ou outra ação apropriada
+        $valor_frete = 0.00;
+    }
+
+    // Armazene o valor do frete em uma variável de sessão, se necessário
+    $_SESSION['frete'] = $valor_frete;
+}
+
+if (isset($_POST['calcularpagamento'])) {
+    $opcao = $_POST['pagamento'];
+    $opcoes = [
+        'cartão' => "Cartão", 
+        'pix' => "Pix", 
+        'boleto' =>"Boleto", 
+    ];
+    if (array_key_exists($opcao, $opcoes)) {
+        $valor = $opcoes[$opcao];
+    } else {
+        $valor= null;
+    }
+    $_SESSION['pagamento'] = $valor;
+}         
+
+
 ?>
 
 
@@ -20,7 +101,7 @@ $valor = "";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style-carrinho.css">
+    <link rel="stylesheet" href="style-carrinho.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png">
     <title>Meu carrinho</title>
@@ -45,15 +126,8 @@ $valor = "";
     </header>
     <!-- Fim  -->
 
-
     <main>
-
         <?php
-        if (isset($_POST['deletar'])) {
-            //echo $_POST['indice']; // Exibe o índice do usuário que está sendo excluído
-            unset($_SESSION['carrinho'][$_POST['indice']]); // Remove o usuário da sessão com base no índice recebido via POST
-            header("Location: " . $_SERVER['PHP_SELF']);
-        }
 
         if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
         echo "<nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
@@ -66,11 +140,11 @@ $valor = "";
                     <span>Quantidade</span>
                     <span>Preço</span>
                     <span>Entrega</span>
+                    <span>Total</span>
                 </div>
             </div>";
 
         foreach ($_SESSION['carrinho'] as $key => $produto) {
-
             echo "<form action='' method='post'>";
             echo "<div class='pedido1'>";
             echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
@@ -82,18 +156,45 @@ $valor = "";
                     </div>
                 ";
 
-            echo "       
+            $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
+            $quantidade = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
+                echo "          
                 <div class='pedido-direita'>
-                        
                     <td>
-                        <input style='border: none; cursor: pointer;'' class='remover' type='submit' name ='deletar' value='Remover'/>         
-                           
+                        <input type='submit' name='aumentar_quantidade' value='+' />                                   
                     </td>
-                    <input type='number' id='myInput' min='0' max='100' step='1'   value='1' oninput='fixValue2(this)' />
+                    <span class='quantidade' style='text-align: center; /* Centraliza o texto dentro do input */
+                    width: 50px; /* Define a largura do input */
+                    height: 50px;
+                    font-size: 30px; /* Define o tamanho da fonte */
+                    margin: 30px;
+                    border: none;
+                    font-size: 30px;
+                    font-weight: 700;
+                  '>" . (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1) . "</span>
+                    <td>
+                        <input type='submit' name='remover_1' value='-' />
+                    </td>
                     <span class='preco'>R$ " . $produto['preco'] . "</span>
-                    <span class='entrega'>Em Dezembro</span>                
+                    <span class='entrega'>Em Dezembro</span>   
+                    <span class='subtotal' style='  font-style: normal;
+                    font-weight: 600;
+                    font-size: 20px;
+                    margin-left: 25px;
+                    margin-right:10px;
+                    line-height: 23px;
+                    width: 100px;'>R$ " . number_format($subtotal, 2) . "</span>             
                     </div>
+
                 ";
+
+            // Adicione ou atualize o produto no carrinho
+            $_SESSION['carrinho'][$key] = [
+                'nome' => $produto['nome'],
+                'preco' => $produto['preco'],
+                'imagem' => $produto['imagem'],
+                'quantidade' => $quantidade,
+            ];
 
 
             echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
@@ -101,49 +202,14 @@ $valor = "";
             echo "</form>";
         }
 
-            
-            // Teste com frete
-            if (isset($_POST['calcular_frete'])) {
-                $opcao_frete = $_POST['frete'];
-
-                // Você pode associar o valor do frete à opção selecionada
-                $opcoes_fretes = [
-                    'frete1' => 20.00, //Nordeste
-                    'frete2' => 15.00, //Norte
-                    'frete3' => 35.00, //Sul
-                    'frete4' => 50.00, //Sudeste
-                    'frete5' => 30.00, //Centro-Oeste
-                ];
-
-                // Verifique se a opção de frete selecionada está no array de opções
-                if (array_key_exists($opcao_frete, $opcoes_fretes)) {
-                    $valor_frete = $opcoes_fretes[$opcao_frete];
-                } else {
-                    // Caso a opção de frete não seja encontrada, defina o frete como zero ou outra ação apropriada
-                    $valor_frete = 0.00;
-                }
-
-                // Armazene o valor do frete em uma variável de sessão, se necessário
-                $_SESSION['frete'] = $valor_frete;
-            }
-
-            if (isset($_POST['calcularpagamento'])) {
-                $opcao = $_POST['pagamento'];
-                $opcoes = [
-                    'cartão' => "Cartão", 
-                    'pix' => "Pix", 
-                    'boleto' =>"Boleto", 
-                ];
-                if (array_key_exists($opcao, $opcoes)) {
-                    $valor = $opcoes[$opcao];
-                } else {
-                    $valor= null;
-                }
-                $_SESSION['pagamento'] = $valor;
-            }         
-
-            foreach ($_SESSION['carrinho'] as $produto) {
+        
+/*            foreach ($_SESSION['carrinho'] as $produto) {
                 $total += $produto['preco'];
+            }
++*/
+            foreach ($_SESSION['carrinho'] as $key => $produto) {
+                $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
+                $total += $subtotal;
             }
 
             if ($total >= 500) { //Frete gratis a partir de R$500 em compras

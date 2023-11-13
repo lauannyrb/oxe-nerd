@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifique as credenciais do usuário
     if (verificarCredenciais($email, $senha, $nome)) {
         // Credenciais corretas, redirecione para a página de perfil
-        header("Location: ../perfil.php");
+        header("Location: ../index.php");
         exit;
     } else {
         $_SESSION['login_erro'] = "Credenciais inválidas.";

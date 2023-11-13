@@ -27,11 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Cadastrar-se'])){
     $usuarios_cadastrados[] = ['nome' => $nome, 'email' => $email, 'senha' => $senha];
     $_SESSION['usuarios'] = $usuarios_cadastrados;
 
-    // Redireciona para a página de perfil
-    $_SESSION['usuario_logado'] = ['nome' => $nome, 'email' => $email];
-            header("Location: ../perfil.php");
-
-
+    // Redireciona para a página de perfil.
+    $_SESSION['usuario_logado'] = ['nome' => $nome, 'email' => $email,'senha'=>$senha];
+            header("Location: ../../perfil.php");
+  
     exit;
 }
     
