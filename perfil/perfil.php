@@ -70,7 +70,12 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 
                 <!-- Outras informações do perfil aqui -->
                 <a href="editperfil.php" name='editar'>Editar</a>
-                <a href="logout.php">Excluir</a>
+                <?php
+                // função de Exluir conta
+                if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+                    echo '<a class="" href="?logout=true"> Excluir </a>';
+                }
+                ?>
 
             </form>
         </div>
