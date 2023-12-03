@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include '../conexao.php'; // Arquivo de conexão com o banco de dados
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $senha = $_POST["senha"];
@@ -12,30 +14,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Verifique as credenciais do usuário
-    if (verificarCredenciais($email, $senha, $nome)) {
-        // Credenciais corretas, redirecione para a página inicial
-        header("Location: ../index.php");
-        exit;
-    } else {
-        $_SESSION['login_erro'] = "Credenciais inválidas.";
-        header("Location: index-login.php");
-        exit;
-    }
-}
+    // Verifique as credenciais do usuário no banco de dados
+    $stmt = $conn->prepare("SELECT * FROM `user` WHERE `email` = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-// Função para verificar as credenciais (simulação)
-function verificarCredenciais($email, $senha) {
-    // Substitua esta simulação pela lógica real de verificação de credenciais
-    $usuarios_cadastrados = $_SESSION['usuarios'];
-    
-    foreach ($usuarios_cadastrados as $usuario) {
-        if ($usuario['email'] === $email && $usuario['senha'] === $senha) { 
-            $_SESSION['usuario_logado'] = $usuario; 
-            return true; // Credenciais válidas
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc();
+        if (password_verify($senha, $usuario['password'])) {
+            // Credenciais corretas, redirecione para a página inicial
+            $_SESSION['usuario_logado'] = [
+                'nome' => $usuario['name'],
+                'email' => $usuario['email']
+            ];
+            header("Location: ../index.php");
+            exit;
         }
     }
-    return false; // Credenciais inválidas
-}
 
+    // Se as credenciais estiverem erradas, redirecione de volta para o login
+    $_SESSION['login_erro'] = "Credenciais inválidas.";
+    header("Location: index-login.php");
+    exit;
+}
 ?>
