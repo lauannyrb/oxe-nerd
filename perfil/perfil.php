@@ -11,13 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
 
 $nome_usuario = "Faça login";
 $email_usuario = "";
-$senha_usuario = "Senha não disponível";
 
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-    $nome_usuario = $_SESSION['usuario_logado']['nome'];
-    $email_usuario = $_SESSION['usuario_logado']['email'];
-    $senha_usuario = isset($_SESSION['usuario_logado']['senha']) ? $_SESSION['usuario_logado']['senha'] : $senha_usuario;
+    include '../conexao.php';
+
+    $email_logado = $_SESSION['usuario_logado']['email'];
+    $stmt = $conn->prepare("SELECT `name`, `nickname`, `email` FROM `user` WHERE `email` = ?");
+    $stmt->bind_param("s", $email_logado);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc();
+        $nome_usuario = $usuario['nickname']; // Alteração aqui
+        $nome = $usuario['name']; // Alteração aqui
+        $email_usuario = $usuario['email'];
+    }
+    
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -64,17 +76,16 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <form action="" method="post">
 
                 <h1>Perfil do Usuário</h1>
-                <p><span>Nome:</span> <?= $nome_usuario ?></p>
+                <p><span>Nome completo:</span> <?= $nome ?></p>
+                <p><span>Apelido:</span> <?= $usuario['nickname'] ?></p>
                 <p><span>Email:</span> <?= $email_usuario ?></p>
-                <p><span>Senha:</span> <?= $senha_usuario ?></p> 
 
-                <!-- Outras informações do perfil aqui -->
                 <a href="editperfil.php" name='editar'>Editar</a>
+                
                 <?php
-                // função de Exluir conta
-                if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-                    echo '<a class="" href="?logout=true"> Excluir </a>';
-                }
+                    if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+                        echo '<a class="" href="excluir_usuario.php?email=' . $_SESSION['usuario_logado']['email'] . '"> Excluir </a>';
+                    }
                 ?>
 
             </form>
