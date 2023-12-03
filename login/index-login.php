@@ -17,12 +17,16 @@
       </div>
       
       <form method="post" action="processa_login.php">
+        <!-- Exibir mensagem de erro, se houver -->
         <?php
-        session_start();
-        if (isset($_SESSION['login_erro'])) {
-            echo '<div class="mensagem-erro">' . $_SESSION['login_erro'] . '</div>';
-            unset($_SESSION['login_erro']); // Limpar a mensagem de erro
-        }
+          session_start();
+          if (isset($_SESSION['login_erro'])) {
+              echo '<div class="mensagem-erro">';
+              echo '<span class="error-icon">❌</span>';
+              echo $_SESSION['login_erro'];
+              echo '</div>';
+              unset($_SESSION['login_erro']);
+          }
         ?>
 
         <label for="email">E-mail</label>

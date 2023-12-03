@@ -87,12 +87,22 @@ a{
     text-decoration: none; /*Remover a barra que fica em baixo do link*/
     margin-left: 10px;
 }
-/* Estilização para mensagens de erro */
+
 .mensagem-erro {
-    color: #FF0000; /* Cor do texto vermelho */
-    font-size: 14px;
-    margin-top: 5px; /* Espaço entre a mensagem de erro e o campo */
-}
+    border: 2px solid red;
+    padding: 10px;
+    border-radius: 5px;
+    color: red;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .mensagem-erro .error-icon {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
 
 
 /* Ajuste para tela igual ou inferior a 700px, ajuste em resposividade  */

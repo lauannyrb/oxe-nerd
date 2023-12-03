@@ -8,9 +8,7 @@ body{
     display: flex; /*Alinhar os itens*/
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Para pegar toda a área disponivel do navegador*/
-    justify-content: center;
-    align-items: center;
+    height: 80vh; /* Para pegar toda a área disponivel do navegador*/
 }
 
 .login {
@@ -28,7 +26,6 @@ body{
     display: flex;
     width: 100%;
     flex-direction: column;
-
 }
 
 .login input{
@@ -42,13 +39,22 @@ body{
     height: 50px; /*Definir os tamanhos dos inputs*/
     border-radius: 40px; /*Deixar as bordas aredondadas*/
 }
-/* Estilização para mensagens de erro */
-.mensagem-erro {
-    color: #FF0000; /* Cor do texto vermelho */
-    font-size: 14px;
-    margin-top: 5px; /* Espaço entre a mensagem de erro e o campo */
-}
 
+/* Adicione esses estilos ao seu arquivo style-cadastro.css */
+.mensagem-erro {
+    border: 2px solid red;
+    padding: 10px;
+    border-radius: 5px;
+    color: red;
+    display: flex;
+    align-items: center;
+  }
+  
+  .mensagem-erro .error-icon {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
 .login img{
     width: 200px; /*Tamanho da imagem*/
     height: auto;
@@ -76,7 +82,6 @@ form [type="submit"]:hover{
 }
 
 label{
-    margin-top: 10px;
     padding-left: 10px;
     font-weight: bold;
 }
@@ -107,10 +112,3 @@ label{
     }
 }
 
-/* Centralize o conteúdo verticalmente */
-.area-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}

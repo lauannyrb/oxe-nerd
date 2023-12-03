@@ -18,21 +18,34 @@
         <img src="./img/logo-sem-fundo.png">
       </div>
       <form method="post" action="processa_cadastro.php">
+
         <!-- Exibir mensagem de erro, se houver -->
         <?php
-        session_start();
-        if (isset($_SESSION['cadastro_erro'])) {
-          echo '<div class="mensagem-erro">' . $_SESSION['cadastro_erro'] . '</div>';
-          unset($_SESSION['cadastro_erro']); // Limpar a mensagem de erro
-        }
+          session_start();
+          if (isset($_SESSION['cadastro_erro'])) {
+              echo '<div class="mensagem-erro">';
+              echo '<span class="error-icon">❌</span>';
+              echo $_SESSION['cadastro_erro'];
+              echo '</div>';
+              unset($_SESSION['cadastro_erro']); // Limpar a mensagem de erro
+          }
         ?>
 
-        <label>Nome</label>
+        <label>Nome completo</label>
         <input type="text" name="nome" placeholder="Digite o seu nome completo" autofocus>
+        
+        <label>Como você gostaria de ser chamado(a)?</label>
+        <input type="text" name="apelido" placeholder="Informe o seu apelido">
+        
         <label>Informe o seu e-mail</label>
         <input type="email" name="email" placeholder="Digite o seu e-mail">
+        
         <label>Senha</label>
         <input type="password" name="senha" placeholder="Digite sua senha">
+        
+        <label>Confime sua senha</label>
+        <input type="password" name="consenha" placeholder="Confirme sua senha">
+        
         <input type="submit" name= "Cadastrar-se" value="Cadastre-se">
       </form>
     </div>
