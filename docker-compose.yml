@@ -24,6 +24,7 @@ services:
       MYSQL_PASSWORD: mysql
     volumes:
       - ./mysql:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Montagem do arquivo init.sql
     # Adicione outras configurações do MySQL, se necessário
 
   phpmyadmin:
