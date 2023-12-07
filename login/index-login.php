@@ -19,7 +19,6 @@
       <form method="post" action="processa_login.php">
         <!-- Exibir mensagem de erro, se houver -->
         <?php
-          session_start();
           if (isset($_SESSION['login_erro'])) {
               echo '<div class="mensagem-erro">';
               echo '<span class="error-icon">❌</span>';

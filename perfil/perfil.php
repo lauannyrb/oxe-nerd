@@ -16,7 +16,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     include '../conexao.php';
 
     $email_logado = $_SESSION['usuario_logado']['email'];
-    $stmt = $conn->prepare("SELECT `name`, `nickname`, `email` FROM `user` WHERE `email` = ?");
+    $stmt = $conn->prepare("SELECT `name`, `nickname`, `email` FROM `usuario` WHERE `email` = ?");
     $stmt->bind_param("s", $email_logado);
     $stmt->execute();
     $result = $stmt->get_result();
