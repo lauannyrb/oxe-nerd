@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./oxe-nerd:/var/www/html
+    depends_on:
+      - mysql
+    # Adicione outras configurações necessárias para o PHP, se necessário
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    volumes:
+      - ./mysql:/var/lib/mysql
+    # Adicione outras configurações do MySQL, se necessário
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+    # Adicione outras configurações do phpMyAdmin, se necessário
