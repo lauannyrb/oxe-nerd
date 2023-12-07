@@ -34,4 +34,4 @@ services:
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: mysql
-    # Adicione outras configurações do phpMyAdmin, se necessáriod
+    # Adicione outras configurações do phpMyAdmin, se necessário
