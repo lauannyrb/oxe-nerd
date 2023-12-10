@@ -1,6 +1,28 @@
 <?php
 session_start();
 
+// Inclua o arquivo de conexão com o banco de dados
+include '../conexao.php';
+
+// Comando SQL para criar a tabela de produtos
+$sql_create_table = "CREATE TABLE IF NOT EXISTS produtos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    imagem VARCHAR(255) NOT NULL
+)";
+
+// Executar o comando SQL
+/*if ($conn->query($sql_create_table) === TRUE) {
+    echo "Tabela 'produtos' criada ou já existente.";
+} else {
+    echo "Erro ao criar a tabela 'produtos': " . $conn->error;
+}
+$conn->close();
+*/
+
+
+
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     // Encerrar a sessão
@@ -30,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Adicionar o produto ao carrinho
         $_SESSION['carrinho'][] = $produto;
+
+        $sql_insert_produto = "INSERT INTO produtos (nome, preco, imagem) VALUES ('$nome', $preco, '$imagem')";
+
+        if ($conn->query($sql_insert_produto) === TRUE) {
+            echo "Produto cadastrado com sucesso.";
+        } else {
+            echo "Erro ao cadastrar o produto: " . $conn->error;
+        }
+
+        $conn->close();
+
     }
 }
 // Verificar se o usuário está logado

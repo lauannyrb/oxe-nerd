@@ -1,122 +1,135 @@
 /*-------------html todo--------------------------- */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: poppins;
-  }
-  
-  /* --------------------------------------------- */
-  
-  /*----------------header-------------------------*/
-  header {
-    background-color: #312847;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo-oxe-nerd {
-    height: 75px;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 40px;
-    font-weight: bold;
-  
-  }
-  
-  a.carrinho {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .carrinho img, .sair{
-    height: 20px;
-    width: auto;
-    margin: 0;
-  }
-  
-  nav a:hover {
-    background-color: #555;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  /* --------------------------------------------- */
+  margin: 0;
+  padding: 0;
+  font-family: poppins;
+}
 
-  /* ------------ Cadastro de produtos (Letícia) ------------- */
+/* --------------------------------------------- */
 
-          /* Estilos para centralizar o conteúdo */
-        .cadastro {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+/*----------------header-------------------------*/
+header {
+  background-color: #312847;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-        /* Estilos para o formulário (opcional) */
-        form {
-            background-color: #f0f0f0;
-            padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+.logo-oxe-nerd {
+  height: 75px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
 
-        h1 {
-            font-size: 15px;
-            color: #2d1d55;
-        }
+nav {
+  display: flex;
+  align-items: center;
+}
 
-        input {
-            border-radius: 10px;
-            border-color:#f0f0f0;
-        }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 40px;
+  font-weight: bold;
 
-        input[type="file"] {
-            color: purple; /* Cor do texto roxo */
-            border: none; /* Remova a borda do input do botão */
-            padding: 10px 20px; /* Espaçamento interno para melhor aparência */
-            border-radius: 5px; /* Arredonde as bordas do input do botão */
-            cursor: pointer; /* Mude o cursor ao passar o mouse sobre o input do botão */
-        }
+}
 
-       /* Estilize o botão personalizado */
-        button {
-            align-items: center;
-            background-color: purple; /* Cor de fundo roxa */
-            color: white; /* Cor do texto branca */
-            border: none; /* Remova a borda do botão */
-            padding: 10px 20px; /* Espaçamento interno para melhor aparência */
-            border-radius: 5px; /* Arredonde as bordas do botão */
-            cursor: pointer; /* Mude o cursor ao passar o mouse sobre o botão */
-            display: block; /* Torna o botão um bloco para centralizá-lo */
-            margin: 0 auto; /* Centraliza o botão horizontalmente */
-        }
+a.carrinho {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-        /* Estilize o input do botão para corresponder à cor de fundo */
-        button input[type="submit"] {
-            font-size: 15px;
-            background-color: purple; /* Cor de fundo roxa */
-            color: white; /* Cor do texto branca */
-            border: none; /* Remova a borda do input do botão */
-            padding: 5px 10px; /* Espaçamento interno para melhor aparência */
-            border-radius: 5px; /* Arredonde as bordas do input do botão */
-            cursor: pointer; /* Mude o cursor ao passar o mouse sobre o input do botão */
-        }
+.carrinho img, .sair{
+  height: 20px;
+  width: auto;
+  margin: 0;
+}
+
+nav a:hover {
+  background-color: #555;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+/* --------------------------------------------- */
+
+/* ------------ Cadastro de produtos (Letícia) ------------- */
+
+/* Estilos para centralizar o conteúdo */
+.cadastro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Estilos para o formulário (opcional) */
+form {
+  background-color: #f0f0f0;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 15px;
+  color: #2d1d55;
+}
+
+input {
+  border-radius: 10px;
+  border-color:#f0f0f0;
+}
+
+input[type="file"] {
+  color: purple; /* Cor do texto roxo */
+  border: none; /* Remova a borda do input do botão */
+  padding: 10px 20px; /* Espaçamento interno para melhor aparência */
+  border-radius: 5px; /* Arredonde as bordas do input do botão */
+  cursor: pointer; /* Mude o cursor ao passar o mouse sobre o input do botão */
+}
+
+/* Estilize o botão personalizado */
+button {
+  align-items: center;
+  background-color: purple; /* Cor de fundo roxa */
+  color: white; /* Cor do texto branca */
+  border: none; /* Remova a borda do botão */
+  padding: 10px 20px; /* Espaçamento interno para melhor aparência */
+  border-radius: 5px; /* Arredonde as bordas do botão */
+  cursor: pointer; /* Mude o cursor ao passar o mouse sobre o botão */
+  display: block; /* Torna o botão um bloco para centralizá-lo */
+  margin: 0 auto; /* Centraliza o botão horizontalmente */
+}
+
+/* Estilize o input do botão para corresponder à cor de fundo */
+button input[type="submit"] {
+  font-size: 15px;
+  background-color: purple; /* Cor de fundo roxa */
+  color: white; /* Cor do texto branca */
+  border: none; /* Remova a borda do input do botão */
+  padding: 5px 10px; /* Espaçamento interno para melhor aparência */
+  border-radius: 5px; /* Arredonde as bordas do input do botão */
+  cursor: pointer; /* Mude o cursor ao passar o mouse sobre o input do botão */
+}
+.cadastro .btn2 {
+  background-color: #fff(94, 94, 139);
+  text-align: center;
+  color: purple;
+  padding: 10px 10px; /* Ajuste do preenchimento */
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display:block;
+  font-size: 15px;
+}
+
+      
 
 
 /*-----------------Footer incio -----------------------------------*/
@@ -124,38 +137,36 @@ body {
 footer {
   background-color: #312847;
   padding: 20px;
-  }
-  
-  footer div {
+}
+
+footer div {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  }
-  
-  footer h2 {
+}
+
+footer h2 {
   margin-right: 10px;
   color: white;
   text-align: center;
-  }
-  
-  footer img {
+}
+
+footer img {
   width: 20px;
   height: 20px;
   margin-right: 5px;
-  }
-  
-  footer p {
-  margin: 10px;;
+}
+
+footer p {
+  margin: 10px;
   color: white;
-  }
-  
-  footer strong {
+}
+
+footer strong {
   display: block;
   text-align: center;
-  }
-  
-  
-  /*-----------------Footer fim -----------------------------------*/
+}
 
-       
+
+/*-----------------Footer fim -----------------------------------*/
