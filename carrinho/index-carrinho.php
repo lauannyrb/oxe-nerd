@@ -28,7 +28,6 @@ if (isset($_POST['deletar'])) {
     header("Location: " . $_SERVER['PHP_SELF']);
 }
 
-
 if (isset($_POST['remover_1'])) {
     $indice = $_POST['indice'];
 
@@ -59,8 +58,7 @@ if (isset($_POST['aumentar_quantidade'])) {
 
     header("Location: " . $_SERVER['PHP_SELF']);
 }
-
-    
+ 
 // Teste com frete
 if (isset($_POST['calcular_frete'])) {
     $opcao_frete = $_POST['frete'];
@@ -152,21 +150,22 @@ if (isset($_POST['calcularpagamento'])) {
     <?php
 
 if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
-echo "<nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
-    <div class='descricoes1'>
-        <span> Produtos</span>
-    </div>
 
-    <div class='descricoes'> 
-        <div class='descricoes2'>
-            <span>Quantidade</span>
-            <span>Preço</span>
-            <span>Entrega</span>
-            <span>Total</span>
+    echo "
+        <nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
+        <div class='descricoes1'>
+            <span> Produtos</span>
         </div>
-    </div>";
 
-foreach ($_SESSION['carrinho'] as $key => $produto) {
+        <div class='descricoes'> 
+            <div class='descricoes2'>
+                <span>Quantidade</span>
+                <span style='margin-right: 40px;' >Preço</span>
+                <span>Entrega</span>
+                <span>Total</span>
+            </div>
+        </div>";
+    foreach ($_SESSION['carrinho'] as $key => $produto) {
     echo "<form action='' method='post'>";
     echo "<div class='pedido1'>";
     echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
@@ -182,33 +181,38 @@ foreach ($_SESSION['carrinho'] as $key => $produto) {
     $quantidade = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
         echo "          
         <div class='pedido-direita'>
-            <td>
-                <input type='submit' name='aumentar_quantidade' value='+' />                                   
-            </td>
-            <span class='quantidade' style='text-align: center; /* Centraliza o texto dentro do input */
-            width: 50px; /* Define a largura do input */
-            height: 50px;
-            font-size: 30px; /* Define o tamanho da fonte */
-            margin: 30px;
-            border: none;
-            font-size: 30px;
-            font-weight: 700;
-          '>" . (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1) . "</span>
+            
             <td>
                 <input type='submit' name='remover_1' value='-' />
             </td>
-            <span class='preco'>R$ " . $produto['preco'] . "</span>
-            <span class='entrega'>Em Dezembro</span>   
-            <span class='subtotal' style='  font-style: normal;
-            font-weight: 600;
-            font-size: 20px;
-            margin-left: 25px;
-            margin-right:10px;
-            line-height: 23px;
-            width: 100px;'>R$ " . number_format($subtotal, 2) . "</span>             
-            </div>
+            
+            <span class='quantidade' style='text-align: center;
+                width: 50px; 
+                height: 50px;
+                font-size: 30px; 
+                margin: 30px;
+                border: none;
+                font-size: 30px;
+                font-weight: 700;'>".
+                    (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1) ."
+            </span>
+            
+            <td>
+                <input type='submit' name='aumentar_quantidade' value='+' />                                   
+            </td>
 
-        ";
+            <span class='preco'>R$ " . $produto['preco'] . "</span>
+            <span class='entrega'> Em Janeiro </span>   
+            <span class='subtotal' style='font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+                margin-left: 25px;
+                margin-right:10px;
+                line-height: 23px;
+                width: 100px;'>
+                    R$ ".number_format($subtotal, 2)."
+            </span>             
+        </div>";
 
     // Adicione ou atualize o produto no carrinho
     $_SESSION['carrinho'][$key] = [
@@ -224,17 +228,10 @@ foreach ($_SESSION['carrinho'] as $key => $produto) {
     echo "</form>";
 }
 
-
-/*            foreach ($_SESSION['carrinho'] as $produto) {
-        $total += $produto['preco'];
-    }
-+*/
     foreach ($_SESSION['carrinho'] as $key => $produto) {
         $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
         $total += $subtotal;
     }
-    
-    
 
     if ($total >= 500) { //Frete gratis a partir de R$500 em compras
         echo "   
@@ -286,6 +283,7 @@ foreach ($_SESSION['carrinho'] as $key => $produto) {
     echo "<p>Seu carrinho de compras está vazio.</p>";
 }
 ?>
+
 <form style="margin-top: 15px;" action="" method="post">
             <div style="margin-bottom: 15px;">
                 <label for="frete">Selecione a região que você mora:</label>
@@ -316,5 +314,4 @@ foreach ($_SESSION['carrinho'] as $key => $produto) {
         </div>
     </main>
 </body>
-
 </html>

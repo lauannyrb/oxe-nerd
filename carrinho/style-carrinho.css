@@ -61,7 +61,6 @@ nav a:hover {
 
 /* --------------------------------------------- */
 
-
 nav.titulo {
   padding-left: 2%;
   width: 50%;
@@ -169,8 +168,6 @@ main{
   width: 50%;
   padding-left: 250px;
   /* margin-left: 200px; */
-  
-
 }
 
 
@@ -191,7 +188,7 @@ input[type="number"] {
   white-space: nowrap;
   font-style: normal;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 23px;
   margin: 50px;
   text-align: center;

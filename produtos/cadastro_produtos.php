@@ -21,8 +21,6 @@ $sql_create_table = "CREATE TABLE IF NOT EXISTS produtos (
 $conn->close();
 */
 
-
-
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     // Encerrar a sessão
@@ -115,27 +113,27 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 
     <div class="cadastro">
         <form action="processar_cadastro.php" method="post" enctype="multipart/form-data">
-            <h1> Nome: <input type="text" name="nome"><br> </h1>
-            <h1> Preço: <input type="text" name="preco"><br> </h1>
-            <h1> Imagem: <input type="file" name="imagem" accept="image/*"><br><br> </h1>
+            <h1> Nome: <input type="text" name="nome"><br></h1>
+            <h1> Preço: <input type="text" name="preco"><br></h1>
+            <h1> Imagem: <input type="file" name="imagem" accept="image/*"><br><br></h1>
             <button> <input type="submit" value="Cadastrar Produto"> </button> <br>
-            <a class="btn2" href="../produtos/lista_produtos_add_produto.php"> Lista de produtos </a>
+            <a class="btn2" href="../produtos/lista_produtos_add_produto.php">
+                Lista de produtos</a>
         </form>   
     </div> 
 
     <style>
-    .cadastro .btn2 {
-    background-color: #fff(94, 94, 139);
-    text-align: center;
-    color: purple;
-    padding: 10px 10px; /* Ajuste do preenchimento */
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display:block;
-    font-size: 15px;
-}
-
+        .cadastro .btn2 {
+        background-color: #fff(94, 94, 139);
+        text-align: center;
+        color: purple;
+        padding: 10px 10px; /* Ajuste do preenchimento */
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display:block;
+        font-size: 15px;
+        }
     </style>
 
      <!---------------- Fale Conosco incio ---------------->
