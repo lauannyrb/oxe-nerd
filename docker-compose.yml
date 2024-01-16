@@ -19,11 +19,11 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: oxe-nerd
-      MYSQL_DATABASE: db_oxenerd
+      MYSQL_DATABASE: db_oxe-nerd
       MYSQL_USER: oxe-nerd
       MYSQL_PASSWORD: oxe-nerd
     volumes:
-      - ./mysql:/var/lib/mysql
+      #- ./mysql:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Montagem do arquivo init.sql
     # Adicione outras configurações do MySQL, se necessário
 
@@ -33,5 +33,5 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: mysql
-      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: oxe-nerd
     # Adicione outras configurações do phpMyAdmin, se necessário

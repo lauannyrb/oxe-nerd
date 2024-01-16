@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verifique as credenciais do usuário no banco de dados
-    $stmt = $conn->prepare("SELECT * FROM `usuario` WHERE `email` = ?");
+    $stmt = $conn->prepare("SELECT * FROM `user` WHERE `email` = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();

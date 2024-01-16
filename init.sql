@@ -7,11 +7,11 @@ CREATE TABLE `user` (
     `date` DATE NOT NULL,
     `type_user` VARCHAR(50) NOT NULL,
     PRIMARY KEY (`id`)
-)
+);
 
-CREATE TABLE products (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    preice DECIMAL(10,2) NOT NULL,
-    imagem VARCHAR(255) NOT NULL
-); ENGINE=InnoDB;
+CREATE TABLE `products` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `price` DECIMAL(10,2) NOT NULL,
+    `image` VARCHAR(255) NOT NULL
+);

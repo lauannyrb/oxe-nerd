@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Cadastrar-se'])) {
     }
 
     // Verificar se o email já está cadastrado (evite emails duplicados)
-    $stmt = $conn->prepare("SELECT * FROM `usuario` WHERE `email` = ?");
+    $stmt = $conn->prepare("SELECT * FROM `user` WHERE `email` = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Cadastrar-se'])) {
     }
 
     // Inserir os dados no banco de dados
-        $stmt = $conn->prepare("INSERT INTO `usuario` (`name`, `nickname`, `email`, `password`, `date`, `type_user`) VALUES (?, ?, ?, ?, NOW(), 'normal')");
+        $stmt = $conn->prepare("INSERT INTO `user` (`name`, `nickname`, `email`, `password`, `date`, `type_user`) VALUES (?, ?, ?, ?, NOW(), 'normal')");
     $stmt->bind_param("ssss", $nome, $apelido, $email, $senha_hashed);
     if ($stmt->execute()) {
         // Redirecionar para a página inicial após o cadastro
