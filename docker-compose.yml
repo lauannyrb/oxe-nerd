@@ -18,10 +18,10 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_DATABASE: mysql
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: oxe-nerd
+      MYSQL_DATABASE: db_oxenerd
+      MYSQL_USER: oxe-nerd
+      MYSQL_PASSWORD: oxe-nerd
     volumes:
       - ./mysql:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Montagem do arquivo init.sql

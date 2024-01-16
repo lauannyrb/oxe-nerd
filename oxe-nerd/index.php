@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 session_start();
 
 // Verificar se o formulário de logout foi enviado

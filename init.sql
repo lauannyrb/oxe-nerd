@@ -1,4 +1,4 @@
-CREATE TABLE `usuario` (
+CREATE TABLE `user` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `nickname` VARCHAR(50) NOT NULL,
@@ -7,4 +7,11 @@ CREATE TABLE `usuario` (
     `date` DATE NOT NULL,
     `type_user` VARCHAR(50) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
+)
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    preice DECIMAL(10,2) NOT NULL,
+    imagem VARCHAR(255) NOT NULL
+); ENGINE=InnoDB;
