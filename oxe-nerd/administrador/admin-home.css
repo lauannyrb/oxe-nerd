@@ -1,0 +1,168 @@
+/*-------------html todo--------------------------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: poppins;
+  }
+  
+  /* --------------------------------------------- */
+  
+  /*----------------header-------------------------*/
+  header {
+    background-color: #312847;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo-oxe-nerd {
+    height: 75px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 40px;
+    font-weight: bold;
+  
+  }
+  
+  a.carrinho {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carrinho img, .sair{
+    height: 20px;
+    width: auto;
+    margin: 0;
+  }
+  
+  nav a:hover {
+    background-color: #555;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  /* --------------------------------------------- */
+  
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-admin {
+    border-radius: 10px;
+    background-color: #EFECF0;
+    margin-top: 30px;
+    padding: 10px 30px 10px 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.menu-admin h1 {
+    font-size: 25px;
+    color: #440F5C;
+}
+
+.menu-admin h2 {
+    padding-left: 10px;
+    font-size: 18px;
+    color: #5C5F62;
+}
+
+.profile-admin {
+    font-size: 15px;
+    margin-left: 15px; 
+    display: flex;
+    align-items: center;
+    color: #5C5F62;
+    gap: 13px;
+}
+
+.profile, .nick {
+    display: inline-block;
+}
+
+.profile-admin img {
+    height: 35px;
+    margin: 0;
+}
+
+.sections {
+    display: flex;
+    text-align: center;
+}
+
+.box {
+    background-color: #fff;
+    padding: 30px;
+    margin: 30px 45px 30px 45px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.box h3 {
+    font-size: 15px;
+    color: #79269F;
+    text-decoration: none;
+}
+
+.box img {
+    margin-top: 15px;
+    max-height: 50px;
+}
+
+  /*-----------------Footer incio -----------------------------------*/
+
+footer {
+    background-color: #312847;
+    padding: 20px;
+    }
+    
+    footer div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    }
+    
+    footer h2 {
+    margin-right: 10px;
+    color: white;
+    text-align: center;
+    }
+    
+    footer img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    }
+    
+    footer p {
+    margin: 10px;;
+    color: white;
+    }
+    
+    footer strong {
+    display: block;
+    text-align: center;
+    }
+    
+    
+    /*-----------------Footer fim -----------------------------------*/
