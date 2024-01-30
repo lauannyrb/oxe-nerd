@@ -7,30 +7,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     session_unset();
     session_destroy();
     header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
+    exit; // Encerrar o script após o redirecionamento
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['comprar'])) {
-        // Coletar informações do produto do formulário
-        $nome = $_POST['nome'];
-        $preco = $_POST['preco'];
-        $imagem = $_POST['imagem'];
+// Verificar se o formulário de compra foi enviado via POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
+    // Coletar informações do produto do formulário
+    $nome = $_POST['nome'];
+    $preco = $_POST['preco'];
+    $imagem = $_POST['imagem'];
 
-        // Criar uma array associativa para representar o produto
-        $produto = [
-            'nome' => $nome,
-            'preco' => $preco,
-            'imagem' => $imagem,
-        ];
+    // Criar uma array associativa para representar o produto
+    $produto = [
+        'nome' => $nome,
+        'preco' => $preco,
+        'imagem' => $imagem,
+    ];
 
-        // Verificar se o carrinho já existe na sessão e criar se necessário
-        if (!isset($_SESSION['carrinho'])) {
-            $_SESSION['carrinho'] = [];
-        }
-
-        // Adicionar o produto ao carrinho
-        $_SESSION['carrinho'][] = $produto;
+    // Verificar se o carrinho já existe na sessão e criar se necessário
+    if (!isset($_SESSION['carrinho'])) {
+        $_SESSION['carrinho'] = [];
     }
+
+    // Adicionar o produto ao carrinho
+    $_SESSION['carrinho'][] = $produto;
 }
 
 // Verificar se o usuário está logado
@@ -52,7 +52,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 <body>
 
     <!-- Header  -->
-  <header>
+    <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
             <a class="" href="../index.php"> Promoções </a>
@@ -76,104 +76,97 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </nav>
     </header>
     <!-- Fim  -->
-    <?php
 
+    <h1>Lista de Produtos</h1>
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
-    if (isset($_SESSION['carrinho'])) {
-        $nome = $_POST['nome'];
-        $preco = $_POST['preco'];
-        $imagem = $_POST['imagem'];
+    <div class="produtos">
+        <?php
+        // Conexão com o banco de dados
+        $conexao = new mysqli("localhost", "usuario", "senha", "nome_do_banco");
 
-        $produto = [
-            'nome' => $nome,
-            'preco' => $preco,
-            'imagem' => $imagem,
-        ];
-
-        $_SESSION['carrinho'][] = $produto;
-    }
-}
-?>
-<?php
-session_start();
-
-if (isset($_SESSION['produtos'])) {
-    echo "<h1>Lista de Produtos</h1>    ";
-
-
-    foreach ($_SESSION['produtos'] as $key => $produto) {
-
-
-        echo "<div class='description'>";
-        echo "<form action='' method='post'>";
-        
-        echo "<div class='centralizar'>";
-        echo "<img src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
-        echo "<h2>" . $produto['nome'] . "</h2>";
-        echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
-
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='nome' value='{$produto['nome']}'>";
-        echo "<input type='hidden' name='preco' value='{$produto['preco']}'>";
-        echo "<input type='hidden' name='imagem' value='{$produto['imagem']}'>";
-        echo "<button class='bnt' type='submit' name='comprar'>COMPRAR</button>";
-        echo "</form>";
-        echo "</div>";
-        echo "</div>";
-
-    }
-} else {
-    echo "<p>Nenhum produto cadastrado ainda.</p>";
-}
-
-
-
-?>
- <style>
-        /* Estilo para centralizar os elementos na tela edit.php */
-        .description {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;    
+        // Verificar se houve erro na conexão
+        if ($conexao->connect_error) {
+            die("Erro na conexão com o banco de dados: " . $conexao->connect_error);
         }
 
-        h1 {
-            color: #2d1d55;
+        // Consultar os produtos no banco de dados
+        $query = "SELECT * FROM produtos";
+        $resultado = $conexao->query($query);
+
+        // Verificar se houve erro na consulta
+        if (!$resultado) {
+            die("Erro na consulta ao banco de dados: " . $conexao->error);
+        }
+
+        // Exibir os produtos
+        while ($produto = $resultado->fetch_assoc()) {
+            ?>
+            <div class="produto">
+                <img src="<?php echo $produto['imagem']; ?>" alt="Imagem do Produto">
+                <h2><?php echo $produto['nome']; ?></h2>
+                <p>Preço: R$ <?php echo $produto['preco']; ?></p>
+                <form method="post">
+                    <input type="hidden" name="nome" value="<?php echo $produto['nome']; ?>">
+                    <input type="hidden" name="preco" value="<?php echo $produto['preco']; ?>">
+                    <input type="hidden" name="imagem" value="<?php echo $produto['imagem']; ?>">
+                    <button class="btn" type="submit" name="comprar">COMPRAR</button>
+                </form>
+            </div>
+            <?php
+        }
+
+        // Fechar a conexão com o banco de dados
+        $conexao->close();
+        ?>
+    </div>
+
+    <style>
+        /* Estilo para centralizar os elementos na tela */
+        .produtos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .produto {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
-        img .centralizar {
-            width: 350px;
+        .produto img {
+            max-width: 200px;
+            max-height: 200px;
+            margin-bottom: 10px;
         }
 
-        .centralizar {
-            background-color: pink;
-            padding: 30px 20px;
+        .produto h2 {
+            margin-bottom: 5px;
+        }
+
+        .produto p {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #B71ABA;
+            color: #fff;
+            border: none;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
+            cursor: pointer;
         }
 
-        .btn { /*Botão de editar e deletar produto*/
-        display: inline-block;
-        padding: 10px 70px;
-        background-color: #B71ABA;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #B71ABA;
-        margin-right: 10px;
-        margin-bottom: 5px; 
-        }
         .btn:hover {
-        background-color: #f890fa;
+            background-color: #f890fa;
         }
     </style>
-     <!---------------- Fale Conosco incio ---------------->
- <footer>
+
+    <!---------------- Fale Conosco inicio ---------------->
+    <footer>
         <h2>Fale Conosco</h2>
         <div>
             <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
@@ -183,5 +176,6 @@ if (isset($_SESSION['produtos'])) {
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
     </footer>
     <!---------------- Fale Conosco fim ---------------->
+
 </body>
 </html>

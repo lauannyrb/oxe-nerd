@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['carrinho'][] = $produto;
     }
 }
+
 // Verificar se o usuário está logado
 $nome_usuario = "Faça login";
 
@@ -42,25 +43,28 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="cadastro_produtos.css">
+    <link rel="stylesheet" href="./admin-home.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="icon" href="images/Logo.svg" type="svg">
-    <title>Cadastro de produtos</title>
+    <link rel="icon" href="../images/oxe-nerd-logo.png" >
+    <title> Administrador Home </title>
+
+    <!-- <title>Equipamentos e Eletrônicos</title> -->
 </head>
 
 <body>
-
     <!-- Header  -->
     <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="#"> Novos produtos </a>
+            <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
-            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
+            <a class="" href="#"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
             <?php echo "Bem-vindo(a), $nome_usuario"; ?>
@@ -79,35 +83,43 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </a>
         </nav>
     </header>
-    <!-- Fim  -->
 
-    <div class="cadastro">
-        <form action="processar_cadastro.php" method="post" enctype="multipart/form-data">
-            <h1> Nome: <input type="text" name="nome"><br> </h1>
-            <h1> Preço: <input type="text" name="preco"><br> </h1>
-            <h1> Imagem: <input type="file" name="imagem" accept="image/*"><br><br> </h1>
-            <button> <input type="submit" value="Cadastrar Produto"> </button> <br>
-            <a class="btn2" href="../produtos/lista_produtos_add_produto.php"> Lista de produtos </a>
-        </form>   
-    </div> 
+    <main>
+        <div class="menu-admin"> 
+                <h1> Administrador </h1>
 
-    <style>
-    .cadastro .btn2 {
-    background-color: #fff(94, 94, 139);
-    text-align: center;
-    color: purple;
-    padding: 10px 10px; /* Ajuste do preenchimento */
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display:block;
-    font-size: 15px;
-}
+                <div class="profile-admin"> 
+                    <img class="profile" src="../images/img_admin/profile.png" alt="Imagem de perfil">
+                    <p class="nick"> admin-admin <p>
+                </div>
 
-    </style>
+                <div class="sections">
+                    <div class="box">
+                        <a class="" href="../produtos/cadastro_produtos.php">
+                        <img class="img" src="../images/img_admin/cadastroprodutos.png" alt="Cadastro de produtos"> </a>
+                        <h3> Cadastrar novo <br> produto </h3>
+                    </div>
 
-     <!---------------- Fale Conosco incio ---------------->
-     <footer>
+                    <div class="box">
+                        <a class="" href="../produtos/edit.php"> 
+                        <img class="img" src="../images/img_admin/listprodutos.png" alt="Listar produtos"> </a>
+                        <h3> Listar produtos </h3> 
+                    </div>
+                    
+                    <div class="box">
+                        <a class="" href="../produtos/-.php"> 
+                        <img class="img" src="../images/img_admin/listprofiles.png" alt="Listar usuários"> </a>
+                        <h3> Listar usuários </h3> 
+                    </div>
+                </div>
+                
+                <a class="" href="../login/index-login.php"> <h2> Sair </h2> </a>
+                
+        </div>
+    </main>
+ </body>
+ <!---------------- Fale Conosco incio ----------------
+ <footer>
         <h2>Fale Conosco</h2>
         <div>
             <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
@@ -115,7 +127,6 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
         </div>
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
-    </footer>
-    <!---------------- Fale Conosco fim ---------------->
-</body>
+</footer>
+------------- Fale Conosco fim ---------------->
 </html>

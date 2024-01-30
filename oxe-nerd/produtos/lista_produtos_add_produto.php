@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="lista_produtos.css">
-</head>
-
 <?php
 session_start();
+
+// Função para fazer a conexão com o banco de dados
+function conectarBanco() {
+    // Conectar ao banco de dados
+    include '../conexao.php'; // Arquivo de conexão com o banco de dados
+
+    // Verificar se houve erro na conexão
+    if ($conn->connect_error) {
+        die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+    }
+
+    return $conn;
+}
 
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
@@ -50,7 +53,29 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
 }
 
+// Conectar ao banco de dados
+$conn = conectarBanco();
+
+// Consultar os produtos no banco de dados
+$query = "SELECT * FROM products";
+$resultado = $conn->query($query);
+
+// Verificar se houve erro na consulta
+if (!$resultado) {
+    die("Erro na consulta ao banco de dados: " . $conn->error);
+}
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="lista_produtos.css">
+</head>
 <body>
 
     <!-- Header  -->
@@ -80,103 +105,76 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     </header>
     <!-- Fim  -->
     
- 
-<?php
+    <h1>Lista de Produtos</h1>
 
+    <div class="produtos">
+        <?php
+        // Exibir os produtos
+        while ($produto = $resultado->fetch_assoc()) {
+            ?>
+            <div class="produto">
+                <img src="<?php echo $produto['imagem']; ?>" alt="Imagem do Produto">
+                <h2><?php echo $produto['name']; ?></h2>
+                <p>Preço: R$ <?php echo $produto['price']; ?></p>
+                <form method="post">
+                    <input type="hidden" name="nome" value="<?php echo $produto['name']; ?>">
+                    <input type="hidden" name="preco" value="<?php echo $produto['price']; ?>">
+                    <input type="hidden" name="imagem" value="<?php echo $produto['id']; ?>"
 
+                    <button class="btn" type="submit" name="comprar">COMPRAR</button>
+                </form>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
 
-if (isset($_SESSION['produtos'])) {
-    echo "<h1>Lista de Produtos </h1>
-    <div class='navegation'>
-        <button> <a href='../produtos/edit.php'>Editar Produtos </a></button>
-        <button> <a href='../produtos/cadastro_produtos.php'>Cadastro de Produtos</a></button>
-    </div>";
-
-
-    foreach ($_SESSION['produtos'] as $key => $produto) {
-
-
-        echo "<div class='description'>";
-        echo "<form action='' method='post'>";
-        
-        echo "<div class='centralizar'>";
-        echo "<img src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
-        echo "<h2>" . $produto['nome'] . "</h2>";
-        echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
-        echo "<form method='post'>";
-        echo "<input type='hidden' name='nome' value='{$produto['nome']}'>";
-        echo "<input type='hidden' name='preco' value='{$produto['preco']}'>";
-        echo "<input type='hidden' name='imagem' value='{$produto['imagem']}'>";
-        echo "<button class='bnt' type='submit' name='comprar'>COMPRAR</button>";
-        echo "</form>";
-        echo "</div>";
-        echo "</div>";
-
-    }
-} else {
-    echo "<p>Nenhum produto cadastrado ainda.</p>";
-}
-
-
-
-?>
- <style>
-        /* Estilo para centralizar os elementos na tela edit.php */
-        .description {
+    <style>
+        /* Estilo para centralizar os elementos na tela */
+        .produtos {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;    
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-         /* Estilos para as imagens */
-        .description img {
-            max-width: 200px; /* Defina a largura máxima desejada */
-            max-height: 200px; /* Defina a altura máxima desejada */
-        }
-
-        .navegation {
-            align-items: center;
-            margin: 0 auto;
-            text-align: center;
-            gap: 3px;
-            margin-bottom: 25px;
-        }
-        
-        h1 {
-            color: #2d1d55;
-            text-align: center;
-        }
-
-        img .centralizar {
-            width: 350px;
-        }
-
-        .centralizar {
-            background-color: pink;
-            padding: 30px 20px;
+        .produto {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
 
-        .btn { /*Botão de editar e deletar produto*/
-        display: inline-block;
-        padding: 10px 70px;
-        background-color: #B71ABA;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #B71ABA;
-        margin-right: 10px;
-        margin-bottom: 5px; 
+        .produto img {
+            max-width: 200px;
+            max-height: 200px;
+            margin-bottom: 10px;
         }
+
+        .produto h2 {
+            margin-bottom: 5px;
+        }
+
+        .produto p {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #B71ABA;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .btn:hover {
-        background-color: #f890fa;
+            background-color: #f890fa;
         }
     </style>
-     <!---------------- Fale Conosco incio ---------------->
+
+     <!---------------- Fale Conosco inicio ---------------->
  <footer>
         <h2>Fale Conosco</h2>
         <div>
@@ -187,5 +185,6 @@ if (isset($_SESSION['produtos'])) {
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
     </footer>
     <!---------------- Fale Conosco fim ---------------->
+
 </body>
 </html>
