@@ -1,30 +1,48 @@
-<?php session_start();
+<?php
+session_start();
 
-if (isset($_POST['nome']) && isset($_POST['preco'])) {
-    // Obtenha os dados do formulário
-    $nome = $_POST['nome'];
-    $preco = $_POST['preco'];
+// Verificar se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verificar se todos os campos estão preenchidos
+    if (isset($_POST['nome']) && isset($_POST['preco']) && isset($_FILES['imagem'])) {
+        // Coletar os dados do formulário
+        $nome = $_POST['nome'];
+        $preco = $_POST['preco'];
+        $imagem = $_FILES['imagem']['tmp_name']; // Caminho temporário do arquivo
 
-    // Verifique se uma imagem foi enviada
-    if (isset($_FILES['imagem'])) {
-        $targetDir = "../carrinho/uploads/"; //nome da pasta para as imagens
-        $targetFile = $targetDir . basename($_FILES["imagem"]["name"]);
+        // Verificar se a imagem foi enviada corretamente
+        if (is_uploaded_file($imagem)) {
+            // Ler o conteúdo da imagem
+            $conteudo_imagem = addslashes(file_get_contents($imagem));
 
-        if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $targetFile)) {
-            $imagem = $targetFile;
+            // Conectar ao banco de dados (substitua pelas suas credenciais)
+            include '../conexao.php'; // Arquivo de conexão com o banco de dados
+
+
+            // Verificar se a conexão foi estabelecida com sucesso
+            if ($conn->connect_error) {
+                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+            }
+
+            // Preparar a consulta SQL para inserir os dados na tabela
+            $query = "INSERT INTO products (name, price, image) VALUES ('$nome', '$preco', '$conteudo_imagem')";
+
+            // Executar a consulta
+            if ($conn->query($query) === TRUE) {
+                echo "Produto cadastrado com sucesso!";
+            } else {
+                echo "Erro ao cadastrar o produto: " . $conn->error;
+            }
+
+            // Fechar a conexão com o banco de dados
+            $conn->close();
+        } else {
+            echo "Erro no envio da imagem.";
         }
+    } else {
+        echo "Por favor, preencha todos os campos.";
     }
-
-    // Crie um novo produto
-    $produto = [
-        'nome' => $nome,
-        'preco' => $preco,
-        'imagem' => isset($imagem) ? $imagem : 'placeholder.jpg', // Imagem padrão se não for fornecida
-    ];
-
-    // Adicione o produto ao array de produtos
-    $_SESSION['produtos'][] = $produto;
+} else {
+    echo "O formulário não foi enviado corretamente.";
 }
-
-header("Location: lista_produtos_add_produto.php");
 ?>
