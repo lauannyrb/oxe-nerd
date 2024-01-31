@@ -28,7 +28,6 @@ if (isset($_POST['deletar'])) {
     header("Location: " . $_SERVER['PHP_SELF']);
 }
 
-
 if (isset($_POST['remover_1'])) {
     $indice = $_POST['indice'];
 
@@ -59,7 +58,6 @@ if (isset($_POST['aumentar_quantidade'])) {
 
     header("Location: " . $_SERVER['PHP_SELF']);
 }
-
     
 // Teste com frete
 if (isset($_POST['calcular_frete'])) {
@@ -101,10 +99,7 @@ if (isset($_POST['calcularpagamento'])) {
     $_SESSION['pagamento'] = $valor;
 }         
 
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -151,32 +146,32 @@ if (isset($_POST['calcularpagamento'])) {
 
     <?php
 
-if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
-echo "<nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
-    <div class='descricoes1'>
-        <span> Produtos</span>
-    </div>
-
-    <div class='descricoes'> 
-        <div class='descricoes2'>
-            <span>Quantidade</span>
-            <span>Preço</span>
-            <span>Entrega</span>
-            <span>Total</span>
+    if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
+    echo "<nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
+        <div class='descricoes1'>
+            <span> Produtos</span>
         </div>
-    </div>";
 
-foreach ($_SESSION['carrinho'] as $key => $produto) {
-    echo "<form action='' method='post'>";
-    echo "<div class='pedido1'>";
-    echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
-
-    echo "       
-        <div class='des-produto'>
-                <span class='nome-pedido'>" . $produto['nome'] . "</span>
-                <span class='des-pedido'>Vendido e entregue pela OxeNerd</span>
+        <div class='descricoes'> 
+            <div class='descricoes2'>
+                <span>Quantidade</span>
+                <span>Preço</span>
+                <span>Entrega</span>
+                <span>Total</span>
             </div>
-        ";
+        </div>";
+
+    foreach ($_SESSION['carrinho'] as $key => $produto) {
+        echo "<form action='' method='post'>";
+        echo "<div class='pedido1'>";
+        echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
+
+        echo "       
+            <div class='des-produto'>
+                    <span class='nome-pedido'>" . $produto['nome'] . "</span>
+                    <span class='des-pedido'>Vendido e entregue pela OxeNerd</span>
+                </div>
+            ";
 
     $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
     $quantidade = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;

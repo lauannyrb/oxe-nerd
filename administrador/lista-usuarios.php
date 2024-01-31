@@ -49,7 +49,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./admin-home.css">
+    <link rel="stylesheet" href="./lista-usuarios.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png" >
     <title> Administrador Home </title>
@@ -83,18 +83,33 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </a>
         </nav>
     </header>
+    <h2 style="width: 100%;margin: auto;width: 70%;">Lista de Usuarios</h2>
+    <section class=lista>
+        <div class="lista">
+            <DIV class="esquerda">
+                <span>id</span>
+                <span>NOME</span>
+                <span>SENHA</span>
+            </DIV>
+            <div class="direita">
+                <button>Deletar</BUTton>
+                <button>Editar</button> 
+            </div>  
+        </div>
+
+    </section>
 
 
      <!---------------- Fale Conosco incio ---------------->
- <footer>
-        <h2>Fale Conosco</h2>
-        <div>
-            <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
-            <img src="../images/Instagram.png" alt="Instagram"><p>@oxe_nerd</p>
-            <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
-        </div>
-        <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
-</footer>
-<!------------- Fale Conosco fim ---------------->
-    </body>
+    <footer>
+            <h2>Fale Conosco</h2>
+            <div>
+                <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
+                <img src="../images/Instagram.png" alt="Instagram"><p>@oxe_nerd</p>
+                <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
+            </div>
+            <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
+    </footer>
+    <!------------- Fale Conosco fim ---------------->
+</body>
 </html>
