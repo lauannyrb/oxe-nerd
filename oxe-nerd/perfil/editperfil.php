@@ -1,44 +1,31 @@
-<?php 
+<?php
 session_start();
 
-// Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
-    // Encerrar a sessão
     session_unset();
     session_destroy();
-    header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
+    header("Location: ../index.php");
+    exit;
 }
 
-// Verificar se o usuário está logado
 $nome_usuario = "Faça login";
 
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
 }
 
-
-$nome_usuario = $_SESSION['usuario_logado']['nome'];
-$email_usuario = $_SESSION['usuario_logado']['email'];
-
-
-if (!isset($_SESSION['usuario_logado'])) {
-    // Redirecionar para a página de login se o usuário não estiver logado
-    header("Location: ../login/index-login.php");
-    exit;
-}
-
-$nome_usuario = $_SESSION['usuario_logado']['nome'];
-$email_usuario = $_SESSION['usuario_logado']['email'];
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
-    // Processar as alterações
+    include '../conexao.php'; // Inclua aqui seu arquivo de conexão
+
+    $nome_usuario = $_SESSION['usuario_logado']['nome'];
+    $email_usuario = $_SESSION['usuario_logado']['email'];
 
     // Inicializar variáveis para as novas informações
     $novo_nome = $nome_usuario;
-    $novo_email = $_SESSION['usuario_logado']['email'];
+    $novo_email = $email_usuario;
     $nova_senha = isset($_SESSION['usuario_logado']['senha']) ? $_SESSION['usuario_logado']['senha'] : '';
 
-// Verificar se o campo foi preenchido e atualizar as variáveis correspondentes
+    // Verificar se o campo foi preenchido e atualizar as variáveis correspondentes
     if (!empty($_POST['novo_nome'])) {
         $novo_nome = $_POST['novo_nome'];
     }
@@ -50,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
     if (!empty($_POST['nova_senha'])) {
         $nova_senha = password_hash($_POST['nova_senha'], PASSWORD_DEFAULT); // Hash da nova senha
     }
+
     // Validar os campos conforme necessário
 
     // Atualizar as informações do usuário na sessão
@@ -58,6 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
     if (!empty($_POST['nova_senha'])) {
         $_SESSION['usuario_logado']['senha'] = $nova_senha;
     }
+
+    // Atualizar as informações no banco de dados
+    $stmt = $conn->prepare("UPDATE `user` SET `name`=?, `email`=?, `password`=? WHERE `email`=?");
+    $stmt->bind_param("ssss", $novo_nome, $novo_email, $nova_senha, $email_usuario);
+    $stmt->execute();
+    $stmt->close();
 
     // Redirecionar de volta para a página de perfil após a edição
     header("Location: perfil.php");
