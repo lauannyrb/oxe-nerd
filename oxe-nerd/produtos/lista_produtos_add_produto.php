@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+
+if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+    // Se o usuário não for um administrador, redirecioná-lo para a página de login
+    header("Location: ../login/index-login.php");
+    exit;
+}
+
 // Função para fazer a conexão com o banco de dados
 function conectarBanco() {
     // Conectar ao banco de dados
