@@ -8,34 +8,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Coletar os dados do formulário
         $nome = $_POST['nome'];
         $preco = $_POST['preco'];
-        $imagem = $_FILES['imagem']['tmp_name']; // Caminho temporário do arquivo
-
+        
         // Verificar se a imagem foi enviada corretamente
-        if (is_uploaded_file($imagem)) {
-            // Ler o conteúdo da imagem
-            $conteudo_imagem = addslashes(file_get_contents($imagem));
+        if (is_uploaded_file($_FILES['imagem']['tmp_name'])) {
+            // Definir o diretório de destino para salvar a imagem
+            $uploadDir = '/var/www/html/produtos/uploads/';
+            
+            // Gerar um nome único para a imagem
+            $imageName = uniqid() . '_' . $_FILES['imagem']['name'];
+            
+            // Definir o caminho completo do arquivo
+            $fullImagePath = $uploadDir . $imageName;
 
-            // Conectar ao banco de dados (substitua pelas suas credenciais)
-            include '../conexao.php'; // Arquivo de conexão com o banco de dados
-
-
-            // Verificar se a conexão foi estabelecida com sucesso
-            if ($conn->connect_error) {
-                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-            }
-
-            // Preparar a consulta SQL para inserir os dados na tabela
-            $query = "INSERT INTO products (name, price, image) VALUES ('$nome', '$preco', '$conteudo_imagem')";
-
-            // Executar a consulta
-            if ($conn->query($query) === TRUE) {
-                echo "Produto cadastrado com sucesso!";
+            // Definir o caminho relativo do arquivo
+            $relativeImagePath = '/produtos/uploads/' . $imageName;
+            
+            // Mover o arquivo para o diretório de destino
+            if (move_uploaded_file($_FILES['imagem']['tmp_name'], $fullImagePath)) {
+                // Conectar ao banco de dados (substitua pelas suas credenciais)
+                include '../conexao.php'; // Arquivo de conexão com o banco de dados
+                
+                // Verificar se a conexão foi estabelecida com sucesso
+                if ($conn->connect_error) {
+                    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+                }
+                
+                // Preparar a consulta SQL para inserir os dados na tabela
+                $query = "INSERT INTO products (name, price, image_path) VALUES ('$nome', '$preco', '$relativeImagePath')";
+                
+                // Executar a consulta
+                if ($conn->query($query) === TRUE) {
+                    echo "Produto cadastrado com sucesso!";
+                } else {
+                    echo "Erro ao cadastrar o produto: " . $conn->error;
+                }
+                
+                // Fechar a conexão com o banco de dados
+                $conn->close();
             } else {
-                echo "Erro ao cadastrar o produto: " . $conn->error;
+                echo "Erro ao mover o arquivo para o diretório de destino.";
             }
-
-            // Fechar a conexão com o banco de dados
-            $conn->close();
         } else {
             echo "Erro no envio da imagem.";
         }

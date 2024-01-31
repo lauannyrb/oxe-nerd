@@ -113,7 +113,7 @@ if (!$resultado) {
         while ($produto = $resultado->fetch_assoc()) {
             ?>
             <div class="produto">
-                <img src="<?php echo $produto['imagem']; ?>" alt="Imagem do Produto">
+                <img src="<?php echo $produto['image_path']; ?>" alt="Imagem do Produto">
                 <h2><?php echo $produto['name']; ?></h2>
                 <p>Preço: R$ <?php echo $produto['price']; ?></p>
                 <form method="post">
