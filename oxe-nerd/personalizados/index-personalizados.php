@@ -66,7 +66,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             session_start();
         }
 
-        include './conexao.php'; // Arquivo de conexão com o banco de dados
+        include '../conexao.php'; // Arquivo de conexão com o banco de dados
 
 
         // Verificar conexão
