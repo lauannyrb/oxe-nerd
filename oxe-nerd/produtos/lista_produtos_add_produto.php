@@ -115,10 +115,7 @@ if (!$resultado) {
     <h1>Lista de Produtos</h1>
 
     <div class="produtos">
-        <?php
-        // Exibir os produtos
-        while ($produto = $resultado->fetch_assoc()) {
-            ?>
+        <?php while ($produto = $resultado->fetch_assoc()) { ?>
             <div class="produto">
                 <img src="<?php echo $produto['imagem']; ?>" alt="Imagem do Produto">
                 <h2><?php echo $produto['name']; ?></h2>
@@ -126,14 +123,10 @@ if (!$resultado) {
                 <form method="post">
                     <input type="hidden" name="nome" value="<?php echo $produto['name']; ?>">
                     <input type="hidden" name="preco" value="<?php echo $produto['price']; ?>">
-                    <input type="hidden" name="imagem" value="<?php echo $produto['id']; ?>"
-
                     <button class="btn" type="submit" name="comprar">COMPRAR</button>
                 </form>
             </div>
-            <?php
-        }
-        ?>
+        <?php } ?>
     </div>
 
     <style>

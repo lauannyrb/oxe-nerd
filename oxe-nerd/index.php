@@ -7,9 +7,12 @@ session_start();
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     // Encerrar a sessão
+    unset($_SESSION['usuario_logado']);
+    unset($_SESSION['type_user']);;
     session_unset();
     session_destroy();
     header("Location: ./index.php"); // Redirecionar para a página inicial após o logout
+    exit;
 }
 
 

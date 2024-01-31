@@ -43,6 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Por favor, preencha todos os campos.";
     }
 } else {
-    echo "O formulário não foi enviado corretamente.";
+    header("Location: /produtos/lista_produtos_add_produto.php");
 }
 ?>

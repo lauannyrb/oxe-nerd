@@ -96,7 +96,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 
         if (isset($_SESSION['type_user'])) {
             if ($_SESSION['type_user'] == 'adm') {
-                echo '<a class="" href="./administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+                echo '<a class="" href="../admin-home.php"> Painel de Controle Adminstrador </a>';
             } else {
                 echo 'User type: ' . $_SESSION['type_user'];
             }
