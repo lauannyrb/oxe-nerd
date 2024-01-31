@@ -52,9 +52,8 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <link rel="stylesheet" href="./admin-home.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png" >
-    <title> Administrador Home </title>
+    <title> Administrador </title>
 
-    <!-- <title>Equipamentos e Eletrônicos</title> -->
 </head>
 
 <body>
@@ -83,6 +82,26 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </a>
         </nav>
     </header>
+
+    <main>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+
 
 
      <!---------------- Fale Conosco incio ---------------->
