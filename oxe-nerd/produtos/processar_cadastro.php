@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Executar a consulta
             if ($conn->query($query) === TRUE) {
-                echo "Produto cadastrado com sucesso!";
+                header("Location: /produtos/lista_produtos_add_produto.php");
             } else {
                 echo "Erro ao cadastrar o produto: " . $conn->error;
             }
@@ -43,6 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Por favor, preencha todos os campos.";
     }
 } else {
-    header("Location: /produtos/lista_produtos_add_produto.php");
+    echo "O formulário não foi enviado corretamente.";
 }
 ?>
