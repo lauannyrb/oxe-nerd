@@ -109,16 +109,16 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <form action="" method="post">
 
                 <h1>Perfil do Usuário</h1>
-                <p><span>Nome completo:</span> <?= $nome ?></p>
-                <p><span>Apelido:</span> <?= $usuario['nickname'] ?></p>
-                <p><span>Email:</span> <?= $email_usuario ?></p>
+                <p><span>Nome completo:</span> <?= isset($nome) ? $nome : "Nome não disponível" ?></p>
+                <p><span>Apelido:</span> <?= isset($nome_usuario) ? $nome_usuario : "Apelido não disponível" ?></p>
+                <p><span>Email:</span> <?= isset($email_usuario) ? $email_usuario : "Email não disponível" ?></p>
 
                 <a href="editperfil.php" name='editar'>Editar</a>
-                
+
                 <?php
-                    if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-                        echo '<a class="" href="excluir_usuario.php?email=' . $_SESSION['usuario_logado']['email'] . '"> Excluir </a>';
-                    }
+                if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+                    echo '<a class="" href="excluir_usuario.php?email=' . $_SESSION['usuario_logado']['email'] . '"> Excluir </a>';
+                }
                 ?>
 
             </form>
