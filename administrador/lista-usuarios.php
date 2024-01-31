@@ -84,41 +84,8 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </nav>
     </header>
 
-    <main>
-        <div class="menu-admin"> 
-                <h1> Administrador </h1>
 
-                <div class="profile-admin"> 
-                    <img class="profile" src="../images/img_admin/profile.png" alt="Imagem de perfil">
-                    <p class="nick"> admin-admin <p>
-                </div>
-
-                <div class="sections">
-                    <div class="box">
-                        <a class="" href="../produtos/cadastro_produtos.php">
-                        <img class="img" src="../images/img_admin/cadastroprodutos.png" alt="Cadastro de produtos"> </a>
-                        <h3> Cadastrar novo <br> produto </h3>
-                    </div>
-
-                    <div class="box">
-                        <a class="" href="../produtos/edit.php"> 
-                        <img class="img" src="../images/img_admin/listprodutos.png" alt="Listar produtos"> </a>
-                        <h3> Listar produtos </h3> 
-                    </div>
-                    
-                    <div class="box">
-                        <a class="" href="../administrador/lista-usuarios.php"> 
-                        <img class="img" src="../images/img_admin/listprofiles.png" alt="Listar usuários"> </a>
-                        <h3> Listar usuários </h3> 
-                    </div>
-                </div>
-                
-                <a class="" href="../login/index-login.php"> <h2> Sair </h2> </a>
-                
-        </div>
-    </main>
- </body>
- <!---------------- Fale Conosco incio ----------------
+     <!---------------- Fale Conosco incio ---------------->
  <footer>
         <h2>Fale Conosco</h2>
         <div>
@@ -128,5 +95,6 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </div>
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
 </footer>
-------------- Fale Conosco fim ---------------->
+<!------------- Fale Conosco fim ---------------->
+    </body>
 </html>
