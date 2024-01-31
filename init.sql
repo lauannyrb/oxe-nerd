@@ -16,4 +16,7 @@ CREATE TABLE products (
     image_path VARCHAR(255)
 );
 
+INSERT INTO `user` (`name`, `nickname`, `email`, `password`, `date`, `type_user`)
+VALUES ('admin', 'adm', 'adm@oxenerd.com', '$2y$10$BN2ZcQEotyIa93399D6zNOw7dtmUKxpnD2oTFuSMuJX.hoSaPUPb2', NOW(), 'adm');
+
 
