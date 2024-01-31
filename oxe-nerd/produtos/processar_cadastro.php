@@ -49,12 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "Erro ao mover o arquivo para o diretório de destino.";
             }
         } else {
-            echo "Erro no envio da imagem.";
+            header("Location: /lista_produtos_add_produto.php");
         }
     } else {
         echo "Por favor, preencha todos os campos.";
     }
 } else {
-    echo "O formulário não foi enviado corretamente.";
+    header("Location: /lista_produtos_add_produto.php");;
 }
 ?>
