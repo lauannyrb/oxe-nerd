@@ -49,7 +49,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./admin-home.css">
+    <link rel="stylesheet" href="./lista-usuarios.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png" >
     <title> Administrador </title>
@@ -81,29 +81,44 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
         </a>
         </nav>
+
     </header>
-
-    <main>
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </main>
-
-
-
-
+    <h2 style="margin: 30px auto; width: 80%;">Listagem de Usuarios</h2>
+    <section class="lista">
+        <div class="lista">
+            <div class="esquerda">
+                <span class="black" style="width: 10%;">ID: 01</span>
+                <span style="width: 70%;">Nome: Cayc Custodio</span>
+                <span class="black" style="width: 20%">Senha: 123456</span>
+                <div class="direita">
+                    <button> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button> 
+                    <button> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"></button>
+                </div>  
+            </div>
+        </div>
+        <div class="lista">
+            <div class="esquerda">
+                <span class="black" style="width: 10%;">ID: 02</span>
+                <span style="width: 70%;">Nome: Leticia Tamarindo</span>
+                <span class="black" style="width: 20%">Senha: 543210</span>
+                <div class="direita">
+                    <button> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button> 
+                    <button> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"> </button>
+                </div>  
+            </div>
+        </div>
+        <div class="lista">
+            <div class="esquerda">
+                <span class="black" style="width: 10%;">ID: 03</span>
+                <span style="width: 70%;">Nome: Elias Neves</span>
+                <span class="black" style="width: 20%">Senha: 348759</span>
+                <div class="direita">
+                    <button> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button> 
+                    <button> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"> </button>
+                </div>  
+            </div>
+        </div>
+    </section>
      <!---------------- Fale Conosco incio ---------------->
  <footer>
         <h2>Fale Conosco</h2>
