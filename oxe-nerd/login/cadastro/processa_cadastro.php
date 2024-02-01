@@ -2,6 +2,7 @@
 
 include '../../conexao.php';
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Cadastrar-se'])) {
     $nome = $_POST["nome"];
     $apelido = $_POST["apelido"];
@@ -16,9 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Cadastrar-se'])) {
         header("Location: index-cadastro.php");
         exit;
     }
-
+    
+    if (session_status() == PHP_SESSION_NONE) {
+    // session has not started
+    session_start();
+    }
     // Verificar se as senhas são iguais
     if ($senha !== $consenha) {
+        
         $_SESSION['cadastro_erro'] = "As senhas precisam ser iguais.";
         header("Location: index-cadastro.php");
         exit;

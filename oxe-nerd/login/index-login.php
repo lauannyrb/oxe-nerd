@@ -1,3 +1,9 @@
+<?php
+session_start(); // Coloque isso no início do arquivo
+
+// O resto do seu código PHP
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +25,8 @@
       <form method="post" action="processa_login.php">
         <!-- Exibir mensagem de erro, se houver -->
         <?php
+        
+        
           if (isset($_SESSION['login_erro'])) {
               echo '<div class="mensagem-erro">';
               echo '<span class="error-icon">❌</span>';

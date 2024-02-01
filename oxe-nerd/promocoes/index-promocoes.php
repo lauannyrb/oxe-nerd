@@ -61,7 +61,40 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
+        <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            // session has not started
+            session_start();
+        }
+
+        include '../conexao.php'; // Arquivo de conexão com o banco de dados
+
+
+        // Verificar conexão
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT type_user FROM user WHERE type_user='adm'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                $_SESSION['type_user'] = $row["type_user"];
+            }
+        } else {
+        }
+        $conn->close();
+
+        if (isset($_SESSION['type_user'])) {
+            if ($_SESSION['type_user'] == 'adm') {
+                echo '<a class="" href="./administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+            } else {
+                echo 'User type: ' . $_SESSION['type_user'];
+            }
+        }
+        ?>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>

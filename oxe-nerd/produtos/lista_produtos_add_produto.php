@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+
+if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+    // Se o usuário não for um administrador, redirecioná-lo para a página de login
+    header("Location: ../login/index-login.php");
+    exit;
+}
+
 // Função para fazer a conexão com o banco de dados
 function conectarBanco() {
     // Conectar ao banco de dados
@@ -108,10 +115,7 @@ if (!$resultado) {
     <h1>Lista de Produtos</h1>
 
     <div class="produtos">
-        <?php
-        // Exibir os produtos
-        while ($produto = $resultado->fetch_assoc()) {
-            ?>
+        <?php while ($produto = $resultado->fetch_assoc()) { ?>
             <div class="produto">
                 <img src="<?php echo $produto['image_path']; ?>" alt="Imagem do Produto">
                 <h2><?php echo $produto['name']; ?></h2>
@@ -119,14 +123,10 @@ if (!$resultado) {
                 <form method="post">
                     <input type="hidden" name="nome" value="<?php echo $produto['name']; ?>">
                     <input type="hidden" name="preco" value="<?php echo $produto['price']; ?>">
-                    <input type="hidden" name="imagem" value="<?php echo $produto['id']; ?>"
-
                     <button class="btn" type="submit" name="comprar">COMPRAR</button>
                 </form>
             </div>
-            <?php
-        }
-        ?>
+        <?php } ?>
     </div>
 
     <style>

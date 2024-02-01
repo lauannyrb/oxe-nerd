@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+
+if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+  // Se o usuário não for um administrador, redirecioná-lo para a página de login
+  header("Location: ../login/index-login.php");
+  exit;
+}
+
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
   // Encerrar a sessão

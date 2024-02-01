@@ -20,9 +20,6 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 $nome_usuario = $_SESSION['usuario_logado']['nome'];
 $email_usuario = $_SESSION['usuario_logado']['email'];
 
-?>
-
-<?php
 
 if (!isset($_SESSION['usuario_logado'])) {
     // Redirecionar para a página de login se o usuário não estiver logado
@@ -38,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
 
     // Inicializar variáveis para as novas informações
     $novo_nome = $nome_usuario;
-    $novo_email = $email_usuario;
-    $nova_senha = $_SESSION['usuario_logado']['senha'];
+    $novo_email = $_SESSION['usuario_logado']['email'];
+    $nova_senha = isset($_SESSION['usuario_logado']['senha']) ? $_SESSION['usuario_logado']['senha'] : '';
 
-    // Verificar se o campo foi preenchido e atualizar as variáveis correspondentes
+// Verificar se o campo foi preenchido e atualizar as variáveis correspondentes
     if (!empty($_POST['novo_nome'])) {
         $novo_nome = $_POST['novo_nome'];
     }
@@ -51,15 +48,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
     }
 
     if (!empty($_POST['nova_senha'])) {
-        $nova_senha = $_POST['nova_senha'];
+        $nova_senha = password_hash($_POST['nova_senha'], PASSWORD_DEFAULT); // Hash da nova senha
     }
-
     // Validar os campos conforme necessário
 
     // Atualizar as informações do usuário na sessão
     $_SESSION['usuario_logado']['nome'] = $novo_nome;
     $_SESSION['usuario_logado']['email'] = $novo_email;
-    $_SESSION['usuario_logado']['senha'] = $nova_senha;
+    if (!empty($_POST['nova_senha'])) {
+        $_SESSION['usuario_logado']['senha'] = $nova_senha;
+    }
 
     // Redirecionar de volta para a página de perfil após a edição
     header("Location: perfil.php");

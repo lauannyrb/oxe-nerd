@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +24,8 @@
       <form method="post" action="processa_cadastro.php">
 
         <!-- Exibir mensagem de erro, se houver -->
-        <?php
-          session_start();
+
+          <?php
           if (isset($_SESSION['cadastro_erro'])) {
               echo '<div class="mensagem-erro">';
               echo '<span class="error-icon">❌</span>';
@@ -29,7 +33,7 @@
               echo '</div>';
               unset($_SESSION['cadastro_erro']); // Limpar a mensagem de erro
           }
-        ?>
+          ?>
 
         <label>Nome completo</label>
         <input type="text" name="nome" placeholder="Digite o seu nome completo" autofocus>
