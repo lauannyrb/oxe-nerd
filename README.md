@@ -49,7 +49,7 @@ Se você gostaria de contribuir para o projeto, siga estas etapas:
 
 ## Protótipo
 
-Link para visualização do proótipo no Figma do site:
+Link para visualização do prototipo no Figma do site:
 
 https://www.figma.com/file/F28ioo99Q4N2RDjPZUBgUh/Untitled?type=design&node-id=0%3A1&t=V2n2WpbPonMfioAS-1
 
