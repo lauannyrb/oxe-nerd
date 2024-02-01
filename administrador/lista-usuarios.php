@@ -39,7 +39,6 @@ $nome_usuario = "Faça login";
 if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +53,50 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <link rel="icon" href="../images/oxe-nerd-logo.png" >
     <title> Administrador Home </title>
 
-    <!-- <title>Equipamentos e Eletrônicos</title> -->
+    <style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; 
+        margin: 0;
+    }
+
+    section.lista {
+        margin: 0 auto;
+        width: 80%;
+        background-color: blanchedalmond;
+        
+        padding: 20px;
+        height: auto;
+    
+    }
+    .lista{
+        align-items: center; 
+        width: auto;
+        background-color: white;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .lista:last-child{
+        margin-bottom: 0;
+    }
+    .esquerda{
+        width: 100%;
+        display: inline-flex;
+    }
+    .direita{
+        display: flex;
+        justify-content: right;
+    }
+    .lista .esquerda span {
+        background-color: blue;
+        justify-content: space-between;
+        
+    }
+    footer{
+        margin-top: auto;
+    }
+    </style>
 </head>
 
 <body>
@@ -83,19 +125,42 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </a>
         </nav>
     </header>
-    <h2 style="margin: auto;width: 70%;">Lista de Usuarios</h2>
-    <section class=lista>
+    <h2 style="margin: 30px auto; width: 80%;">Listagem de Usuarios</h2>
+    <section class="lista">
         <div class="lista">
             <DIV class="esquerda">
-                <span>id: 01</span>
-                <span>NOME: Cayc Custodio</span>
-                <span>SENHA: 123456</span>
+                <span style="width: 10%;">id: 01</span>
+                <span style="width: 70%;">NOME: Cayc Custodio</span>
+                <span style="width: 20%">SENHA: 123456</span>
+                <div class="direita">
+                    <button>Editar</button> 
+                    <button>Deletar</BUTton>
+                </div>  
             </DIV>
-            <div class="direita">
-                <button>Editar</button> 
-                <button>Deletar</BUTton>
-            </div>  
         </div>
+        <div class="lista">
+            <DIV class="esquerda">
+                <span style="width: 10%;">id: 02</span>
+                <span style="width: 70%;">NOME: Cayc Custodio</span>
+                <span style="width: 20%">SENHA: 123456</span>
+                <div class="direita">
+                    <button>Editar</button> 
+                    <button>Deletar</BUTton>
+                </div>  
+            </DIV>
+        </div>
+        <div class="lista">
+            <DIV class="esquerda">
+                <span style="width: 10%;">id: 03</span>
+                <span style="width: 70%;">NOME: Cayc Custodio</span>
+                <span style="width: 20%">SENHA: 123456</span>
+                <div class="direita">
+                    <button>Editar</button> 
+                    <button>Deletar</BUTton>
+                </div>  
+            </DIV>
+        </div>
+        
 
     </section>
 

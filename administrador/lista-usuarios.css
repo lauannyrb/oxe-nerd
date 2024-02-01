@@ -58,29 +58,8 @@ transition: background-color 0.3s;
 /* --------------------------------------------- */
 
 
-section.lista {
-  margin: auto;
-  width: 70%;
-}
-.lista{
-  display: flex;
-  align-items: center; 
-  width: 100%;
-}
-.esquerda{
-  width: 60%;
-  justify-content: left;
-}
-.direita{
-  display: flex;
-  width: 40%;
-  justify-content: right;
-}
 
-.lista .esquerda span {
-  background-color: red;
-  color: red;
-}
+
 
 /*-----------------Footer incio -----------------------------------*/
 
