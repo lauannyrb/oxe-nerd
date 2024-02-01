@@ -11,7 +11,9 @@ services:
       - ./oxe-nerd:/var/www/html
     depends_on:
       - mysql
-    # Adicione outras configurações necessárias para o PHP, se necessário
+    # Comando para executar o chmod durante a inicialização do contêiner PHP
+    command: >
+      sh -c "chmod -R 777 /var/www/html/produtos/uploads/ && apache2-foreground"
 
   mysql:
     image: mysql:latest
