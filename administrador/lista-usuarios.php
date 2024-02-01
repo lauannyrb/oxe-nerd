@@ -83,17 +83,17 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </a>
         </nav>
     </header>
-    <h2 style="width: 100%;margin: auto;width: 70%;">Lista de Usuarios</h2>
+    <h2 style="margin: auto;width: 70%;">Lista de Usuarios</h2>
     <section class=lista>
         <div class="lista">
             <DIV class="esquerda">
-                <span>id</span>
-                <span>NOME</span>
-                <span>SENHA</span>
+                <span>id: 01</span>
+                <span>NOME: Cayc Custodio</span>
+                <span>SENHA: 123456</span>
             </DIV>
             <div class="direita">
-                <button>Deletar</BUTton>
                 <button>Editar</button> 
+                <button>Deletar</BUTton>
             </div>  
         </div>
 
