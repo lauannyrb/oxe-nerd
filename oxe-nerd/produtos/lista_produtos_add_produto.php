@@ -1,13 +1,6 @@
 <?php
 session_start();
 
-
-if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
-    // Se o usuário não for um administrador, redirecioná-lo para a página de login
-    header("Location: ../login/index-login.php");
-    exit;
-}
-
 // Função para fazer a conexão com o banco de dados
 function conectarBanco() {
     // Conectar ao banco de dados
@@ -35,12 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $nome = $_POST['nome'];
         $preco = $_POST['preco'];
         $imagem = $_POST['imagem'];
+        $imagem_path = $_POST['imagem_path'];
 
         // Criar uma array associativa para representar o produto
         $produto = [
             'nome' => $nome,
             'preco' => $preco,
             'imagem' => $imagem,
+            'imagem_path' => $imagem_path ,
         ];
 
         // Verificar se o carrinho já existe na sessão e criar se necessário
@@ -115,7 +110,10 @@ if (!$resultado) {
     <h1>Lista de Produtos</h1>
 
     <div class="produtos">
-        <?php while ($produto = $resultado->fetch_assoc()) { ?>
+        <?php
+        // Exibir os produtos
+        while ($produto = $resultado->fetch_assoc()) {
+            ?>
             <div class="produto">
                 <img src="<?php echo $produto['image_path']; ?>" alt="Imagem do Produto">
                 <h2><?php echo $produto['name']; ?></h2>
@@ -123,10 +121,14 @@ if (!$resultado) {
                 <form method="post">
                     <input type="hidden" name="nome" value="<?php echo $produto['name']; ?>">
                     <input type="hidden" name="preco" value="<?php echo $produto['price']; ?>">
+                    <input type="hidden" name="imagem" value="<?php echo $produto['id']; ?>">
+                    <!-- Added the missing closing angle bracket ">" -->
                     <button class="btn" type="submit" name="comprar">COMPRAR</button>
                 </form>
             </div>
-        <?php } ?>
+            <?php
+        }
+        ?>
     </div>
 
     <style>

@@ -1,53 +1,3 @@
-<?php
-ob_start();
-
-session_start();
-
-
-// Verificar se o formulário de logout foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
-    // Encerrar a sessão
-    unset($_SESSION['usuario_logado']);
-    unset($_SESSION['type_user']);;
-    session_unset();
-    session_destroy();
-    header("Location: ./index.php"); // Redirecionar para a página inicial após o logout
-    exit;
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['comprar'])) {
-        // Coletar informações do produto do formulário
-        $nome = $_POST['nome'];
-        $preco = $_POST['preco'];
-        $imagem = $_POST['imagem'];
-
-        // Criar uma array associativa para representar o produto
-        $produto = [
-            'nome' => $nome,
-            'preco' => $preco,
-            'imagem' => $imagem,
-        ];
-
-        // Verificar se o carrinho já existe na sessão e criar se necessário
-        if (!isset($_SESSION['carrinho'])) {
-            $_SESSION['carrinho'] = [];
-        }
-
-        // Adicionar o produto ao carrinho
-        $_SESSION['carrinho'][] = $produto;
-    }
-}
-
-// Verificar se o usuário está logado
-$nome_usuario = "Faça login";
-
-if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-    $nome_usuario = $_SESSION['usuario_logado']['nome'];
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,58 +16,12 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 <header>
     <img class="logo-oxe-nerd" src="images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
     <nav>
-        <?php
-        if (session_status() == PHP_SESSION_NONE) {
-            // session has not started
-            session_start();
-        }
-
-        include './conexao.php'; // Arquivo de conexão com o banco de dados
-
-
-        // Verificar conexão
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT type_user FROM user WHERE type_user='adm'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                $_SESSION['type_user'] = $row["type_user"];
-            }
-        } else {
-        }
-        $conn->close();
-
-        if (isset($_SESSION['type_user'])) {
-            if ($_SESSION['type_user'] == 'adm') {
-                echo '<a class="" href="./administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
-            } else {
-                echo 'User type: ' . $_SESSION['type_user'];
-            }
-        }
-        ?>
-
         <a class="Promoções" href="./promocoes/index-promocoes.php"> Promoções</a>
         <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
         <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>
-        <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil/perfil.php?perfil' : './login/index-login.php'; ?>">
-            <?php echo "Bem-vindo(a), $nome_usuario"; ?>
-        </a>
-
-        <?php
-        // Adicionar link de logout se o usuário estiver logado
-        if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-            echo '<a class="" href="?logout=true"> <img class="sair" src="images/sair-branco.png"> </a>';
-        }
-        ?>
-
+        <a class="Login" href="./login/index-login.php">Faça login</a>
         <a class="" href="./carrinho/index-carrinho.php">
             <img class="carrinho" src="images/carrinho.png" title="carrinho">
-            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
         </a>
     </nav>
 </header>
@@ -150,69 +54,49 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 </nav>
 
 <section id="promocoes" class="carrossel">
-    <section class="container">
-        <img class="venda" src="./images/tecladin_removebg_preview_8.png" alt="Imagem de venda">
-        <h2>Conjunto camisa namorados GAMER</h2>
-        <p><s>R$ 65,50</s></p>
-        <p class="preco"> <strong>R$ 45,50</strong></p>
-        <p>À vista no PIX</p>
-        <div class="carrossel"> <!-- Adicionando no carrinho -->
-            <form method="post">
-                <input type="hidden" name="nome" value="Conjunto camisa namorados GAMER">
-                <input type="hidden" name="preco" value="45.50"> <!-- Substitua pelo preço do produto -->
-                <input type="hidden" name="imagem" value="../images/tecladin_removebg_preview_8.png"> <!-- Substitua pelo caminho da imagem do produto -->
-                <button class="btn" type="submit" name="comprar">COMPRAR </button>
-            </form>
-        </div>
-    </section>
+    <?php
+    // Conectar ao banco de dados e selecionar apenas os produtos em promoção
+    include './conexao.php';
 
-    <section class="container">
-        <img class="venda" src="./images/vestido.png" alt="Imagem de venda">
-        <h2>Star Guardian Orianna Cosplay Traje League of Legends</h2>
-        <p><s>R$ 320,45</s></p>
-        <p class="preco"> <strong>R$ 215,50</strong></p>
-        <p>À vista no PIX</p>
-        <div class="carrossel"> <!-- Adicionando no carrinho -->
-            <form method="post">
-                <input type="hidden" name="nome" value="Star Guardian Orianna Cosplay Traje League of Legends">
-                <input type="hidden" name="preco" value="215.50"> <!-- Substitua pelo preço do produto -->
-                <input type="hidden" name="imagem" value="../images/vestido.png"> <!-- Substitua pelo caminho da imagem do produto -->
-                <button class="btn" type="submit" name="comprar">COMPRAR </button>
-            </form>
-        </div>
-    </section>
+    // Verificar conexão
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-    <section class="container">
-        <img class="venda" src="images/rtx.png" alt="Imagem de venda">
-        <h2>Placa de Vídeo PNY GeForce RTX 4090 XLR8</h2>
-        <p><s>R$ 7.000,39</s></p>
-        <p class="preco"> <strong>R$5.000,39</strong></p>
-        <p>À vista no PIX</p>
-        <div class="carrossel"> <!-- Adicionando no carrinho -->
-            <form method="post">
-                <input type="hidden" name="nome" value="Placa de Vídeo PNY GeForce RTX 4090 XLR8">
-                <input type="hidden" name="preco" value="5000.39"> <!-- Substitua pelo preço do produto -->
-                <input type="hidden" name="imagem" value="../images/rtx.png"> <!-- Substitua pelo caminho da imagem do produto -->
-                <button class="btn" type="submit" name="comprar">COMPRAR </button>
-            </form>
-        </div>
-    </section>
+    $sql = "SELECT * FROM products WHERE category = 'Promoção'";
+    $result = $conn->query($sql);
 
-    <section class="container">
-        <img class="venda" src="images/Caneca.png" alt="Imagem de venda">
-        <h2>Caneca GAMER personalizada<br><strong>imperdível</strong></h2>
-        <p><s>R$ 25,99</s></p>
-        <p class="preco"> <strong>R$ 15,99</strong></p>
-        <p>À vista no PIX</p>
-        <div class="carrossel"> <!-- Adicionando no carrinho -->
-            <form method="post">
-                <input type="hidden" name="nome" value="Caneca GAMER personalizada">
-                <input type="hidden" name="preco" value="15.99"> <!-- Substitua pelo preço do produto -->
-                <input type="hidden" name="imagem" value="../images/Caneca.png"> <!-- Substitua pelo caminho da imagem do produto -->
-                <button class="btn" type="submit" name="comprar">COMPRAR </button>
-            </form>
-        </div>
-    </section>
+    if ($result->num_rows > 0) {
+        // Exibir os produtos
+        $count = 0; // Counter variable
+        while ($row = $result->fetch_assoc()) {
+            if ($count >= 4) {
+                break; // Exit the loop after displaying 4 products
+            }
+            echo '<section class="container">';
+            echo '<img class="venda" src="' . $row['image_path'] . '" alt="Imagem de venda">';
+            echo '<h2>' . $row['name'] . '</h2>';
+            echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
+            echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
+            echo '<p>À vista no PIX</p>';
+            echo '<div class="carrossel">';
+            echo '<form method="post">';
+            echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
+            echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
+            echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
+            echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
+            echo '</form>';
+            echo '</div>';
+            echo '</section>';
+
+            $count++; // Increment the counter
+        }
+    } else {
+        echo "Nenhum produto em promoção no momento.";
+    }
+    $conn->close();
+    ?>
+</section>
 
 </section>
 
