@@ -10,6 +10,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     session_destroy();
     header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
 }
+
+// Verificar se o formulário de compra foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
+    // Verificar se o carrinho existe na sessão
+    if (!isset($_SESSION['carrinho'])) {
+        $_SESSION['carrinho'] = [];
+    }
+    // Adicionar o produto ao carrinho
+    $produto = [
+        'nome' => $_POST['nome'],
+        'preco' => $_POST['preco'],
+        'imagem' => $_POST['imagem'],
+        'quantidade' => 1 // Definir quantidade inicial como 1
+    ];
+    $_SESSION['carrinho'][] = $produto;
+    // Redirecionar de volta para a página anterior
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
         </a>
         <a class="" href="./carrinho/index-carrinho.php">
             <img class="carrinho" src="images/carrinho.png" title="carrinho">
+            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
         </a>
     </nav>
 </header>
