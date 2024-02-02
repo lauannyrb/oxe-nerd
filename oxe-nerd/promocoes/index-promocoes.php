@@ -1,6 +1,15 @@
 <?php
-// Iniciar a sessão
-session_start();
+// Inicie a sessão aqui
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Verificar se o formulário de logout foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
+    // Encerrar a sessão
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
+}
 
 // Incluir o arquivo de conexão com o banco de dados
 include '../conexao.php';
@@ -34,7 +43,22 @@ $result = $conn->query($sql);
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="Login" href="../login/index-login.php">Faça login</a>
+            <!-- Adicione o link para o perfil do usuário -->
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil/perfil.php' : './login/index-login.php'; ?>">
+                <?php 
+                if (isset($_SESSION['usuario_logado'])) {
+                   echo 'Bem-vindo, ' . $_SESSION['usuario_logado']['nome'];
+                } else {
+                    echo 'Faça login';
+                }
+                ?>
+                <?php
+                // Adicionar link de logout se o usuário estiver logado
+                if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+                    echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
+                }
+                ?>
+            </a>
             <a class="" href="../carrinho/index-carrinho.php">
                 <img class="carrinho" src="../images/carrinho.png" title="carrinho">
             </a>
@@ -59,6 +83,7 @@ $result = $conn->query($sql);
                         <h2><?= $row['name'] ?></h2>
                         <p><s>R$ <?= $row['old_price'] ?></s></p>
                         <p class="preco"><strong>R$ <?= $row['price'] ?></strong></p>
+                        <p>Quantidade disponível: <?= $row['quantidade'] ?></p> <!-- Display quantity -->
                         <p>À vista no PIX</p>
                         <form method="post">
                             <input type="hidden" name="nome" value="<?= $row['name'] ?>">

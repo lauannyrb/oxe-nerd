@@ -1,3 +1,16 @@
+<?php
+// Inicie a sessão aqui
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Verificar se o formulário de logout foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
+    // Encerrar a sessão
+    session_unset();
+    session_destroy();
+    header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +33,22 @@
             <hr>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="#"> Personalizados </a>
-            <a class="Login" href="../login/index-login.php">Faça login</a>
+            <!-- Adicione o link para o perfil do usuário -->
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil/perfil.php' : './login/index-login.php'; ?>">
+                <?php 
+                if (isset($_SESSION['usuario_logado'])) {
+                   echo 'Bem-vindo, ' . $_SESSION['usuario_logado']['nome'];
+                } else {
+                    echo 'Faça login';
+                }
+                ?>
+                <?php
+                // Adicionar link de logout se o usuário estiver logado
+                if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+                    echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
+                }
+                ?>
+            </a>
             <a class="" href="../carrinho/index-carrinho.php">
                 <img class="carrinho" src="../images/carrinho.png" title="carrinho"> 0
             </a>
@@ -30,47 +58,46 @@
 
     <!-- Containers dos Personalizados -->
     <nav class="titulo"><strong>Personalizados <hr></strong></nav>
-    <h2 class="titulo"><B>Canecas</B></h2>
     <section class="carrossel">
         <!-- Primeira linha de produtos, CANECAS -->
         <?php
-    // Conexão com o banco de dados
-    include '../conexao.php';
+            // Conexão com o banco de dados
+            include '../conexao.php';
 
-    // Consulta SQL para selecionar os produtos da categoria "Personalizados"
-    $sql = "SELECT * FROM products WHERE category = 'Personalizados'";
-    $result = $conn->query($sql);
+            // Consulta SQL para selecionar os produtos da categoria "Personalizados"
+            $sql = "SELECT * FROM products WHERE category = 'Personalizados'";
+            $result = $conn->query($sql);
 
-    // Verifica se há produtos
-    if ($result->num_rows > 0) {
-        // Loop através dos resultados da consulta
-        while ($row = $result->fetch_assoc()) {
-            // Exibição dinâmica dos produtos
-            echo '<section class="cinza">';
-            echo '<section class="container">';
-            echo '<img class="venda" src="../images/' . $row["image_path"] . '" alt="' . $row["name"] . '">';
-            echo '<h2>' . $row["name"] . '</h2>';
-            echo '<p><s>R$ ' . $row["old_price"] . '</s></p>';
-            echo '<p class="preco"><strong>R$ ' . $row["price"] . '</strong></p>';
-            echo '<p>À vista no PIX</p>';
-            echo '<div class="carrossel">';
-            echo '<form method="post">';
-            echo '<input type="hidden" name="nome" value="' . $row["name"] . '">';
-            echo '<input type="hidden" name="preco" value="' . $row["price"] . '">';
-            echo '<input type="hidden" name="imagem" value="../images/' . $row["image_path"] . '">';
-            echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
-            echo '</form>';
-            echo '</div>';
-            echo '</section>';
-            echo '</section>';
-        }
-    } else {
-        echo "Nenhum produto encontrado.";
-    }
-    // Fecha a conexão com o banco de dados
-    $conn->close();
-?>
-
+            // Verifica se há produtos
+            if ($result->num_rows > 0) {
+                // Loop através dos resultados da consulta
+                while ($row = $result->fetch_assoc()) {
+                    // Exibição dinâmica dos produtos
+                    echo '<section class="cinza">';
+                    echo '<section class="container">';
+                    echo '<img class="venda" src="../images/' . $row["image_path"] . '" alt="' . $row["name"] . '">';
+                    echo '<h2>' . $row["name"] . '</h2>';
+                    echo '<p><s>R$ ' . $row["old_price"] . '</s></p>';
+                    echo '<p class="preco"><strong>R$ ' . $row["price"] . '</strong></p>';
+                    echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
+                    echo '<p>À vista no PIX</p>';
+                    echo '<div class="carrossel">';
+                    echo '<form method="post">';
+                    echo '<input type="hidden" name="nome" value="' . $row["name"] . '">';
+                    echo '<input type="hidden" name="preco" value="' . $row["price"] . '">';
+                    echo '<input type="hidden" name="imagem" value="../images/' . $row["image_path"] . '">';
+                    echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
+                    echo '</form>';
+                    echo '</div>';
+                    echo '</section>';
+                    echo '</section>';
+                }
+            } else {
+                echo "Nenhum produto encontrado.";
+            }
+            // Fecha a conexão com o banco de dados
+            $conn->close();
+        ?>
     </section>
 
     <!-- Continue com o resto do seu HTML aqui... -->
