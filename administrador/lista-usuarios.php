@@ -118,7 +118,11 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
                 </div>  
             </div>
         </div>
+        <div class="return">
+            <a class="av" href="./admin-home.php"> Voltar </a>
+        </div>
     </section>
+
      <!---------------- Fale Conosco incio ---------------->
  <footer>
         <h2>Fale Conosco</h2>

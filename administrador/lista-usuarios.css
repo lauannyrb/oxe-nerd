@@ -125,9 +125,20 @@ button:hover {
 
 .lista .esquerda span {
     background-color: rgba(224, 191, 240, 0.5);
-    
     justify-content: space-between;
     
+}
+
+.return{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.av {
+    color: #42464D;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
 }
 
   /*-----------------Footer incio -----------------------------------*/

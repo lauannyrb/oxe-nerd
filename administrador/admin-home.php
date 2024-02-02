@@ -112,9 +112,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
                         <h3> Listar usuários </h3> 
                     </div>
                 </div>
-                
                 <a class="" href="../login/index-login.php"> <h2> Sair </h2> </a>
-                
         </div>
     </main>
  </body>
