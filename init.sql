@@ -63,4 +63,4 @@ VALUES
     ('Capa para celular do Pikachu', 39.90, 53.99, '../images/img_capas/capa4.png', 'Personalizados', 30);
 
 INSERT INTO `user` (`name`, `nickname`, `email`, `password`, `date`, `type_user`)
-VALUES ('admin', 'adm', 'adm@oxenerd.com', '$2y$10$BN2ZcQEotyIa93399D6zNOw7dtmUKxpnD2oTFuSMuJX.hoSaPUPb2', NOW(), 'adm');
+VALUES ('admin', 'adm', 'adm@oxenerd.com', 'adm', NOW(), 'adm');

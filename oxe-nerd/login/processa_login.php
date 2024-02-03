@@ -22,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $usuario = $result->fetch_assoc();
-        if (password_verify($senha, $usuario['password'])) {
+        if ($senha === $usuario['password']) {
+
             // Credenciais corretas, redirecione para a página inicial
             $_SESSION['usuario_logado'] = [
                 'nome' => $usuario['name'],
@@ -30,12 +31,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             header("Location: ../index.php");
             exit;
+        } else {
+            // Se as credenciais estiverem erradas, redirecione de volta para o login
+            $_SESSION['login_erro'] = "Credenciais inválidas.";
+            header("Location: index-login.php");
+            exit;
         }
+    } else {
+        // Se o usuário não for encontrado, redirecione de volta para o login
+        $_SESSION['login_erro'] = "Credenciais inválidas.";
+        header("Location: index-login.php");
+        exit;
     }
-
-    // Se as credenciais estiverem erradas, redirecione de volta para o login
-    $_SESSION['login_erro'] = "Credenciais inválidas.";
-    header("Location: index-login.php");
-    exit;
 }
 ?>

@@ -81,7 +81,7 @@ Equipe de designe:
 ## Query de criação do perfil de ADM:
 
         INSERT INTO `user` (`name`, `nickname`, `email`, `password`, `date`, `type_user`)
-        VALUES ('admin', 'adm', 'adm@oxenerd.com', '$2y$10$BN2ZcQEotyIa93399D6zNOw7dtmUKxpnD2oTFuSMuJX.hoSaPUPb2', NOW(), 'adm');
+        VALUES ('admin', 'adm', 'adm@oxenerd.com', '$2y$10$uVY0sLwBgg8UoXNhJGB0IOp2HaSZpdv9rePtzvlp6AnKAQywIZodm', NOW(), 'adm');
 
   - Usuário:
     - adm@oxenerd.com
