@@ -51,7 +51,16 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
   <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
+        <?php
+        if (isset($_SESSION['type_user'])) {
+            if ($_SESSION['type_user'] == 'adm') {
+                echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+            } else {
+                echo 'User type: ' . $_SESSION['type_user'];
+            }
+        }
+        ?>
+            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos produtos </a>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
@@ -141,31 +150,46 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     </style>
 
 <?php
-if (isset($_SESSION['produtos'])) {
-    echo "<h1>Lista de Produtos</h1>";
+// Configurações do banco de dados
+  include '../conexao.php';
 
-    foreach ($_SESSION['produtos'] as $key => $produto) {
-        
-        echo "<div class='description'>";
-        echo "<form action='' method='post'>";
-        
-        echo "<div class='centralizar'>";
-        echo "<img src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
-        echo "<h2>" . $produto['nome'] . "</h2>";
-        echo "<p>Preço: R$ " . $produto['preco'] . "</p>";
+// Verifica se a conexão foi bem sucedida
+if ($conn->connect_error) {
+    die("Erro na conexão: " . $conn->connect_error);
+}
 
-        echo "<td><input type='submit' name ='editar' value='Editar' class='btn' /></td>"; // Botão para editar produto
-        echo "<td><input type='submit' name ='deletar' value='Deletar' class='btn' /></td>"; // Botão para excluir produto
-        echo "<a class='btn2' href='../produtos/lista_produtos_add_produto.php'>Voltar</a>"; // Botão de navegação "Voltar"
-        echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
+// Query para selecionar todos os produtos
+$sql = "SELECT * FROM products";
+$result = $conn->query($sql);
 
-        echo "</form>";
-        echo "</div>";
-        echo "</div>";
+if ($result->num_rows > 0) {
+    // Exibindo formulário para editar cada produto
+    while($row = $result->fetch_assoc()) {
+        ?>
+        <form action="editar_produto.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+            <label for="name">Nome:</label>
+            <input type="text" name="name" value="<?php echo $row['name']; ?>"><br>
+            <label for="price">Preço:</label>
+            <input type="text" name="price" value="<?php echo $row['price']; ?>"><br>
+            <label for="old_price">Preço Antigo:</label>
+            <input type="text" name="old_price" value="<?php echo $row['old_price']; ?>"><br>
+            <label for="image_path">Caminho da Imagem:</label>
+            <input type="text" name="image_path" value="<?php echo $row['image_path']; ?>"><br>
+            <label for="category">Categoria:</label>
+            <input type="text" name="category" value="<?php echo $row['category']; ?>"><br>
+            <label for="quantidade">Quantidade:</label>
+            <input type="text" name="quantidade" value="<?php echo $row['quantidade']; ?>"><br>
+            <input type="submit" value="Salvar">
+        </form>
+        <?php
     }
 } else {
-    echo "<p>Nenhum produto cadastrado ainda.</p>";
+    echo "0 resultados";
 }
+
+// Fecha conexão com o banco de dados
+$conn->close();
 ?>
 
  <!---------------- Fale Conosco incio ---------------->

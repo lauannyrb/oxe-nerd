@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
-//     // Se o usuário não for um administrador, redirecioná-lo para a página de login
-//     header("Location: ../login/index-login.php");
-//     exit;
-// }
-
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     // Encerrar a sessão
@@ -55,12 +49,11 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./admin-home.css">
+    <link rel="stylesheet" href="./lista-usuarios.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png" >
-    <title> Administrador Home </title>
+    <title> Administrador </title>
 
-    <!-- <title>Equipamentos e Eletrônicos</title> -->
 </head>
 
 <body>
@@ -68,32 +61,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-        <?php
-        if (session_status() == PHP_SESSION_NONE) {
-            // session has not started
-            session_start();
-        }
-
-        include '../conexao.php'; // Arquivo de conexão com o banco de dados
-
-
-        // Verificar conexão
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT type_user FROM user WHERE type_user='adm'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                $_SESSION['type_user'] = $row["type_user"];
-            }
-        } else {
-        }
-        $conn->close();
-
+            <?php
         if (isset($_SESSION['type_user'])) {
             if ($_SESSION['type_user'] == 'adm') {
                 echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
@@ -102,7 +70,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             }
         }
         ?>
-            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
+            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos produtos </a>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="#"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
@@ -122,43 +90,49 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
         </a>
         </nav>
+
     </header>
-
-    <main>
-        <div class="menu-admin"> 
-                <h1> Administrador </h1>
-
-                <div class="profile-admin"> 
-                    <img class="profile" src="../images/img_admin/profile.png" alt="Imagem de perfil">
-                    <p class="nick"> admin-admin <p>
-                </div>
-
-                <div class="sections">
-                    <div class="box">
-                        <a class="" href="../produtos/cadastro_produtos.php">
-                        <img class="img" src="../images/img_admin/cadastroprodutos.png" alt="Cadastro de produtos"> </a>
-                        <h3> Cadastrar novo <br> produto </h3>
-                    </div>
-
-                    <div class="box">
-                        <a class="" href="../produtos/edit.php"> 
-                        <img class="img" src="../images/img_admin/listprodutos.png" alt="Listar produtos"> </a>
-                        <h3> Listar produtos </h3> 
-                    </div>
-                    
-                    <div class="box">
-                        <a class="" href="../administrador/lista-usuarios.php"> 
-                        <img class="img" src="../images/img_admin/listprofiles.png" alt="Listar usuários"> </a>
-                        <h3> Listar usuários </h3> 
-                    </div>
-                </div>
-                
-                <a class="" href="../login/index-login.php"> <h2> Sair </h2> </a>
-                
+    <h2 style="margin: 30px auto; width: 80%;">Listagem de Usuarios</h2>
+    <section class="lista">
+        <div class="lista">
+            <div class="esquerda">
+                <span class="black" style="width: 10%;">ID: 01</span>
+                <span style="width: 70%;">Nome: Cayc Custodio</span>
+                <span class="black" style="width: 20%">Senha: 123456</span>
+                <div class="direita">
+                    <button> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button> 
+                    <button> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"></button>
+                </div>  
+            </div>
         </div>
-    </main>
- </body>
- <!---------------- Fale Conosco incio ----------------
+        <div class="lista">
+            <div class="esquerda">
+                <span class="black" style="width: 10%;">ID: 02</span>
+                <span style="width: 70%;">Nome: Leticia Tamarindo</span>
+                <span class="black" style="width: 20%">Senha: 543210</span>
+                <div class="direita">
+                    <button> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button> 
+                    <button> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"> </button>
+                </div>  
+            </div>
+        </div>
+        <div class="lista">
+            <div class="esquerda">
+                <span class="black" style="width: 10%;">ID: 03</span>
+                <span style="width: 70%;">Nome: Elias Neves</span>
+                <span class="black" style="width: 20%">Senha: 348759</span>
+                <div class="direita">
+                    <button> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button> 
+                    <button> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"> </button>
+                </div>  
+            </div>
+        </div>
+        <div class="return">
+            <a class="av" href="./admin-home.php"> Voltar </a>
+        </div>
+    </section>
+
+     <!---------------- Fale Conosco incio ---------------->
  <footer>
         <h2>Fale Conosco</h2>
         <div>
@@ -168,5 +142,6 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </div>
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
 </footer>
-------------- Fale Conosco fim ---------------->
+<!------------- Fale Conosco fim ---------------->
+    </body>
 </html>
