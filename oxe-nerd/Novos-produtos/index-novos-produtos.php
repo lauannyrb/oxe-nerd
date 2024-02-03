@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
                     echo '<form method="post">';
                     echo '<input type="hidden" name="nome" value="' . $row["name"] . '">';
                     echo '<input type="hidden" name="preco" value="' . $row["price"] . '">';
-                    echo '<input type="hidden" name="imagem" value="..' . $row["image_path"] . '">';
+                    echo '<input type="hidden" name="imagem" value="' . $row["image_path"] . '">';
                     echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
                     echo '</form>';
                     echo '</div>';

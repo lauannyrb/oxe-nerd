@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     move_uploaded_file($imagem_temp, $caminho_imagem);
 
     // Inserir os dados na tabela de produtos
-    $sql = "INSERT INTO products (name, price, old_price, quantidade, image_path, category) VALUES ('$nome', $preco, $preco_antigo, $quantidade, '$imagem_nome', '$categoria')";
+    $sql = "INSERT INTO products (name, price, old_price, quantidade, image_path, category) VALUES ('$nome', $preco, $preco_antigo, $quantidade, '$caminho_imagem', '$categoria')";
 
     if ($conexao->query($sql) === TRUE) {
         echo "Produto cadastrado com sucesso!";
