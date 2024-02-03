@@ -11,12 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
 }
 
-include '../conexao.php';
-
-// Query para selecionar os produtos do banco de dados
-$sql = "SELECT * FROM products WHERE category = 'Eletrônicos'";
-$result = $conn->query($sql);
-
 // Verificar se o formulário de compra foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
     // Verificar se o carrinho existe na sessão
@@ -36,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style-eletronicos.css">
+    <link rel="stylesheet" href="./index-novos-produtos.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png">
-    <title>Eletrônicos</title>
+    <title>Novos Produtos</title>
 </head>
 
 <body>
@@ -57,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
         <nav>
             <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
-            <a class="" href="#"> Eletrônicos </a>
+            
+            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <!-- Adicione o link para o perfil do usuário -->
             <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
@@ -76,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
                 ?>
             </a>
             <a class="" href="../carrinho/index-carrinho.php">
-                <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+                <img class="carrinho" src="../images/carrinho.png" title="carrinho"> 
                 <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
 
             </a>
@@ -84,38 +78,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
     </header>
     <!-- Fim  -->
 
-    <!-- Containers dos Eletrônicos -->
-    <nav class="titulo"><strong>Eletrônicos<hr></strong></nav>
-
+    <!-- Containers dos Novos Produto -->
+    <nav class="titulo"><strong>Novos Produtos <hr></strong></nav>
     <section class="carrossel">
-        <!--Primeira linha de produtos-->
+        <!-- Primeira linha de produtos, CANECAS -->
         <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<section class="cinza">';
-                echo '<section class="container">';
-                echo '<img class="venda" src="' . $row['image_path'] . '" alt="' . $row['name'] . '">';
-                echo '<h2>' . $row['name'] . '</h2>';
-                echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
-                echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
-                echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
-                echo '<p>À vista no PIX</p>';
-                echo '<div class="carrossel">';
-                echo '<form method="post">';
-                echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
-                echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
-                echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
-                echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
-                echo '</form>';
-                echo '</div>';
-                echo '</section>';
-                echo '</section>';
+            // Conexão com o banco de dados
+            include '../conexao.php';
+
+            // Consulta SQL para selecionar os produtos da categoria "Novos Produto"
+            $sql = "SELECT * FROM products WHERE category = 'Novos Produtos'";
+            $result = $conn->query($sql);
+
+            // Verifica se há produtos
+            if ($result->num_rows > 0) {
+                // Loop através dos resultados da consulta
+                while ($row = $result->fetch_assoc()) {
+                    // Exibição dinâmica dos produtos
+                    echo '<section class="cinza">';
+                    echo '<section class="container">';
+                    echo '<img class="venda" src="../images/' . $row["image_path"] . '" alt="' . $row["name"] . '">';
+                    echo '<h2>' . $row["name"] . '</h2>';
+                    echo '<p><s>R$ ' . $row["old_price"] . '</s></p>';
+                    echo '<p class="preco"><strong>R$ ' . $row["price"] . '</strong></p>';
+                    echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
+                    echo '<p>À vista no PIX</p>';
+                    echo '<div class="carrossel">';
+                    echo '<form method="post">';
+                    echo '<input type="hidden" name="nome" value="' . $row["name"] . '">';
+                    echo '<input type="hidden" name="preco" value="' . $row["price"] . '">';
+                    echo '<input type="hidden" name="imagem" value="..' . $row["image_path"] . '">';
+                    echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
+                    echo '</form>';
+                    echo '</div>';
+                    echo '</section>';
+                    echo '</section>';
+                }
+            } else {
+                echo "Nenhum produto encontrado.";
             }
-        } else {
-            echo "Nenhum produto encontrado.";
-        }
+            // Fecha a conexão com o banco de dados
+            $conn->close();
         ?>
     </section>
+
+    <!-- Continue com o resto do seu HTML aqui... -->
 
     <!---------------- Fale Conosco incio ---------------->
     <footer>
@@ -131,7 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p>
     </footer>
     <!---------------- Fale Conosco fim ---------------->
-
 </body>
 
 </html>

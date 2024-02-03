@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
 <header>
     <img class="logo-oxe-nerd" src="images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
     <nav>
+        <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
         <a class="Promoções" href="./promocoes/index-promocoes.php"> Promoções</a>
         <a class="" href="./eletronicos/index-eletronicos.php"> Eletrônicos </a>
         <a class="" href="./personalizados/index-personalizados.php"> Personalizados </a>

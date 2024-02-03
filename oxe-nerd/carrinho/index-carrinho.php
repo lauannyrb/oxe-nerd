@@ -21,18 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
     exit(); // Encerrar o script para evitar que o restante do código seja executado
 }
 
-// Verificar se o usuário está logado
-$nome_usuario = "Faça login";
+// // Verificar se o usuário está logado
+// $nome_usuario = "Faça login";
 
-if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-    $nome_usuario = $_SESSION['usuario_logado']['nome'];
-}
+// if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+//     $nome_usuario = $_SESSION['usuario_logado']['nome'];
+// }
 
-// Se o usuário não estiver logado, redirecionar para a página de login
-if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: ../login/index-login.php");
-    exit();
-}
+// // Se o usuário não estiver logado, redirecionar para a página de login
+// if (!isset($_SESSION['usuario_logado'])) {
+//     header("Location: ../login/index-login.php");
+//     exit();
+// }
 
 // Calcula o total dos itens no carrinho
 $total = 0;
@@ -157,15 +157,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calcularpagamento']))
             <hr>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
-            <?php echo "Bem-vindo(a), $nome_usuario"; ?></a>
-
-            <?php
-            // Adicionar link de logout se o usuário estiver logado
-            if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-                echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
-            }
-            ?>
+            <!-- Adicione o link para o perfil do usuário -->
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil/perfil.php' : './login/index-login.php'; ?>">
+                <?php 
+                if (isset($_SESSION['usuario_logado'])) {
+                   echo 'Bem-vindo, ' . $_SESSION['usuario_logado']['nome'];
+                } else {
+                    echo 'Faça login';
+                }
+                ?>
+                <?php
+                // Adicionar link de logout se o usuário estiver logado
+                if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+                    echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
+                }
+                ?>
+            </a>
 
             <a class="" href="#"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
             <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>

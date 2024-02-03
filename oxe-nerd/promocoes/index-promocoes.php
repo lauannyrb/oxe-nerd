@@ -59,11 +59,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
     <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
+            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
             <!-- Adicione o link para o perfil do usuário -->
-            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? './perfil/perfil.php' : './login/index-login.php'; ?>">
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
                 <?php 
                 if (isset($_SESSION['usuario_logado'])) {
                    echo 'Bem-vindo, ' . $_SESSION['usuario_logado']['nome'];

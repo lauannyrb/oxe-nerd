@@ -2,11 +2,11 @@
 session_start();
 
 
-if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
-    // Se o usuário não for um administrador, redirecioná-lo para a página de login
-    header("Location: ../login/index-login.php");
-    exit;
-}
+// if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+//     // Se o usuário não for um administrador, redirecioná-lo para a página de login
+//     header("Location: ../login/index-login.php");
+//     exit;
+// }
 
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
@@ -89,32 +89,42 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <!-- Fim  -->
 
     <div class="cadastro">
-        <form action="processar_cadastro.php" method="post" enctype="multipart/form-data">
-            <h1> Nome: <input type="text" name="nome"><br> </h1>
-            <h1> Preço: <input type="text" name="preco"><br> </h1>
-            <h1> Imagem: <input type="file" name="imagem" accept="image/*"><br><br> </h1>
-            <button> <input type="submit" value="Cadastrar Produto"> </button> <br>
-            <a class="btn2" href="../produtos/lista_produtos_add_produto.php"> Lista de produtos </a>
-        </form>   
-    </div> 
+    <form action="processar_cadastro.php" method="post" enctype="multipart/form-data">
+        <h1> Nome: <input type="text" name="nome"><br> </h1>
+        <h1> Preço: <input type="text" name="preco"><br> </h1>
+        <h1> Preço Antigo: <input type="text" name="preco_antigo"><br> </h1>
+        <h1> Quantidade: <input type="text" name="quantidade"><br> </h1>
+        <h1> Categoria: 
+            <select name="categoria">
+                <option value="Eletrônicos">Eletrônicos</option>
+                <option value="Promoção">Promoção</option>
+                <option value="Personalizados">Personalizados</option>
+                <option value="Novos Produtos">Novos Produtos</option>
+            </select><br>
+        </h1>
+        <h1> Imagem: <input type="file" name="imagem" accept="image/*"><br><br> </h1>
+        <button type="submit">Cadastrar Produto</button><br>
+        <a class="btn2" href="../produtos/lista_produtos_add_produto.php"> Lista de produtos </a>
+    </form>   
+</div>
+
 
     <style>
     .cadastro .btn2 {
-    background-color: #fff(94, 94, 139);
-    text-align: center;
-    color: purple;
-    padding: 10px 10px; /* Ajuste do preenchimento */
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display:block;
-    font-size: 15px;
-}
-
+        background-color: #fff(94, 94, 139);
+        text-align: center;
+        color: purple;
+        padding: 10px 10px; /* Ajuste do preenchimento */
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display:block;
+        font-size: 15px;
+    }
     </style>
 
-     <!---------------- Fale Conosco incio ---------------->
-     <footer>
+    <!-- Fale Conosco -->
+    <footer>
         <h2>Fale Conosco</h2>
         <div>
             <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
@@ -123,6 +133,6 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
         </div>
         <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
     </footer>
-    <!---------------- Fale Conosco fim ---------------->
+    <!-- Fim Fale Conosco -->
 </body>
 </html>
