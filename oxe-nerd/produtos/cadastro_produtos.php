@@ -1,5 +1,8 @@
 <?php
-session_start();
+// Inicie a sessão aqui
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 
 // if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
@@ -65,7 +68,17 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <header>
         <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="#"> Novos produtos </a>
+        <?php
+        if (isset($_SESSION['type_user'])) {
+            if ($_SESSION['type_user'] == 'adm') {
+                echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+            } else {
+                echo 'User type: ' . $_SESSION['type_user'];
+            }
+        }
+        ?>
+            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
+
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>

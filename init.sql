@@ -19,14 +19,6 @@ CREATE TABLE products (
     quantidade INT
 );
 
-CREATE TABLE carrinho (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    product_name VARCHAR(255),
-    price DECIMAL(10,2),
-    quantity INT
-);
-
 -- Inserir produtos na tabela products
 INSERT INTO products (name, category, price, old_price, image_path, quantidade)
 VALUES 

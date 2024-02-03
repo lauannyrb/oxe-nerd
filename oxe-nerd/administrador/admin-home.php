@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
-    // Se o usuário não for um administrador, redirecioná-lo para a página de login
-    header("Location: ../login/index-login.php");
-    exit;
-}
+// if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+//     // Se o usuário não for um administrador, redirecioná-lo para a página de login
+//     header("Location: ../login/index-login.php");
+//     exit;
+// }
 
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
@@ -96,12 +96,13 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 
         if (isset($_SESSION['type_user'])) {
             if ($_SESSION['type_user'] == 'adm') {
-                echo '<a class="" href="../admin-home.php"> Painel de Controle Adminstrador </a>';
+                echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
             } else {
                 echo 'User type: ' . $_SESSION['type_user'];
             }
         }
         ?>
+            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
             <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="#"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>

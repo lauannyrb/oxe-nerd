@@ -1,5 +1,8 @@
 <?php
-session_start();
+// Inicie a sessão aqui
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Verificar se o usuário está logado, caso contrário, redirecioná-lo para a página de login
 if (!isset($_SESSION['usuario_logado'])) {
