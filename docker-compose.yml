@@ -24,10 +24,12 @@ services:
       MYSQL_DATABASE: db_oxe-nerd
       MYSQL_USER: oxe-nerd
       MYSQL_PASSWORD: oxe-nerd
+      TZ: America/Sao_Paulo  # Set the timezone to Brazil
+      LANG: pt_BR.UTF-8  # Set the character encoding to UTF-8
     volumes:
       #- ./mysql:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Montagem do arquivo init.sql
-    # Adicione outras configurações do MySQL, se necessário
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Mounting the init.sql file
+    # Add other MySQL configurations if necessary
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
