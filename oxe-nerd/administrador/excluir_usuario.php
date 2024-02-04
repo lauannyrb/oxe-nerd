@@ -1,34 +1,25 @@
 <?php
 session_start();
 
-// Verificar se o usuário está logado como administrador
-if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] !== 'adm') {
-    header("Location: ../index.php");
-    exit; // Certifique-se de sair após redirecionar
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario_id'])) {
+    include '../conexao.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Verificar se o ID do usuário foi enviado corretamente
-    if (isset($_POST['id'])) {
-        // Coletar o ID do usuário
-        $id = $_POST['id'];
+    $usuario_id = $_POST['usuario_id'];
 
-        // Conexão com o banco de dados
-        include '../conexao.php';
+    $stmt = $conn->prepare("DELETE FROM `user` WHERE `id` = ?");
+    $stmt->bind_param("i", $usuario_id);
+    $stmt->execute();
 
-        // Preparar e executar a consulta SQL para excluir o usuário
-        $sql = "DELETE FROM user WHERE id=$id";
+    // Encerrar a sessão após a exclusão (opcional, dependendo do seu fluxo de lógica)
+    // session_unset();
+    // session_destroy();
+    // session_destroy();
 
-        if ($conn->query($sql) === TRUE) {
-            // Redirecionar de volta à página de listagem de usuários
-            header("Location: lista_usuarios.php");
-            exit;
-        } else {
-            echo "Erro ao excluir o usuário: " . $conn->error;
-        }
-
-        // Fechar a conexão com o banco de dados
-        $conn->close();
-    }
+    header("Location: lista-usuarios.php");
+    exit();
+} else {
+    // Redirecionar para a lista de usuários se o método de requisição não for POST
+    header("Location: lista-usuarios.php");
+    exit();
 }
 ?>
