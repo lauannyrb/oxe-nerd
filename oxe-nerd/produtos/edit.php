@@ -82,68 +82,71 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     </header>
     <!-- Fim  -->
 
+<section> <h1> Lista de produtos </h1>  <section>
+    
 <main class="description">
-<h1> Lista de produtos </h1>
+    <div class="grid">
 
-<?php
-// Configurações do banco de dados
-  include '../conexao.php';
+    <?php
+    // Configurações do banco de dados
+    include '../conexao.php';
 
-// Verifica se a conexão foi bem sucedida
-if ($conn->connect_error) {
-    die("Erro na conexão: " . $conn->connect_error);
-}
+    // Verifica se a conexão foi bem sucedida
+    if ($conn->connect_error) {
+        die("Erro na conexão: " . $conn->connect_error);
+    }
 
-// Query para selecionar todos os produtos
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
+    // Query para selecionar todos os produtos
+    $sql = "SELECT * FROM products";
+    $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // Exibindo formulário para editar cada produto
-    while($row = $result->fetch_assoc()) {
-        ?>
-        <form action="editar_produto.php" method="post" enctype="multipart/form-data">
-            <div class="centralizar">
-                <div class="titulos">
-                <h3><?php echo $row['name']; ?></h3>
-                </div>
-                <div class="picture">
-                    <label for="image_path" class="text">Imagem Atual:</label> 
-                    <img class="img" src="<?php echo $row['image_path']; ?>" alt="Imagem atual"><!-- Exibir imagem atual -->
-                    <label for="new_image" class="text">Nova Imagem:</label> 
-                    <div class="new-selector">
-                        <input type="file" class="newimg" name="new_image"><!-- Campo para carregar nova imagem -->
+    if ($result->num_rows > 0) {
+        // Exibindo formulário para editar cada produto
+        while($row = $result->fetch_assoc()) {
+            ?>
+            <form action="editar_produto.php" method="post" enctype="multipart/form-data">
+                <div class="centralizar">
+                    <div class="titulos">
+                    <h3><?php echo $row['name']; ?></h3>
+                    </div>
+                    <div class="picture">
+                        <label for="image_path" class="text">Imagem Atual:</label> 
+                        <img class="img" src="<?php echo $row['image_path']; ?>" alt="Imagem atual"><!-- Exibir imagem atual -->
+                        <label for="new_image" class="text">Nova Imagem:</label> 
+                        <div class="new-selector">
+                            <input type="file" class="newimg" name="new_image"><!-- Campo para carregar nova imagem -->
+                        </div>
+                    </div>
+                    <div class="lista">
+                        <input type="hidden" name="id" class="result" value="<?php echo $row['id']; ?>"> 
+                        <label for="name" class="text">Nome:</label> 
+                        <input type="text" class="result" name="name" class="result" value="<?php echo $row['name']; ?>">
+                        <label for="price" class="text">Preço:</label> 
+                        <input type="text" name="price" class="result" value="<?php echo $row['price']; ?>">
+                        <label for="old_price" class="text">Preço Antigo:</label> 
+                        <input type="text" name="old_price" class="result" value="<?php echo $row['old_price']; ?>">
+                        <label for="category" class="text">Categoria:</label> 
+                        <input type="text" name="category" class="result" value="<?php echo $row['category']; ?>">
+                        <label for="quantidade" class="text">Quantidade:</label> 
+                        <input type="text" name="quantidade" class="result" value="<?php echo $row['quantidade']; ?>">
+                    </div>
+                    <div class="botoes">
+                        <input type="submit" value="Salvar" class="btn">
+                        <a class="btn2" href="../administrador/admin-home.php">Voltar</a>
                     </div>
                 </div>
-                <div class="lista">
-                    <input type="hidden" name="id" class="result" value="<?php echo $row['id']; ?>"> 
-                    <label for="name" class="text">Nome:</label> 
-                    <input type="text" class="result" name="name" class="result" value="<?php echo $row['name']; ?>">
-                    <label for="price" class="text">Preço:</label> 
-                    <input type="text" name="price" class="result" value="<?php echo $row['price']; ?>">
-                    <label for="old_price" class="text">Preço Antigo:</label> 
-                    <input type="text" name="old_price" class="result" value="<?php echo $row['old_price']; ?>">
-                    <label for="category" class="text">Categoria:</label> 
-                    <input type="text" name="category" class="result" value="<?php echo $row['category']; ?>">
-                    <label for="quantidade" class="text">Quantidade:</label> 
-                    <input type="text" name="quantidade" class="result" value="<?php echo $row['quantidade']; ?>">
-                </div>
-                <div class="botoes">
-                    <input type="submit" value="Salvar" class="btn">
-                    <a class="btn2" href="../administrador/admin-home.php">Voltar</a>
-                </div>
-            </div>
-        </form>
-        <?php
+            </form>
+            <?php
+        }
+    } else {
+        echo "0 resultados";
     }
-} else {
-    echo "0 resultados";
-}
 
-// Fecha conexão com o banco de dados
-$conn->close();
-?>
+    // Fecha conexão com o banco de dados
+    $conn->close();
+    ?>
 
+    </div>
 </main>
 
  <!---------------- Fale Conosco incio ---------------->
