@@ -96,12 +96,22 @@ header {
           display: flex;
         }
 
+        .titulos {
+          display: flex;
+          justify-content: center;
+        }
+
         h3 {
-          text-align: center;
+          justify-content: center;
+        }
+        
+        h3 {
+          
           margin-bottom: 20px;
           color: black;
           font-family: poppins;
-          font-size: 18px;
+          font-size: 3vh;
+          max-width: 40vh;
         }
         
         .lista {
@@ -114,7 +124,7 @@ header {
           color: #6e0977;
           font-weight: bold;
           font-family: poppins;
-          font-size: 15px;
+          font-size: 2vh;
         }
 
         .result {
@@ -124,9 +134,9 @@ header {
           border-radius: 10px;
           background-color: #ffffff;
           font-family: poppins;
-          font-size: 15px;
+          font-size: 2vh;
           color: black;
-          min-width: 500px;
+          min-width: 10vh;
         }
 
         .centralizar {
@@ -135,7 +145,7 @@ header {
             border-radius: 10px;
             box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.2);
             margin-bottom: 40px;
-            min-width: 600px;
+            min-width: 12vh;
         }
         
         .botoes {

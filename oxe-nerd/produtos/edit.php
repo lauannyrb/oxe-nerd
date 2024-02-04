@@ -83,7 +83,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <!-- Fim  -->
 
 <main class="description">
-<h1> Lista de produtos </h1>';
+<h1> Lista de produtos </h1>
 
 <?php
 // Configurações do banco de dados
@@ -104,7 +104,9 @@ if ($result->num_rows > 0) {
         ?>
         <form action="editar_produto.php" method="post" enctype="multipart/form-data">
             <div class="centralizar">
+                <div class="titulos">
                 <h3><?php echo $row['name']; ?></h3>
+                </div>
                 <div class="picture">
                     <label for="image_path" class="text">Imagem Atual:</label> 
                     <img class="img" src="<?php echo $row['image_path']; ?>" alt="Imagem atual"><!-- Exibir imagem atual -->
