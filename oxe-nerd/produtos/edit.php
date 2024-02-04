@@ -40,7 +40,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="edit.css">
+    <link rel="stylesheet" href="./edit.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="images/Logo.svg" type="svg">
     <title> Edição de produtos </title>
@@ -82,117 +82,85 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     </header>
     <!-- Fim  -->
 
-    <style>
-        /* Estilo para centralizar os elementos na tela edit.php */
-        .description {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;    
-        }
+<main>
+<h1> Lista de produtos </h1>';
+    <?php
+    // Configurações do banco de dados
+    include '../conexao.php';
 
-        /* Estilos para as imagens */
-        .description img {
-            max-width: 200px; /* Defina a largura máxima desejada */
-            max-height: 200px; /* Defina a altura máxima desejada */
-        }
-
-        h1 {
-            color: #2d1d55;
-            text-align: center;
-        }
-
-        .centralizar {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
-        }
-
-        .btn { /*Botão de editar e deletar produto*/
-        display: inline-block;
-        padding: 10px 10px; /* Defina um valor mínimo de largura para os botões */
-        min-width: 120px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
-        background-color: #B71ABA;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #B71ABA;
-        margin-right: 10px;
-        margin-left: 10px;
-        }
-        .btn:hover {
-        background-color: #f890fa; 
-        }
-
-        .btn2 {
-        display: block;
-        padding: 10px 10px; /* Defina um valor mínimo de largura para os botões */
-        min-width: 120px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
-        background-color: #5094A7; /* Cor azul desejada */
-        color: #fff;
-        text-decoration: none;
-        text-align: center;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #8085FF; /* Cor da borda deve corresponder à cor de fundo */
-        margin-top: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
-        font-size: 12px;
-        }
-
-        .btn2:hover {
-        background-color: #7CBCCE; /* Cor mais clara quando hover (opcional) */
-        }
-    </style>
-
-<?php
-// Configurações do banco de dados
-  include '../conexao.php';
-
-// Verifica se a conexão foi bem sucedida
-if ($conn->connect_error) {
-    die("Erro na conexão: " . $conn->connect_error);
-}
-
-// Query para selecionar todos os produtos
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // Exibindo formulário para editar cada produto
-    while($row = $result->fetch_assoc()) {
-        ?>
-        <form action="editar_produto.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-            <label for="name">Nome:</label>
-            <input type="text" name="name" value="<?php echo $row['name']; ?>"><br>
-            <label for="price">Preço:</label>
-            <input type="text" name="price" value="<?php echo $row['price']; ?>"><br>
-            <label for="old_price">Preço Antigo:</label>
-            <input type="text" name="old_price" value="<?php echo $row['old_price']; ?>"><br>
-            <label for="image_path">Caminho da Imagem:</label>
-            <input type="text" name="image_path" value="<?php echo $row['image_path']; ?>"><br>
-            <label for="category">Categoria:</label>
-            <input type="text" name="category" value="<?php echo $row['category']; ?>"><br>
-            <label for="quantidade">Quantidade:</label>
-            <input type="text" name="quantidade" value="<?php echo $row['quantidade']; ?>"><br>
-            <input type="submit" value="Salvar">
-        </form>
-        <?php
+    // Verifica se a conexão foi bem sucedida
+    if ($conn->connect_error) {
+        die("Erro na conexão: " . $conn->connect_error);
     }
-} else {
-    echo "0 resultados";
-}
 
-// Fecha conexão com o banco de dados
-$conn->close();
-?>
+    // Query para selecionar todos os produtos
+    $sql = "SELECT * FROM products";
+    $result = $conn->query($sql);
 
- <!---------------- Fale Conosco incio ---------------->
+    if ($result->num_rows > 0) {
+        // Exibindo formulário para editar cada produto
+    /* while($row = $result->fetch_assoc()) {
+            ?>
+            <form action="editar_produto.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                <label for="name">Nome:</label>
+                <input type="text" name="name" value="<?php echo $row['name']; ?>"><br>
+                <label for="price">Preço:</label>
+                <input type="text" name="price" value="<?php echo $row['price']; ?>"><br>
+                <label for="old_price">Preço Antigo:</label>
+                <input type="text" name="old_price" value="<?php echo $row['old_price']; ?>"><br>
+                <label for="image_path">Caminho da Imagem:</label>
+                <input type="text" name="image_path" value="<?php echo $row['image_path']; ?>"><br>
+                <label for="category">Categoria:</label>
+                <input type="text" name="category" value="<?php echo $row['category']; ?>"><br>
+                <label for="quantidade">Quantidade:</label>
+                <input type="text" name="quantidade" value="<?php echo $row['quantidade']; ?>"><br>
+                <input type="submit" value="Salvar">
+            </form>
+            <?php
+        } */
+
+        while($row = $result->fetch_assoc()) {
+                echo '<main>';
+                echo '<div class="description">';
+                echo '<form action="editar_produto.php" method="post">';
+                echo '<div class="centralizar">';
+                echo '<h3>' . $row["name"] . '</h3>';
+                echo '<label class="text" for="price"> Preço: </label>';
+                echo '<input class="result" type="text" name="price" value="' . $row['price'] . '">';
+                echo '<br>';
+                echo '<label class="text" for="old_price"> Preço Antigo: </label>';
+                echo '<input class="result" type="text" name="old_price" value="' . $row['old_price'] . '">'; 
+                echo '<br>';
+                echo '<label class="text" for="image_path"> Caminho da Imagem: </label>';
+                echo '<input class="result" type="text" name="image_path" value="' . $row['image_path'] . '">'; 
+                echo '<br>';
+                echo '<label class="text" for="category"> Categoria: </label>';
+                echo '<input class="result" type="text" name="category" value="' . $row['category'] . '">'; 
+                echo '<br>';
+                echo '<label class="text" for="quantidade"> Quantidade: </label>';
+                echo '<input class="result" type="text" name="quantidade" value="' . $row['quantidade'] . '">';
+                echo '<br>';
+                echo '<div class="botoes">';
+                echo '<input type="submit" value="Salvar" class="btn">';
+                echo '<a class="btn2" href="../administrador/admin-home.php"> Voltar </a>';
+                echo '<div class="botoes">';
+                echo '</form>';
+                echo '</div>';
+                echo '</div>';
+                echo '</main>';
+        } 
+    } else {
+        echo "0 resultados";
+    }
+
+    // Fecha conexão com o banco de dados
+    $conn->close();
+    ?>
+
+</main>
+
+ <!---------------- Fale Conosco início ---------------->
  <footer>
         <h2>Fale Conosco</h2>
         <div>
