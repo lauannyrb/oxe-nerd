@@ -60,82 +60,89 @@ header {
   /* ---------------------------------------------
 
   /** /* Estilo para centralizar os elementos na tela edit.php */
-        .main {
-          display:flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-        }
         .description {
-            display: flex;
-            flex-direction: column;
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
             align-items: center;
             text-align: center;    
-            padding: 20px;
-            border-radius: 5px;
         }
 
         /* Estilos para as imagens */
         .description img {
-            max-width: 200px; /* Defina a largura máxima desejada */
-            max-height: 200px; /* Defina a altura máxima desejada */
+            align-content: center;
+            max-width: 300px; /* Defina a largura máxima desejada */
+            max-height: 300px; /* Defina a altura máxima desejada */
         }
 
         h1 {
             padding-top: 20px;
             color: #2d1d55;
-            text-align: center;
+        }
+
+        .picture{ 
+          display: flex;
+          flex-wrap: wrap;
+          flex-wrap: nowrap;
+          align-content: center;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          align-items: center;
+          flex-direction: column;
+          
+        } 
+
+        .new-selector {
+          display: flex;
         }
 
         h3 {
-          margin-bottom: 20px;
           text-align: center;
+          margin-bottom: 20px;
           color: black;
           font-family: poppins;
           font-size: 18px;
-          max-width: 600px;
         }
-
-        .text {
-          margin-bottom: 5px;
+        
+        .lista {
           display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+        }
+        .text {
+          margin: 10px;
           color: #6e0977;
           font-weight: bold;
           font-family: poppins;
           font-size: 15px;
-          text-align: left;
         }
 
         .result {
+          text-align: center;
           text-decoration: none;
-          padding: 5px;
-          text-align: left;
-          display: flex;
+          padding: 10px;
           border-radius: 10px;
           background-color: #ffffff;
           font-family: poppins;
           font-size: 15px;
           color: black;
-          max-width: 300px;
+          min-width: 500px;
         }
 
         .centralizar {
-            align-items: center;
-            text-align: center;   
             background-color: #f5f5f5;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.2);
             margin-bottom: 40px;
-            min-width: 650px;
+            min-width: 600px;
         }
         
         .botoes {
-          align-items: center;
           justify-content: center;
           display: flex;
           margin-top: 30px;
-          gap: 25px;
+          gap: 20px;
 
         }
 
@@ -161,7 +168,6 @@ header {
         background-color: #5094A7; /* Cor azul desejada */
         color: #fff;
         text-decoration: none;
-        text-align: center;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         border-color: #3c798a;
