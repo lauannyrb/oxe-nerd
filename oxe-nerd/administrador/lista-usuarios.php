@@ -1,5 +1,5 @@
 <?php
-// ...
+session_start();
 
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
 include '../conexao.php';
 
 // Consulta SQL para selecionar todos os usuários
-$sql = "SELECT * FROM `user`";
+$sql = "SELECT * FROM user";
 $resultado = $conn->query($sql);
 
 // Array para armazenar os usuários
@@ -39,7 +39,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -49,30 +49,39 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png">
     <title>Administrador</title>
-    <script>
-        function editarUsuario(id, nome, senha) {
-            // Exibir o formulário de edição para o usuário com o ID correspondente
-            var form = document.getElementById('formEditar');
-            var inputs = form.getElementsByTagName('input');
-            inputs[0].value = id; // Definir o valor do campo ID do usuário
-            inputs[1].value = nome; // Definir o valor do campo Nome do usuário
-            inputs[2].value = senha; // Definir o valor do campo Senha do usuário
-            form.style.display = 'block'; // Exibir o formulário
-        }
-
-        function confirmarExclusao(id) {
-            if (confirm('Tem certeza de que deseja excluir este usuário?')) {
-                // Redirecionar para a página de exclusão com o ID do usuário como parâmetro na URL
-                window.location.href = 'excluir-usuario.php?id=' + id;
-            }
-        }
-    </script>
 </head>
 
 <body>
-    <!-- Header  -->
     <header>
-        <!-- Seu código de header -->
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
+        <nav>
+            <?php
+            if (isset($_SESSION['type_user'])) {
+                if ($_SESSION['type_user'] == 'adm') {
+                    echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+                } else {
+                    echo 'User type: ' . $_SESSION['type_user'];
+                }
+            }
+            ?>
+            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos produtos </a>
+            <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
+            <a class="" href="#"> Eletrônicos </a>
+            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
+                <?php echo "Bem-vindo(a), $nome_usuario"; ?>
+            </a>
+            <?php
+            // Adicionar link de logout se o usuário estiver logado
+            if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+                echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
+            }
+            ?>
+            <a class="" href="../carrinho/index-carrinho.php">
+                <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+                <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
+            </a>
+        </nav>
     </header>
     <h2 style="margin: 30px auto; width: 80%;">Listagem de Usuarios</h2>
     <section class="lista">
@@ -80,29 +89,32 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <div class="lista">
                 <div class="esquerda">
                     <span class="black" style="width: 10%;">ID: <?php echo $usuario['id']; ?></span>
-                    <!-- Substituir as tags <span> pelos campos de edição -->
-                    <input type="text" style="width: 70%;" value="<?php echo $usuario['name']; ?>" disabled>
-                    <input type="text" class="black" style="width: 20%;" value="<?php echo $usuario['password']; ?>" disabled>
+                    <input type="text" style="width: 70%;" value="<?php echo $usuario['name']; ?>">
+                    <input type="text" class="black" style="width: 20%;" value="<?php echo $usuario['password']; ?>">
                     <div class="direita">
-                        <!-- Botão para editar usuário -->
-                        <button onclick="editarUsuario(<?php echo $usuario['id']; ?>, '<?php echo $usuario['name']; ?>', '<?php echo $usuario['password']; ?>')"> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button>
-                        <!-- Botão para excluir usuário -->
-                        <button onclick="confirmarExclusao(<?php echo $usuario['id']; ?>)"> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"> </button>
+                        <!-- Formulário para editar usuário -->
+                        <form action="editar-usuario.php" method="POST">
+                            <input type="hidden" name="usuario_id" value="<?php echo $usuario['id']; ?>">
+                            <button type="submit"> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button>
+                        </form>
+                        <!-- Formulário para excluir usuário -->
+                        <form action="excluir-usuario.php" method="POST">
+                            <input type="hidden" name="usuario_id" value="<?php echo $usuario['id']; ?>">
+                            <button type="submit"> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"> </button>
+                        </form>
                     </div>
                 </div>
             </div>
         <?php endforeach; ?>
-        <!-- Formulário de edição de usuário (inicialmente oculto) -->
-        <div id="formEditar" style="display: none;">
-            <form action="editperfil.php" method="post">
-                <input type="hidden" name="id" value="">
-                <input type="text" name="nome" placeholder="Novo nome">
-                <input type="password" name="senha" placeholder="Nova senha">
-                <button type="submit">Salvar Alterações</button>
-            </form>
-        </div>
-        <!-- Seu código de footer -->
     </section>
+    <footer>
+        <h2>Fale Conosco</h2>
+        <div>
+            <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
+            <img src="../images/Instagram.png" alt="Instagram"><p>@oxe_nerd</p>
+            <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
+        </div>
+        <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
+    </footer>
 </body>
-
 </html>
