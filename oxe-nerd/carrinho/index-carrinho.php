@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
@@ -109,25 +110,24 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica se o carrinho foi submetido
     if (isset($_POST['finalizar_compra'])) {
         // Itera sobre os itens do carrinho
         foreach ($_SESSION['carrinho'] as $key => $produto) {
-            if (isset($produto['id'])) { // Verifica se a chave 'id' existe no produto
+            if (isset($produto['id'])) {
                 $product_id = $produto['id'];
                 $quantity = $_SESSION['quantidades'][$key];
 
-                // Atualiza a quantidade do produto no banco de dados
                 $sql = "UPDATE products SET quantidade = quantidade - $quantity WHERE id = $product_id";
 
                 if ($conn->query($sql) !== TRUE) {
                     echo "Erro ao atualizar a quantidade do produto: " . $conn->error;
-                    // Aqui você pode decidir se deseja parar o processo em caso de erro ou continuar atualizando os outros produtos
+                    // Considere sair ou exibir uma mensagem de erro aqui, sem usar a função header()
                 }
             } else {
                 echo "ID do produto inválido.";
+                // Considere sair ou exibir uma mensagem de erro aqui, sem usar a função header()
             }
         }
 
@@ -135,14 +135,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['carrinho'] = array();
         $_SESSION['quantidades'] = array();
 
-        echo "Compra finalizada com sucesso!";
+        // Redireciona para a tela de pedido
+        header("Location: ../pedido/pedido.php");
+        exit(); // Importante sair do script após redirecionar
     }
 }
 
-// Exiba o carrinho e o formulário de finalização da compra aqui...
-
-$conn->close();
-
+//$conn->close();
+ob_end_flush();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -366,12 +366,9 @@ $conn->close();
             <input type="submit" name="calcularpagamento" value="OK">
         </form>
 
-        <a href="../pedido/pedido.php">
-            <button class="butao">FINALIZAR COMPRA</button>
-        </a>
         <form method="post">
             <input type="hidden" name="finalizar_compra" value="1">
-            <input type="submit" value="Finalizar Compra">
+            <input type="submit" class="butao" value="FINALIZAR COMPRA">
         </form>
 
         </div>
