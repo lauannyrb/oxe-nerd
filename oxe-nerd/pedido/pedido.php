@@ -56,17 +56,13 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <!-- aa -->
             <img src="../images/img_pedido/Like.png" alt="Like">
             <div class="detalhes">
-                <h2>Data da Compra : 13/11/2023</h2>
+                <h2>Data da Compra : 05/02/2024</h2>
                 <h2>Situação do Pedido : Pedido Confirmado </h2>
                 <h2>Pedido : #2023UN3P</h2>
-            </div>                        
-    
+            </div>
         </div>
         <h2 class="obrigado">A OxeNerd agradece sua compra, volte sempre!</h2>
         <a href="../index.php"><button><strong>COMPRE MAIS</strong></button></a>
-
-
-
 
 
     </section>
