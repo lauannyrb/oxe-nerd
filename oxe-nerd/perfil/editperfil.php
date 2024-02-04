@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
     // Inicializar variáveis para as novas informações
     $novo_nome = $nome_usuario;
     $novo_email = $email_usuario;
+    $novo_nick = $_SESSION['usuario_logado']['nickname'];
     $nova_senha = isset($_SESSION['usuario_logado']['senha']) ? $_SESSION['usuario_logado']['senha'] : '';
 
     // Verificar se o campo foi preenchido e atualizar as variáveis correspondentes
@@ -34,27 +35,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
         $novo_email = $_POST['novo_email'];
     }
 
-    if (!empty($_POST['nova_senha'])) {
-        $nova_senha = password_hash($_POST['nova_senha'], PASSWORD_DEFAULT); // Hash da nova senha
+    if (!empty($_POST['novo_nick'])) {
+        $novo_nick = $_POST['novo_nick'];
     }
 
+    if (!empty($_POST['nova_senha'])) {
+        $nova_senha = $_POST['nova_senha'];
+    }
     // Validar os campos conforme necessário
+
+    // Verificar se o novo email já está cadastrado no banco de dados
+    $stmt_check_email = $conn->prepare("SELECT COUNT(*) FROM `user` WHERE `email` = ?");
+    $stmt_check_email->bind_param("s", $novo_email);
+    $stmt_check_email->execute();
+    $stmt_check_email->bind_result($email_count);
+    $stmt_check_email->fetch();
+    $stmt_check_email->close();
+
+    if ($email_count > 0) {
+        // O novo email já está cadastrado, exiba uma mensagem de erro ou faça o tratamento adequado
+        echo "O email já está cadastrado. Por favor, escolha outro.";
+        exit;
+    }
+
+    // Se o novo email não estiver cadastrado, proceda com a atualização das informações do usuário
+    $stmt = $conn->prepare("UPDATE `user` SET `name`=?, `email`=?, `nickname`=?, `password`=? WHERE `email`=?");
+    $stmt->bind_param("sssss", $novo_nome, $novo_email, $novo_nick, $nova_senha, $email_usuario);
+    $stmt->execute();
+    $stmt->close();
 
     // Atualizar as informações do usuário na sessão
     $_SESSION['usuario_logado']['nome'] = $novo_nome;
     $_SESSION['usuario_logado']['email'] = $novo_email;
+    $_SESSION['usuario_logado']['nickname'] = $novo_nick;
     if (!empty($_POST['nova_senha'])) {
         $_SESSION['usuario_logado']['senha'] = $nova_senha;
     }
 
-    // Atualizar as informações no banco de dados
-    $stmt = $conn->prepare("UPDATE `user` SET `name`=?, `email`=?, `password`=? WHERE `email`=?");
-    $stmt->bind_param("ssss", $novo_nome, $novo_email, $nova_senha, $email_usuario);
-    $stmt->execute();
-    $stmt->close();
-
     // Redirecionar de volta para a página de perfil após a edição
-    header("Location: perfil.php");
+    header("Location: ../perfil/perfil.php");
     exit;
 }
 ?>
@@ -73,14 +92,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
 </head>
 
 <body>
-    <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd" ></a>
+  <!-- Header  -->
+  <header>
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
         <nav>
-            <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
-            <a class="Promoções" href="../promocoes/index-promocoes.php"> Promoções</a>
+        <?php
+        if (isset($_SESSION['type_user'])) {
+            if ($_SESSION['type_user'] == 'adm') {
+                echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+            } else {
+                echo 'User type: ' . $_SESSION['type_user'];
+            }
+        }
+        ?>
+            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos produtos </a>
+            <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
             <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
             <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '#' : '../login/index-login.php'; ?>">
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
             <?php echo "Bem-vindo(a), $nome_usuario"; ?>
         </a>
 
@@ -95,7 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
             <img class="carrinho" src="../images/carrinho.png" title="carrinho">
             <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
         </a>
-        </nav>
     </header>
 
     <div class="area-login">
@@ -107,6 +135,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Editar'])) {
 
                 <label for="novo_email">Novo Email:</label>
                 <input type="email" id="novo_email" name="novo_email">
+
+                <label for="novo_nick">Novo Usuário:</label>
+                <input type="text" id="novo_nick" name="novo_nick">
 
                 <label for="nova_senha">Nova Senha:</label>
                 <input type="password" id="nova_senha" name="nova_senha">

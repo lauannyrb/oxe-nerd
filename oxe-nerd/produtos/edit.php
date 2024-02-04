@@ -166,7 +166,7 @@ if ($result->num_rows > 0) {
     // Exibindo formulário para editar cada produto
     while($row = $result->fetch_assoc()) {
         ?>
-        <form action="editar_produto.php" method="post">
+        <form action="editar_produto.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <label for="name">Nome:</label>
             <input type="text" name="name" value="<?php echo $row['name']; ?>"><br>
@@ -174,8 +174,10 @@ if ($result->num_rows > 0) {
             <input type="text" name="price" value="<?php echo $row['price']; ?>"><br>
             <label for="old_price">Preço Antigo:</label>
             <input type="text" name="old_price" value="<?php echo $row['old_price']; ?>"><br>
-            <label for="image_path">Caminho da Imagem:</label>
-            <input type="text" name="image_path" value="<?php echo $row['image_path']; ?>"><br>
+            <label for="image_path">Imagem Atual:</label>
+            <img src="<?php echo $row['image_path']; ?>" alt="Imagem atual"><br> <!-- Exibir imagem atual -->
+            <label for="new_image">Nova Imagem:</label>
+            <input type="file" name="new_image"><br> <!-- Campo para carregar nova imagem -->
             <label for="category">Categoria:</label>
             <input type="text" name="category" value="<?php echo $row['category']; ?>"><br>
             <label for="quantidade">Quantidade:</label>
