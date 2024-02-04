@@ -64,3 +64,26 @@ VALUES
 
 INSERT INTO `user` (`name`, `nickname`, `email`, `password`, `date`, `type_user`)
 VALUES ('admin', 'adm', 'adm@oxenerd.com', 'adm', NOW(), 'adm');
+
+INSERT INTO `user` (`name`, `nickname`, `email`, `password`, `date`, `type_user`)
+VALUES
+    ('Alice Johnson', 'alice_j', 'alice@example.com', '1234', NOW(), 'normal'),
+    ('Bob Smith', 'bob_s', 'bob@example.com', '1234', NOW(), 'normal'),
+    ('Charlie Brown', 'charlie_b', 'charlie@example.com', '1234', NOW(), 'normal'),
+    ('David Miller', 'david_m', 'david@example.com', '1234', NOW(), 'normal'),
+    ('Emily Davis', 'emily_d', 'emily@example.com', '1234', NOW(), 'normal'),
+    ('Frank Robinson', 'frank_r', 'frank@example.com', '1234', NOW(), 'normal'),
+    ('Grace White', 'grace_w', 'grace@example.com', '1234', NOW(), 'normal'),
+    ('Henry Turner', 'henry_t', 'henry@example.com', '1234', NOW(), 'normal'),
+    ('Isabel Lee', 'isabel_l', 'isabel@example.com', '1234', NOW(), 'normal'),
+    ('Jack Evans', 'jack_e', 'jack@example.com', '1234', NOW(), 'normal'),
+    ('Katherine Hall', 'katherine_h', 'katherine@example.com', '1234', NOW(), 'normal'),
+    ('Liam Taylor', 'liam_t', 'liam@example.com', '1234', NOW(), 'normal'),
+    ('Mia Clark', 'mia_c', 'mia@example.com', '1234', NOW(), 'normal'),
+    ('Noah Adams', 'noah_a', 'noah@example.com', '1234', NOW(), 'normal'),
+    ('Olivia Wright', 'olivia_w', 'olivia@example.com', '1234', NOW(), 'normal'),
+    ('Patrick Harris', 'patrick_h', 'patrick@example.com', '1234', NOW(), 'normal'),
+    ('Quinn Martinez', 'quinn_m', 'quinn@example.com', '1234', NOW(), 'normal'),
+    ('Rachel King', 'rachel_k', 'rachel@example.com', '1234', NOW(), 'normal'),
+    ('Samuel Turner', 'samuel_t', 'samuel@example.com', '1234', NOW(), 'normal'),
+    ('Tara Roberts', 'tara_r', 'tara@example.com', '1234', NOW(), 'normal');
