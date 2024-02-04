@@ -53,7 +53,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 
 <body>
     <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
         <nav>
             <?php
             if (isset($_SESSION['type_user'])) {
@@ -89,16 +89,27 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <div class="lista">
                 <div class="esquerda">
                     <span class="black" style="width: 10%;">ID: <?php echo $usuario['id']; ?></span>
-                    <input type="text" style="width: 70%;" value="<?php echo $usuario['name']; ?>">
-                    <input type="text" class="black" style="width: 20%;" value="<?php echo $usuario['password']; ?>">
+                    <div style="width: 70%;">
+                        <label for="nome">Nome: </label>
+                        <?php echo $usuario['name']; ?>
+                    </div>
+                    <div style="width: 70%;">
+                        <label for="email">E-mail: </label>
+                        <?php echo $usuario['email']; ?>
+                    </div>
+                    <div class="black" style="width: 20%;">
+                        <label for="senha">Senha: </label>
+                        <?php echo $usuario['password']; ?>
+                    </div>
                     <div class="direita">
                         <!-- Formulário para editar usuário -->
-                        <form action="editar-usuario.php" method="POST">
+                        <form action="editar_usuario.php" method="GET">
                             <input type="hidden" name="usuario_id" value="<?php echo $usuario['id']; ?>">
                             <button type="submit"> <img class="img" src="../images/img_admin/Edit.png" title="Editar"> </button>
                         </form>
+
                         <!-- Formulário para excluir usuário -->
-                        <form action="excluir-usuario.php" method="POST">
+                        <form action="./excluir_usuario.php" method="POST">
                             <input type="hidden" name="usuario_id" value="<?php echo $usuario['id']; ?>">
                             <button type="submit"> <img class="img" src="../images/img_admin/Delete.png" title="Deletar"> </button>
                         </form>
@@ -107,6 +118,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             </div>
         <?php endforeach; ?>
     </section>
+
     <footer>
         <h2>Fale Conosco</h2>
         <div>
@@ -114,7 +126,7 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
             <img src="../images/Instagram.png" alt="Instagram"><p>@oxe_nerd</p>
             <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
         </div>
-        <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
+        <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p>
     </footer>
 </body>
 </html>
