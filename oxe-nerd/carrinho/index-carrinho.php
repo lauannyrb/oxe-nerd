@@ -36,7 +36,7 @@ if (isset($_POST['remover_1'])) {
     // Verifique se o índice existe no carrinho
     if (isset($_SESSION['carrinho'][$indice])) {
         // Reduza a quantidade do produto em 1
-        $_SESSION['quantidades'][$indice] = max(0, $_SESSION['quantidades'][$indice] - 1);
+        $_SESSION['quantidades'][$indice] = max(0, isset($_SESSION['quantidades'][$indice]) ? $_SESSION['quantidades'][$indice] - 1 : 0);
 
         // Se a quantidade chegar a 0, remova o produto do carrinho
         if ($_SESSION['quantidades'][$indice] == 0) {
@@ -47,6 +47,7 @@ if (isset($_POST['remover_1'])) {
         header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
+
 
 if (isset($_POST['aumentar_quantidade'])) {
     $indice_produto = $_POST['indice'];
