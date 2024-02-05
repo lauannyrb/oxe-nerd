@@ -13,7 +13,7 @@ services:
       - mysql
     # Comando para executar o chmod durante a inicialização do contêiner PHP
     command: >
-      sh -c "chmod -R 777 /var/www/html/produtos/uploads/ && apache2-foreground"
+      sh -c "mkdir -p /var/www/html/produtos/uploads/ && chmod -R 777 /var/www/html/produtos/uploads/ && apache2-foreground"
 
   mysql:
     image: mysql:latest
