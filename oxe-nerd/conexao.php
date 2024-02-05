@@ -129,4 +129,63 @@ function exibirProdutosPromocao() {
         echo "<p>Nenhum produto encontrado.</p>";
     }
 }
+function exibirNovosProdutos() {
+    // Consulta SQL para selecionar os produtos da categoria "Novos Produto"
+    global $conn; // Adicionar essa linha para acessar a variável $conn dentro da função
+    $sql = "SELECT * FROM products WHERE category = 'Novos Produtos'";
+    $result = $conn->query($sql);
+
+    // Verifica se há produtos
+    if ($result->num_rows > 0) {
+        // Loop através dos resultados da consulta
+        while ($row = $result->fetch_assoc()) {
+            // Exibição dinâmica dos produtos
+            echo '<section class="cinza">';
+            echo '<section class="container">';
+            echo '<img class="venda" src="../images/' . $row["image_path"] . '" alt="' . $row["name"] . '">';
+            echo '<h2>' . $row["name"] . '</h2>';
+            echo '<p><s>R$ ' . $row["old_price"] . '</s></p>';
+            echo '<p class="preco"><strong>R$ ' . $row["price"] . '</strong></p>';
+            echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
+            echo '<p>À vista no PIX</p>';
+            echo '<div class="carrossel">';
+            echo '<form method="post">';
+            echo '<input type="hidden" name="nome" value="' . $row["name"] . '">';
+            echo '<input type="hidden" name="preco" value="' . $row["price"] . '">';
+            echo '<input type="hidden" name="imagem" value="' . $row["image_path"] . '">';
+            echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
+            echo '</form>';
+            echo '</div>';
+            echo '</section>';
+            echo '</section>';
+        }
+    } else {
+        echo "Nenhum produto encontrado.";
+    }
+    // Fecha a conexão com o banco de dados
+    $conn->close();
+}
+function erroMsg(){
+    if (isset($_SESSION['type_user'])) {
+        if ($_SESSION['type_user'] == 'adm') {
+            echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+        } else {
+            echo 'User type: ' . $_SESSION['type_user'];
+        }
+    }
+}
+function retornar(){
+    if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+        // Se o usuário não for um administrador, redirecioná-lo para a página de login
+        header("Location: ../login/index-login.php");
+        exit;
+    }
+}
+function verificarAdm(){
+    if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+        // Se o usuário não for um administrador, redirecioná-lo para a página de login
+        header("Location: ../login/index-login.php");
+        exit;
+    }
+}
 ?>

@@ -15,13 +15,13 @@ formularioComprar();
     <title>OXE NERD</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="icon" href="images/Logo.svg" type="svg">
+    <link rel="icon" href="../images/Logo.svg" type="svg">
 </head>
 
 <body>
 
 <header>
-    <img class="logo-oxe-nerd" src="images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
+    <img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
     <nav>
         <?php painelDeControleAdm(); ?>
         <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
