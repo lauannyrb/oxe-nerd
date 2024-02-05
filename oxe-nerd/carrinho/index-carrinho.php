@@ -20,24 +20,55 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 // Supondo que o usuário clicou em "FINALIZAR COMPRA" e o carrinho não está vazio
 if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
     foreach ($_SESSION['carrinho'] as $key => $produto) {
-        // Obtenha o ID do produto
-        $produto_id = $produto['id'];
+        // Verificar se a chave 'id' está definida no produto
+        if (isset($produto['id'])) {
+            // Obter o ID do produto
+            $produto_id = $produto['id'];
 
-        // Obtenha a quantidade vendida deste produto do carrinho
-        $quantidade_vendida = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
+            // Obter a quantidade vendida deste produto do carrinho
+            $quantidade_vendida = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
 
-        // Atualize a quantidade disponível no banco de dados subtraindo a quantidade vendida
-        $sql_update = "UPDATE products SET quantidade = quantidade - $quantidade_vendida WHERE id = $produto_id";
+            // Construir e executar a consulta SQL para atualizar a quantidade disponível no banco de dados
+            $sql_update = "UPDATE products SET quantidade = quantidade - $quantidade_vendida WHERE id = $produto_id";
 
-        // Execute a consulta de atualização
-        if ($conn->query($sql_update) === TRUE) {
-            // Atualização bem-sucedida
-            // Você pode adicionar mais lógica aqui, se necessário
+            if ($conn->query($sql_update) === TRUE) {
+                // Atualização bem-sucedida
+                // Você pode adicionar mais lógica aqui, se necessário
+            } else {
+                // Erro ao atualizar o banco de dados
+                echo "Erro ao atualizar o estoque do produto com ID $produto_id: " . $conn->error;
+            }
         } else {
-            // Erro ao atualizar o banco de dados
-            echo "Erro ao atualizar o estoque do produto com ID $produto_id: " . $conn->error;
+            // A chave 'id' não está definida no produto
+            echo "Erro: A chave 'id' não está definida para o produto na posição $key.";
         }
     }
+}
+
+// Função para aumentar a quantidade de um produto no carrinho
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aumentar_quantidade'])) {
+    $indice = $_POST['indice'];
+    if (isset($_SESSION['quantidades'][$indice])) {
+        $_SESSION['quantidades'][$indice]++;
+    }
+}
+
+// Função para diminuir a quantidade de um produto no carrinho
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['diminuir_quantidade'])) {
+    $indice = $_POST['indice'];
+    if (isset($_SESSION['quantidades'][$indice]) && $_SESSION['quantidades'][$indice] > 1) {
+        $_SESSION['quantidades'][$indice]--;
+    }
+}
+
+// Função para remover um produto do carrinho
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
+    $indice = $_POST['indice'];
+    unset($_SESSION['carrinho'][$indice]);
+    unset($_SESSION['quantidades'][$indice]);
+    // Redirecionar para evitar o reenvio do formulário
+    header("Location: ./index-carrinho.php");
+    exit;
 }
 ?>
 
@@ -57,39 +88,26 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
 <body>
     <!-- Header  -->
     <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
-        <nav>
-            <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
-            <div><a class="" href="../promocoes/index-promocoes.php"> Promoções </a></div>
-            <hr>
-            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
-            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
-            <?php echo "Bem-vindo(a), $nome_usuario"; ?></a>
-
-            <?php
-            // Adicionar link de logout se o usuário estiver logado
-            if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-                echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
-            }
-            ?>
-
-            <a class="" href="#"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
-            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
-            </a>
-
-        </nav>
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
+            <nav>
+                <?php painelDeControleAdm(); ?>
+                <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos </a>
+                <a class="Promoções" href="../promocoes/index-promocoes.php"> Promoções</a>
+                <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
+                <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
+                <?php exibirLinksUsuario(); ?>
+            </nav>
     </header>
     <!-- Fim  -->
 
 
     <main>
 
-    <?php
+        <?php
 
-if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
+        if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
 
-    echo "
+            echo "
         <nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
         <div class='descricoes1'>
             <span> Produtos</span>
@@ -103,26 +121,27 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construç
                 <span>Total</span>
             </div>
         </div>";
-    foreach ($_SESSION['carrinho'] as $key => $produto) {
-    echo "<form action='' method='post'>";
-    echo "<div class='pedido1'>";
-    echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
+            foreach ($_SESSION['carrinho'] as $key => $produto) {
+                echo "<form action='' method='post'>";
+                echo "<div class='pedido1'>";
+                echo "<img class='img-pedido' src='" . $produto['imagem'] . "' alt='Imagem do Produto'>";
 
-    echo "       
+                echo "       
         <div class='des-produto'>
                 <span class='nome-pedido'>" . $produto['nome'] . "</span>
                 <span class='des-pedido'>Vendido e entregue pela OxeNerd</span>
             </div>
         ";
 
-    $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
-    $quantidade = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
-        echo "          
+                $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
+                $quantidade = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
+                echo "          
         <div class='pedido-direita'>
             
-            <td>
-                <input type='submit' name='remover_1' value='-' />
-            </td>
+            <form action='' method='post'>
+                <input type='hidden' name='indice' value='$key'/>
+                <button type='submit' name='diminuir_quantidade'>-</button>
+            </form>
             
             <span class='quantidade' style='text-align: center;
                 width: 50px; 
@@ -131,13 +150,14 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construç
                 margin: 30px;
                 border: none;
                 font-size: 30px;
-                font-weight: 700;'>".
-                    (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1) ."
+                font-weight: 700;'>" .
+                    (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1) . "
             </span>
             
-            <td>
-                <input type='submit' name='aumentar_quantidade' value='+' />                                   
-            </td>
+            <form action='' method='post'>
+                <input type='hidden' name='indice' value='$key'/>
+                <button type='submit' name='aumentar_quantidade'>+</button>
+            </form>
 
             <span class='preco'>R$ " . $produto['preco'] . "</span>
             <span class='entrega'> Em Janeiro </span>   
@@ -148,31 +168,28 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construç
                 margin-right:10px;
                 line-height: 23px;
                 width: 100px;'>
-                    R$ ".number_format($subtotal, 2)."
+                    R$ " . number_format($subtotal, 2) . "
             </span>             
         </div>";
 
-    // Adicione ou atualize o produto no carrinho
-    $_SESSION['carrinho'][$key] = [
-        'nome' => $produto['nome'],
-        'preco' => $produto['preco'],
-        'imagem' => $produto['imagem'],
-        'quantidade' => $quantidade,
-    ];
+                echo "<div class='remover-produto'>
+                    <form action='' method='post'>
+                        <input type='hidden' name='indice' value='$key'/>
+                        <button type='submit' name='remover_produto'>Remover</button>
+                    </form>
+                </div>";
 
+                echo "</div>";
+                echo "</form>";
+            }
 
-    echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
-    echo "</div>";
-    echo "</form>";
-}
+            foreach ($_SESSION['carrinho'] as $key => $produto) {
+                $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
+                $total += $subtotal;
+            }
 
-    foreach ($_SESSION['carrinho'] as $key => $produto) {
-        $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
-        $total += $subtotal;
-    }
-
-    if ($total >= 500) { //Frete gratis a partir de R$500 em compras
-        echo "   
+            if ($total >= 500) { //Frete gratis a partir de R$500 em compras
+                echo "
             <div class='finalizar' style='margin-top: 25px;' > <!--Espaço para fazer o total do carrinho-->
             <span class='totall'  >Total</span>   
             <div class='total'>  
@@ -186,13 +203,13 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construç
                     <span>R$ " . $total . "</span>
                     <span>Frete de Graça :D</span>
                     <span>R$ " . $total . "</span>
-                    <span>".$valor."</span>
+                    <span>" . $valor . "</span>
                 </div>
 
             </div>
             ";
-    } else {
-        echo "   
+            } else {
+                echo "
             <div class='finalizar' style='margin-top: 25px;'> <!--Espaço para fazer o total do carrinho-->
             <span class='totall' >Total</span>   
             <div class='total'>  
@@ -204,25 +221,25 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construç
                 </div>
                 <div class='valores'>
                     <span>R$ " . $total . "</span>";
-                    if (isset($_SESSION['frete'])) {
-                        $frete = $_SESSION['frete'];
-                        $total += $_SESSION['frete'];
-                    }
-                    echo "
+                if (isset($_SESSION['frete'])) {
+                    $frete = $_SESSION['frete'];
+                    $total += $_SESSION['frete'];
+                }
+                echo "
                     <span>R$ " .  $frete . "</span>
                     <span>R$ " . $total . "</span>
-                    <span>". $valor ."</span>
+                    <span>" . $valor . "</span>
                 </div>
 
             </div>
             ";
-    }
-} else {
-    echo "<p>Seu carrinho de compras está vazio.</p>";
-}
-?>
+            }
+        } else {
+            echo "<p>Seu carrinho de compras está vazio.</p>";
+        }
+        ?>
 
-<form style="margin-top: 15px;" action="" method="post">
+        <form style="margin-top: 15px;" action="" method="post">
             <div style="margin-bottom: 15px;">
                 <label for="frete">Selecione a região que você mora:</label>
 
@@ -230,7 +247,7 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construç
                     <option value="frete1">Nordeste R$20</option>
                     <option value="frete2">Norte R$15</option>
                     <option value="frete3">Sul R$35</option>
-                    <option value="fr   ete4">Sudeste R$50</option>
+                    <option value="frete4">Sudeste R$50</option>
                     <option value="frete5">Centro-Oeste R$30</option>
                 </select>
                 <input type="submit" name="calcular_frete" value="Calcular Frete">
@@ -249,7 +266,7 @@ if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construç
         <a href="../pedido/pedido.php">
             <button class="butao">FINALIZAR COMPRA</button>
         </a>
-        </div>
     </main>
 </body>
+
 </html>
