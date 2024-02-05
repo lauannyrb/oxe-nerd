@@ -42,7 +42,7 @@ function formularioComprar(){
 }
 
 function painelDeControleAdm(){
-    if(isset($_SESSION['usuario_logado'])) {
+    if (isset($_SESSION['usuario_logado']['type_user'])) {
         $tipo_usuario = $_SESSION['usuario_logado']['type_user'];
         if($tipo_usuario === 'adm') {
             echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
