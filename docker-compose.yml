@@ -41,9 +41,3 @@ services:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: oxe-nerd
     # Adicione outras configurações do phpMyAdmin, se necessário
-    networks:
-      - oxe-nerd_default  # Adiciona a referência à rede
-
-networks:
-  oxe-nerd_default:
-    external: true  # Indica que a rede já existe fora do Compose
