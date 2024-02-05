@@ -1,31 +1,10 @@
 <?php
-sessao();
-logout();
-// Conexão com o banco de dados
 include '../conexao.php';
 
-// Consulta SQL para selecionar os produtos da categoria "Personalizados"
-$sql = "SELECT * FROM products WHERE category = 'Personalizados'";
-$result = $conn->query($sql);
+sessao();
+logout();
+formularioComprar();
 
-// Verificar se o formulário de compra foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
-    // Verificar se o carrinho existe na sessão
-    if (!isset($_SESSION['carrinho'])) {
-        $_SESSION['carrinho'] = [];
-    }
-    // Adicionar o produto ao carrinho
-    $produto = [
-        'nome' => $_POST['nome'],
-        'preco' => $_POST['preco'],
-        'imagem' => $_POST['imagem'],
-        'quantidade' => 1 // Definir quantidade inicial como 1
-    ];
-    $_SESSION['carrinho'][] = $produto;
-    // Redirecionar de volta para a página anterior
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -59,39 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
     <nav class="titulo"><strong>Personalizados <hr></strong></nav>
 
     <section class="carrossel">
-        <!--Primeira linha de produtos-->
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<section class="cinza">';
-                echo '<section class="container">';
-                echo '<img class="venda" src="' . $row['image_path'] . '" alt="' . $row['name'] . '">';
-                echo '<div class="titulo">';
-                echo '<h2>' . $row['name'] . '</h2>';
-                echo '</div>';
-                echo '<div class="conteudo">';
-                echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
-                echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
-                echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
-                echo '<p>À vista no PIX</p>';
-                echo '<div class="carrossel">';
-                echo '<form method="post">';
-                echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
-                echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
-                echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
-                echo '</div>';
-                echo '<div class="bot">';
-                echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
-                echo '</div>';
-                echo '</form>';
-                echo '</div>';
-                echo '</section>';
-                echo '</section>';
-            }
-        } else {
-            echo "Nenhum produto encontrado.";
-        }
-        ?>
+        <?php exibirPersonalizados();?>
     </section>
 
     <!-- Continue com o resto do seu HTML aqui... -->

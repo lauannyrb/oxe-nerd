@@ -108,14 +108,7 @@ h2.titulo {
   /* Deixei comentando pq tava desalinhado  */
 }
 
-section.cinza {
-  padding: 15px;
-  background-color: #F2F3F4;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-  margin-left: 0.5%;
-  margin-bottom: 2%;
-}
+z
 
 section.cinza:nth-child(1) {
   margin-left: 0;

@@ -1,12 +1,7 @@
 <?php
+include '../conexao.php';
 sessao();
 logout();
-include '../conexao.php';
-
-// Query para selecionar os produtos do banco de dados
-$sql = "SELECT * FROM products WHERE category = 'Eletrônicos'";
-$result = $conn->query($sql);
-
 formularioComprar();
 ?>
 
@@ -43,32 +38,7 @@ formularioComprar();
 
     <section class="carrossel">
         <!--Primeira linha de produtos-->
-        <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<section class="cinza">';
-                echo '<section class="container">';
-                echo '<img class="venda" src="' . $row['image_path'] . '" alt="' . $row['name'] . '">';
-                echo '<h2>' . $row['name'] . '</h2>';
-                echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
-                echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
-                echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
-                echo '<p>À vista no PIX</p>';
-                echo '<div class="carrossel">';
-                echo '<form method="post">';
-                echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
-                echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
-                echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
-                echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
-                echo '</form>';
-                echo '</div>';
-                echo '</section>';
-                echo '</section>';
-            }
-        } else {
-            echo "Nenhum produto encontrado.";
-        }
-        ?>
+        <?php exibirEletronicos();?>
     </section>
 
     <!---------------- Fale Conosco incio ---------------->
