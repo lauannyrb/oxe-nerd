@@ -234,7 +234,7 @@ function obterInformacoesUsuario() {
 function usuarioPrecisaLogar(){
     if (!isset($_SESSION['usuario_logado']) || !is_array($_SESSION['usuario_logado'])) {
         // Redirect the user to the login page or display an error message
-        header("Location: ../login/index-login.php.php");
+        header("Location: ../login/index-login.php");
         exit;
     }
 }

@@ -14,6 +14,8 @@ services:
     # Comando para executar o chmod durante a inicialização do contêiner PHP
     command: >
       sh -c "mkdir -p /var/www/html/produtos/uploads/ && chmod -R 777 /var/www/html/produtos/uploads/ && apache2-foreground"
+    networks:
+      - oxe-nerd_default  # Adiciona a referência à rede
 
   mysql:
     image: mysql:latest
@@ -30,6 +32,8 @@ services:
       #- ./mysql:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Mounting the init.sql file
     # Add other MySQL configurations if necessary
+    networks:
+      - oxe-nerd_default  # Adiciona a referência à rede
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -39,3 +43,9 @@ services:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: oxe-nerd
     # Adicione outras configurações do phpMyAdmin, se necessário
+    networks:
+      - oxe-nerd_default  # Adiciona a referência à rede
+
+networks:
+  oxe-nerd_default:
+    external: true  # Indica que a rede já existe fora do Compose
