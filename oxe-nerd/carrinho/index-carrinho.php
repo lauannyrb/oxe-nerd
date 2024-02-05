@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../conexao.php';
+ob_start();
 
 // Verificar se o formulário de logout foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
@@ -17,61 +17,134 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     $nome_usuario = $_SESSION['usuario_logado']['nome'];
 }
 
-// Supondo que o usuário clicou em "FINALIZAR COMPRA" e o carrinho não está vazio
-if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) {
-    foreach ($_SESSION['carrinho'] as $key => $produto) {
-        // Verificar se a chave 'id' está definida no produto
-        if (isset($produto['id'])) {
-            // Obter o ID do produto
-            $produto_id = $produto['id'];
+// Calcula o total dos itens no carrinho
+$total = 0;
+// Calcula o frete dos itens no carrinho
+$frete = 0;
+$valor = "";
 
-            // Obter a quantidade vendida deste produto do carrinho
-            $quantidade_vendida = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
+if (isset($_POST['deletar'])) {
+    //echo $_POST['indice']; // Exibe o índice do usuário que está sendo excluído
+    unset($_SESSION['carrinho'][$_POST['indice']]); // Remove o usuário da sessão com base no índice recebido via POST
+    header("Location: " . $_SERVER['PHP_SELF']);
+}
 
-            // Construir e executar a consulta SQL para atualizar a quantidade disponível no banco de dados
-            $sql_update = "UPDATE products SET quantidade = quantidade - $quantidade_vendida WHERE id = $produto_id";
 
-            if ($conn->query($sql_update) === TRUE) {
-                // Atualização bem-sucedida
-                // Você pode adicionar mais lógica aqui, se necessário
-            } else {
-                // Erro ao atualizar o banco de dados
-                echo "Erro ao atualizar o estoque do produto com ID $produto_id: " . $conn->error;
-            }
-        } else {
-            // A chave 'id' não está definida no produto
-            echo "Erro: A chave 'id' não está definida para o produto na posição $key.";
+if (isset($_POST['remover_1'])) {
+    $indice = $_POST['indice'];
+
+    // Verifique se o índice existe no carrinho
+    if (isset($_SESSION['carrinho'][$indice])) {
+        // Reduza a quantidade do produto em 1
+        $_SESSION['quantidades'][$indice] = max(0, isset($_SESSION['quantidades'][$indice]) ? $_SESSION['quantidades'][$indice] - 1 : 0);
+
+        // Se a quantidade chegar a 0, remova o produto do carrinho
+        if ($_SESSION['quantidades'][$indice] == 0) {
+            unset($_SESSION['carrinho'][$indice]);
+            unset($_SESSION['quantidades'][$indice]);
         }
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
 
-// Função para aumentar a quantidade de um produto no carrinho
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aumentar_quantidade'])) {
-    $indice = $_POST['indice'];
-    if (isset($_SESSION['quantidades'][$indice])) {
-        $_SESSION['quantidades'][$indice]++;
+
+if (isset($_POST['aumentar_quantidade'])) {
+    $indice_produto = $_POST['indice'];
+
+    // Verifique se a quantidade já foi definida na sessão
+    if (!isset($_SESSION['quantidades'][$indice_produto])) {
+        $_SESSION['quantidades'][$indice_produto] = 1;
+    } else {
+        $_SESSION['quantidades'][$indice_produto]++;
+    }
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+}
+
+
+// Teste com frete
+if (isset($_POST['calcular_frete'])) {
+    $opcao_frete = $_POST['frete'];
+
+    // Você pode associar o valor do frete à opção selecionada
+    $opcoes_fretes = [
+        'frete1' => 20.00, //Nordeste
+        'frete2' => 15.00, //Norte
+        'frete3' => 35.00, //Sul
+        'frete4' => 50.00, //Sudeste
+        'frete5' => 30.00, //Centro-Oeste
+    ];
+
+    // Verifique se a opção de frete selecionada está no array de opções
+    if (array_key_exists($opcao_frete, $opcoes_fretes)) {
+        $valor_frete = $opcoes_fretes[$opcao_frete];
+    } else {
+        // Caso a opção de frete não seja encontrada, defina o frete como zero ou outra ação apropriada
+        $valor_frete = 0.00;
+    }
+
+    // Armazene o valor do frete em uma variável de sessão, se necessário
+    $_SESSION['frete'] = $valor_frete;
+}
+
+if (isset($_POST['calcularpagamento'])) {
+    $opcao = $_POST['pagamento'];
+    $opcoes = [
+        'cartão' => "Cartão",
+        'pix' => "Pix",
+        'boleto' => "Boleto",
+    ];
+    if (array_key_exists($opcao, $opcoes)) {
+        $valor = $opcoes[$opcao];
+    } else {
+        $valor = null;
+    }
+    $_SESSION['pagamento'] = $valor;
+}
+
+// Conexão com o banco de dados (substitua pelos seus próprios dados)
+include '../conexao.php';
+
+// Verifica a conexão
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verifica se o carrinho foi submetido
+    if (isset($_POST['finalizar_compra'])) {
+        // Itera sobre os itens do carrinho
+        foreach ($_SESSION['carrinho'] as $key => $produto) {
+            if (isset($produto['id'])) {
+                $product_id = $produto['id'];
+                $quantity = $_SESSION['quantidades'][$key];
+
+                $sql = "UPDATE products SET quantidade = quantidade - $quantity WHERE id = $product_id";
+
+                if ($conn->query($sql) !== TRUE) {
+                    echo "Erro ao atualizar a quantidade do produto: " . $conn->error;
+                    // Considere sair ou exibir uma mensagem de erro aqui, sem usar a função header()
+                }
+            } else {
+                echo "ID do produto inválido.";
+                // Considere sair ou exibir uma mensagem de erro aqui, sem usar a função header()
+            }
+        }
+
+        // Limpa o carrinho após a compra ser finalizada
+        $_SESSION['carrinho'] = array();
+        $_SESSION['quantidades'] = array();
+
+        // Redireciona para a tela de pedido
+        header("Location: ../pedido/pedido.php");
+        exit(); // Importante sair do script após redirecionar
     }
 }
 
-// Função para diminuir a quantidade de um produto no carrinho
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['diminuir_quantidade'])) {
-    $indice = $_POST['indice'];
-    if (isset($_SESSION['quantidades'][$indice]) && $_SESSION['quantidades'][$indice] > 1) {
-        $_SESSION['quantidades'][$indice]--;
-    }
-}
-
-// Função para remover um produto do carrinho
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
-    $indice = $_POST['indice'];
-    unset($_SESSION['carrinho'][$indice]);
-    unset($_SESSION['quantidades'][$indice]);
-    // Redirecionar para evitar o reenvio do formulário
-    header("Location: ./index-carrinho.php");
-    exit;
-}
+//$conn->close();
+ob_end_flush();
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -88,15 +161,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
 <body>
     <!-- Header  -->
     <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
-            <nav>
-                <?php painelDeControleAdm(); ?>
-                <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos </a>
-                <a class="Promoções" href="../promocoes/index-promocoes.php"> Promoções</a>
-                <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
-                <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-                <?php exibirLinksUsuario(); ?>
-            </nav>
+   
+        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>
+        <nav>
+        <?php
+        if (isset($_SESSION['type_user'])) {
+            if ($_SESSION['type_user'] == 'adm') {
+                echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
+            } else {
+                echo 'User type: ' . $_SESSION['type_user'];
+            }
+        }
+        ?>
+            <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
+            <div><a class="" href="../promocoes/index-promocoes.php"> Promoções </a></div>
+            <hr>
+            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
+            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
+            <!-- Adicione o link para o perfil do usuário -->
+            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : './login/index-login.php'; ?>">
+    <?php 
+    if (isset($_SESSION['usuario_logado'])) {
+        echo 'Bem-vindo, ' . $_SESSION['usuario_logado']['nome'];
+    } else {
+        echo 'Faça login';
+    }
+    ?>
+    <?php
+    // Adicionar link de logout se o usuário estiver logado
+    if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+        echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
+    }
+    ?>
+</a>
+
+            <a class="" href="#"> <img class="carrinho" src="../images/carrinho.png" title="carrinho">
+                <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?> </a>
+            </a>
+
+        </nav>
     </header>
     <!-- Fim  -->
 
@@ -106,21 +209,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
         <?php
 
         if (isset($_SESSION['carrinho']) && !empty($_SESSION['carrinho'])) { //Construção do Carrinho
+            echo "<nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
+    <div class='descricoes1'>
+        <span> Produtos</span>
+    </div>
 
-            echo "
-        <nav class='titulo'><strong>Meu carrinho <hr></strong></nav>
-        <div class='descricoes1'>
-            <span> Produtos</span>
+    <div class='descricoes'> 
+        <div class='descricoes2'>
+            <span>Quantidade</span>
+            <span>Preço</span>
+            <span>Entrega</span>
+            <span>Total</span>
         </div>
+    </div>";
 
-        <div class='descricoes'> 
-            <div class='descricoes2'>
-                <span>Quantidade</span>
-                <span style='margin-right: 40px;' >Preço</span>
-                <span>Entrega</span>
-                <span>Total</span>
-            </div>
-        </div>";
             foreach ($_SESSION['carrinho'] as $key => $produto) {
                 echo "<form action='' method='post'>";
                 echo "<div class='pedido1'>";
@@ -137,59 +239,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
                 $quantidade = isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1;
                 echo "          
         <div class='pedido-direita'>
-            
-            <form action='' method='post'>
-                <input type='hidden' name='indice' value='$key'/>
-                <button type='submit' name='diminuir_quantidade'>-</button>
-            </form>
-            
-            <span class='quantidade' style='text-align: center;
-                width: 50px; 
-                height: 50px;
-                font-size: 30px; 
-                margin: 30px;
-                border: none;
-                font-size: 30px;
-                font-weight: 700;'>" .
-                    (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1) . "
-            </span>
-            
-            <form action='' method='post'>
-                <input type='hidden' name='indice' value='$key'/>
-                <button type='submit' name='aumentar_quantidade'>+</button>
-            </form>
-
+            <td>
+                <input type='submit' name='aumentar_quantidade' value='+' />                                   
+            </td>
+            <span class='quantidade' style='text-align: center; /* Centraliza o texto dentro do input */
+            width: 50px; /* Define a largura do input */
+            height: 50px;
+            font-size: 30px; /* Define o tamanho da fonte */
+            margin: 30px;
+            border: none;
+            font-size: 30px;
+            font-weight: 700;
+          '>" . (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1) . "</span>
+            <td>
+                <input type='submit' name='remover_1' value='-' />
+            </td>
             <span class='preco'>R$ " . $produto['preco'] . "</span>
-            <span class='entrega'> Em Janeiro </span>   
-            <span class='subtotal' style='font-style: normal;
-                font-weight: 600;
-                font-size: 20px;
-                margin-left: 25px;
-                margin-right:10px;
-                line-height: 23px;
-                width: 100px;'>
-                    R$ " . number_format($subtotal, 2) . "
-            </span>             
-        </div>";
+            <span class='entrega'>Em Dezembro</span>   
+            <span class='subtotal' style='  font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            margin-left: 25px;
+            margin-right:10px;
+            line-height: 23px;
+            width: 100px;'>R$ " . number_format($subtotal, 2) . "</span>             
+            </div>
 
-                echo "<div class='remover-produto'>
-                    <form action='' method='post'>
-                        <input type='hidden' name='indice' value='$key'/>
-                        <button type='submit' name='remover_produto'>Remover</button>
-                    </form>
-                </div>";
+        ";
 
+                // Adicione ou atualize o produto no carrinho
+                $_SESSION['carrinho'][$key] = [
+                    'nome' => $produto['nome'],
+                    'preco' => $produto['preco'],
+                    'imagem' => $produto['imagem'],
+                    'quantidade' => $quantidade,
+                ];
+
+
+                echo "<input type='hidden' name='indice' value='$key'/>"; // Campo oculto com o índice do produto
                 echo "</div>";
                 echo "</form>";
             }
 
+
+            /*            foreach ($_SESSION['carrinho'] as $produto) {
+                    $total += $produto['preco'];
+                }
++*/
             foreach ($_SESSION['carrinho'] as $key => $produto) {
                 $subtotal = $produto['preco'] * (isset($_SESSION['quantidades'][$key]) ? $_SESSION['quantidades'][$key] : 1);
                 $total += $subtotal;
             }
 
+
+
             if ($total >= 500) { //Frete gratis a partir de R$500 em compras
-                echo "
+                echo "   
             <div class='finalizar' style='margin-top: 25px;' > <!--Espaço para fazer o total do carrinho-->
             <span class='totall'  >Total</span>   
             <div class='total'>  
@@ -209,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
             </div>
             ";
             } else {
-                echo "
+                echo "   
             <div class='finalizar' style='margin-top: 25px;'> <!--Espaço para fazer o total do carrinho-->
             <span class='totall' >Total</span>   
             <div class='total'>  
@@ -238,7 +343,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
             echo "<p>Seu carrinho de compras está vazio.</p>";
         }
         ?>
-
         <form style="margin-top: 15px;" action="" method="post">
             <div style="margin-bottom: 15px;">
                 <label for="frete">Selecione a região que você mora:</label>
@@ -263,9 +367,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remover_produto'])) {
             <input type="submit" name="calcularpagamento" value="OK">
         </form>
 
-        <a href="../pedido/pedido.php">
-            <button class="butao">FINALIZAR COMPRA</button>
-        </a>
+        <form method="post">
+            <input type="hidden" name="finalizar_compra" value="1">
+            <input type="submit" class="butao" value="FINALIZAR COMPRA">
+        </form>
+
+        </div>
     </main>
 </body>
 
