@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+sessao();
 include '../conexao.php'; // Arquivo de conexão com o banco de dados
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

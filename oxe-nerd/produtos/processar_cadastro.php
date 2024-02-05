@@ -1,14 +1,7 @@
 <?php
-// Inicie a sessão aqui
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Verificar se o usuário está logado, caso contrário, redirecioná-lo para a página de login
-if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: ../login/index-login.php");
-    exit;
-}
+include '../conexao.php';
+sessao();
+usuarioPrecisaLogar();
 
 // Verificar se os dados do formulário foram enviados via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

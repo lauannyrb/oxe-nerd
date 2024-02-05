@@ -1,5 +1,6 @@
 <?php
-session_start();
+include '../conexao.php';
+sessao();
 ?>
 
 <!DOCTYPE html>
@@ -25,15 +26,7 @@ session_start();
 
         <!-- Exibir mensagem de erro, se houver -->
 
-          <?php
-          if (isset($_SESSION['cadastro_erro'])) {
-              echo '<div class="mensagem-erro">';
-              echo '<span class="error-icon">❌</span>';
-              echo $_SESSION['cadastro_erro'];
-              echo '</div>';
-              unset($_SESSION['cadastro_erro']); // Limpar a mensagem de erro
-          }
-          ?>
+          <?php erroMsg(); ?>
 
         <label>Nome completo</label>
         <input type="text" name="nome" placeholder="Digite o seu nome completo" autofocus>
