@@ -10,7 +10,7 @@ body {
 /*----------------header-------------------------*/
 .cinza {
   width: 350px;
-  
+
 }
 
 
@@ -50,7 +50,8 @@ a.carrinho {
   align-items: center;
 }
 
-.carrinho img, .sair{
+.carrinho img,
+.sair {
   height: 20px;
   width: auto;
   margin: 0;
@@ -62,6 +63,7 @@ nav a:hover {
   border-radius: 5px;
   transition: background-color 0.3s;
 }
+
 /* --------------------------------------------- */
 
 /*-----------------section--------------------------*/
@@ -95,20 +97,23 @@ section img {
 }
 
 /*---------------Containers de Eletronicos ------------------*/
-.carrossel{
-   /* Não Consegui trocar esse flex por outro */
+.carrossel {
+  /* Não Consegui trocar esse flex por outro */
   justify-content: center;
   align-items: center;
   grid-gap: 5vh;
-          display: grid;
-          grid-template-columns: repeat(3, 0.2fr); /* Cria 3 colunas iguais */
-          gap: 20px; /* Espaçamento entre as caixas */
-          padding: 0px 20px 0px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 0.2fr);
+  /* Cria 3 colunas iguais */
+  gap: 20px;
+  /* Espaçamento entre as caixas */
+  padding: 0px 20px 0px 20px;
 }
 
-section.cinza{ /*Atribuitos das margins dos containers cinzas*/
+section.cinza {
+  /*Atribuitos das margins dos containers cinzas*/
   padding: 15px;
-  background-color: #F2F3F4;  
+  background-color: #F2F3F4;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   max-width: 25vw;
   min-height: 620px;
@@ -116,7 +121,8 @@ section.cinza{ /*Atribuitos das margins dos containers cinzas*/
   margin-left: 0.5%;
   margin-bottom: 2%;
 }
-section.cinza:nth-child(1){
+
+section.cinza:nth-child(1) {
   margin-left: 0;
 }
 
@@ -125,7 +131,7 @@ section.cinza:nth-child(1){
 }
 
 section.container {
-  display: inline-block; 
+  display: inline-block;
   border-radius: 5px;
   padding: 20px;
   text-align: left;
@@ -135,6 +141,7 @@ section.container {
   min-height: 580px;
   max-height: 580px;
 }
+
 /* section.container:nth-child(1){
   margin-left: 0;
 } */
@@ -156,11 +163,9 @@ h2 {
   color: #333;
 }
 
-.conteudo {
-  
-}
 
-p{
+
+p {
   font-size: 14px;
   color: #777;
 }
@@ -179,7 +184,8 @@ p{
   align-items: flex-end;
 }
 
-.btn { /*Botão de comprar*/
+.btn {
+  /*Botão de comprar*/
   display: flex;
   padding: 10px 70px;
   background-color: #B71ABA;
@@ -188,13 +194,15 @@ p{
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-color: #B71ABA;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 
 }
+
 .btn:hover {
   background-color: #f890fa;
 }
-#carrinho{
+
+#carrinho {
   display: inline;
   background-color: #5094A7;
   width: auto;
@@ -203,9 +211,10 @@ p{
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-#carrinho:hover{
+
+#carrinho:hover {
   background-color: #6c99a5;
-}    
+}
 
 /*----------------------------------------------------------*/
 
@@ -214,38 +223,39 @@ p{
 /*-----------------Footer incio -----------------------------------*/
 
 footer {
-margin-top: 40px;
-background-color: #312847;
-padding: 20px;
+  margin-top: 40px;
+  background-color: #312847;
+  padding: 20px;
 }
 
 footer div {
-display: flex;
-align-items: center;
-justify-content: center;
-margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 footer h2 {
-margin-right: 10px;
-color: white;
-text-align: center;
+  margin-right: 10px;
+  color: white;
+  text-align: center;
 }
 
 footer img {
-width: 20px;
-height: 20px;
-margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
 }
 
 footer p {
-margin: 10px;;
-color: white;
+  margin: 10px;
+  ;
+  color: white;
 }
 
 footer strong {
-display: block;
-text-align: center;
+  display: block;
+  text-align: center;
 }
 
 
