@@ -1,8 +1,9 @@
 <?php
+include '../conexao.php';
 sessao();
 logout();
 // Conexão com o banco de dados
-include '../conexao.php';
+
 
 // Consulta SQL para selecionar todos os usuários
 $sql = "SELECT * FROM user";

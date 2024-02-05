@@ -1,8 +1,8 @@
 <?php
-session_start();
+include '../conexao.php';
+sessao();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario_id'])) {
-    include '../conexao.php';
 
     $usuario_id = $_POST['usuario_id'];
 

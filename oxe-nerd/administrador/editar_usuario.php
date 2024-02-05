@@ -1,8 +1,9 @@
-<?php
+<?pinclude '../conexao.php';
+
+
 ssessao();
 logout();
 
-include '../conexao.php';
 
 // Verifique se o ID do usuário foi passado
 if (isset($_GET['usuario_id'])) {
