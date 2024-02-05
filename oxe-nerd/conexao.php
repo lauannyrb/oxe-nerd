@@ -37,15 +37,15 @@ function formularioComprar(){
         ];
         $_SESSION['carrinho'][] = $produto;
         // Redirecionar de volta para a página anterior
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header('Location: ' . $_f4SERVER['HTTP_REFERER']);
     }
 }
+
 function painelDeControleAdm(){
-    if (isset($_SESSION['type_user'])) {
-        if ($_SESSION['type_user'] == 'adm') {
+    if(isset($_SESSION['usuario_logado'])) {
+        $tipo_usuario = $_SESSION['usuario_logado']['type_user'];
+        if($tipo_usuario === 'adm') {
             echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
-        } else {
-            echo 'User type: ' . $_SESSION['type_user'];
         }
     }
 }
@@ -77,23 +77,23 @@ function exibirProdutosPromocao4() {
             if ($count >= 4) {
                 break;
             }
-                echo '<section class="container">';
-                echo '<img class="venda" src="' . $row['image_path'] . '" alt="Imagem de venda">';
-                echo '<h2>' . $row['name'] . '</h2>';
-                echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
-                echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
-                echo '<p>Quantidade disponível: ' . $row['quantidade'] . '</p>'; // Display quantity
-                echo '<p>À vista no PIX</p>';
-                echo '<div class="carrossel">';
-                echo '<form method="post">';
-                echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
-                echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
-                echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
-                echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
-                echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
-                echo '</form>';
-                echo '</div>';
-                echo '</section>';
+            echo '<section class="container">';
+            echo '<img class="venda" src="' . $row['image_path'] . '" alt="Imagem de venda">';
+            echo '<h2>' . $row['name'] . '</h2>';
+            echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
+            echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
+            echo '<p>Quantidade disponível: ' . $row['quantidade'] . '</p>'; // Display quantity
+            echo '<p>À vista no PIX</p>';
+            echo '<div class="carrossel">';
+            echo '<form method="post">';
+            echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
+            echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
+            echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
+            echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
+            echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
+            echo '</form>';
+            echo '</div>';
+            echo '</section>';
 
             $count++;
         }
@@ -203,7 +203,7 @@ function verificarAdm(){
 function obterInformacoesUsuario() {
     global $conn;
     $nome_usuario = "Faça login";
-    $email_usuario = "";    
+    $email_usuario = "";
     $nome = "";
 
     if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
@@ -220,7 +220,7 @@ function obterInformacoesUsuario() {
             $nome = $usuario['name']; // Alteração aqui
             $email_usuario = $usuario['email'];
         }
-        
+
     }
 
     // Retorna um array com as informações do usuário
@@ -309,39 +309,39 @@ function exibirEletronicos(){
     // Query para selecionar os produtos do banco de dados
     $sql = "SELECT * FROM products WHERE category = 'Eletrônicos'";
     $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<section class="cinz">';
-                echo '<section class="container">';
-                echo '<img class="venda" src="' . $row['image_path'] . '" alt="' . $row['name'] . '">';
-                echo '<h2>' . $row['name'] . '</h2>';
-                echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
-                echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
-                echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
-                echo '<p>À vista no PIX</p>';
-                echo '<div class="carrossel">';
-                echo '<form method="post">';
-                echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
-                echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
-                echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
-                echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
-                echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
-                echo '</form>';
-                echo '</div>';
-                echo '</section>';
-                echo '</section>';
-            }
-        } else {
-            echo "Nenhum produto encontrado.";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<section class="cinz">';
+            echo '<section class="container">';
+            echo '<img class="venda" src="' . $row['image_path'] . '" alt="' . $row['name'] . '">';
+            echo '<h2>' . $row['name'] . '</h2>';
+            echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
+            echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
+            echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
+            echo '<p>À vista no PIX</p>';
+            echo '<div class="carrossel">';
+            echo '<form method="post">';
+            echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
+            echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
+            echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
+            echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
+            echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
+            echo '</form>';
+            echo '</div>';
+            echo '</section>';
+            echo '</section>';
         }
+    } else {
+        echo "Nenhum produto encontrado.";
+    }
 
 }
 
 function exibirPersonalizados(){
     global $conn;
-    
+
     // Consulta SQL para selecionar os produtos da categoria "Personalizados"
-    $sql = "SELECT * FROM products WHERE category = 'Personalizados'";  
+    $sql = "SELECT * FROM products WHERE category = 'Personalizados'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
