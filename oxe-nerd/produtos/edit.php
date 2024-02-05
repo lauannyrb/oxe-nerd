@@ -2,7 +2,7 @@
 include '../conexao.php';
 sessao();
 logout();
-vertificarAdm();
+verificarAdm();
 if(isset($_POST['deletar'])){
     //echo $_POST['indice']; // Exibe o índice do usuário que está sendo excluído
     unset($_SESSION['produtos'][$_POST['indice']]); // Remove o usuário da sessão com base no índice recebido via POST
@@ -95,9 +95,13 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
                         <input type="text" name="quantidade" class="result" value="<?php echo $row['quantidade']; ?>">
                     </div>
                     <div class="botoes">
-                        <input type="submit" value="Salvar" class="btn">
-                        <a class="btn2" href="../administrador/admin-home.php">Voltar</a>
+                    <input type="submit" value="Salvar" class="btn">
+                    <form action="excluir_produto.php" method="post">
+                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" class="btn2" name="apagar">Apagar</button><!-- Botão para apagar -->
+                    </form>
                     </div>
+
                 </div>
             </form>
             <?php
