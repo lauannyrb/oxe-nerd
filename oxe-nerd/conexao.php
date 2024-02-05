@@ -37,7 +37,7 @@ function formularioComprar(){
         ];
         $_SESSION['carrinho'][] = $produto;
         // Redirecionar de volta para a página anterior
-        header('Location: ' . $_f4SERVER['HTTP_REFERER']);
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
 
