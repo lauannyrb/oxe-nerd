@@ -27,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Credenciais corretas, redirecione para a página inicial
             $_SESSION['usuario_logado'] = [
                 'nome' => $usuario['name'],
-                'email' => $usuario['email']
+                'email' => $usuario['email'],
+                'type_user' => $usuario['type_user'] // Adicionando o tipo de usuário
             ];
             header("Location: ../index.php");
             exit;
