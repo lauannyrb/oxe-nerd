@@ -41,6 +41,7 @@ function formularioComprar(){
     }
 }
 
+
 function painelDeControleAdm(){
     if (isset($_SESSION['usuario_logado']['type_user'])) {
         $tipo_usuario = $_SESSION['usuario_logado']['type_user'];
