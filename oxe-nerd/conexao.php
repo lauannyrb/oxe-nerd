@@ -1,5 +1,6 @@
 <?php
- $conn = new mysqli("mysql", "oxe-nerd", "oxe-nerd", "db_oxe-nerd");
+
+$conn = new mysqli("mysql", "oxe-nerd", "oxe-nerd", "db_oxe-nerd");
 // Verificar a conexão
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
@@ -185,6 +186,47 @@ function verificarAdm(){
     if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
         // Se o usuário não for um administrador, redirecioná-lo para a página de login
         header("Location: ../login/index-login.php");
+        exit;
+    }
+}
+
+   
+
+function obterInformacoesUsuario() {
+    global $conn;
+    $nome_usuario = "Faça login";
+    $email_usuario = "";    
+    $nome = "";
+
+    if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
+
+        $email_logado = $_SESSION['usuario_logado']['email'];
+        $stmt = $conn->prepare("SELECT `name`, `nickname`, `email` FROM `user` WHERE `email` = ?");
+        $stmt->bind_param("s", $email_logado);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $usuario = $result->fetch_assoc();
+            $nome_usuario = $usuario['nickname'];
+            $nome = $usuario['name']; // Alteração aqui
+            $email_usuario = $usuario['email'];
+        }
+        
+    }
+
+    // Retorna um array com as informações do usuário
+    return [
+        'nick_usuario' => $nome_usuario,
+        'email_usuario' => $email_usuario,
+        'nome_usuario' => $nome // Alteração aqui
+    ];
+}
+
+function usuarioPrecisaLogar(){
+    if (!isset($_SESSION['usuario_logado']) || !is_array($_SESSION['usuario_logado'])) {
+        // Redirect the user to the login page or display an error message
+        header("Location: ../login/index-login.php.php");
         exit;
     }
 }
