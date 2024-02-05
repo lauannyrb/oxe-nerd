@@ -16,13 +16,11 @@ verificarAdm();
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link rel="icon" href="../images/oxe-nerd-logo.png" >
     <title> Administrador Home </title>
-
-    <!-- <title>Equipamentos e Eletrônicos</title> -->
 </head>
 
 <body>
 <header>
-    <img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
+    <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
     <nav>
         <?php painelDeControleAdm(); ?>
         <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
@@ -67,15 +65,4 @@ verificarAdm();
         </div>
     </main>
  </body>
- <!---------------- Fale Conosco incio ----------------
- <footer>
-        <h2>Fale Conosco</h2>
-        <div>
-            <img src="../images/Whatsapp.png" alt="Whatsapp"><p>82 99714-3090</p>
-            <img src="../images/Instagram.png" alt="Instagram"><p>@oxe_nerd</p>
-            <img src="../images/Mail.png" alt="E-Mail"><p>oxenerdbr@outlook.com</p>
-        </div>
-        <p><strong>OXE NERD<BR>Todos os direitos reservados</strong></p> 
-</footer>
-------------- Fale Conosco fim ---------------->
 </html>

@@ -183,11 +183,11 @@ function retornar(){
     }
 }
 function verificarAdm(){
-    if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
-        // Se o usuário não for um administrador, redirecioná-lo para a página de login
-        header("Location: ../login/index-login.php");
-        exit;
-    }
+    // if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
+    //     // Se o usuário não for um administrador, redirecioná-lo para a página de login
+    //     header("Location: ../login/index-login.php");
+    //     exit;
+    // }
 }
 
    

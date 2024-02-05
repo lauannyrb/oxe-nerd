@@ -19,7 +19,7 @@ logout();
 
     <!-- Header  -->
     <header>
-    <img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
+    <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
     <nav>
         <?php painelDeControleAdm(); ?>
         <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
