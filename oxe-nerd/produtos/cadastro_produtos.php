@@ -47,23 +47,13 @@ logout();
         </h1>
         <h1> Imagem: <input type="file" name="imagem" accept="image/*"><br><br> </h1>
         <button type="submit">Cadastrar Produto</button><br>
-        <a class="btn2" href="../produtos/lista_produtos_add_produto.php"> Lista de produtos </a>
+        <a class="btn2" href="../produtos/edit.php"> Lista de produtos </a>
     </form>   
 </div>
 
 
     <style>
-    .cadastro .btn2 {
-        background-color: #fff(94, 94, 139);
-        text-align: center;
-        color: purple;
-        padding: 10px 10px; /* Ajuste do preenchimento */
-        text-decoration: none;
-        border-radius: 5px;
-        cursor: pointer;
-        display:block;
-        font-size: 15px;
-    }
+    
     </style>
 
     <!-- Fale Conosco -->
