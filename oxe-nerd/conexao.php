@@ -190,8 +190,6 @@ function verificarAdm(){
     // }
 }
 
-   
-
 function obterInformacoesUsuario() {
     global $conn;
     $nome_usuario = "Faça login";

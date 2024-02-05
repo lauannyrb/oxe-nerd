@@ -247,3 +247,9 @@ text-align: center;
 
 
 /*-----------------Footer fim -----------------------------------*/
+.carrossel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 53px;
+  /* Espaçamento entre os itens */
+}
