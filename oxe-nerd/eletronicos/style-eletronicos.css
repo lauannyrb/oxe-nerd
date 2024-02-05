@@ -101,7 +101,7 @@ section img {
   align-items: center;
   grid-gap: 5vh;
           display: grid;
-          grid-template-columns: repeat(3, 0.2fr); /* Cria 3 colunas iguais */
+          grid-template-columns: repeat(4, 0.2fr); /* Cria 3 colunas iguais */
           gap: 20px; /* Espaçamento entre as caixas */
           padding: 0px 20px 0px 20px;
 }
