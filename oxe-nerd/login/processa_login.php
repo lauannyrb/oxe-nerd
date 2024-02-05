@@ -45,4 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-?>
+
+$type_user = $_SESSION['usuario_logado']['type_user'];
+return $type_user;
