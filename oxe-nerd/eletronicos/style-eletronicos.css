@@ -8,6 +8,12 @@ body {
 /* --------------------------------------------- */
 
 /*----------------header-------------------------*/
+.cinza {
+  width: 350px;
+  
+}
+
+
 header {
   background-color: #312847;
   padding: 20px;
@@ -80,8 +86,7 @@ section img {
 
 /* ----------Eletronicos-----------  */
 .titulo {
-  padding-left: 2%;
-  width: 15%;
+  height: 81px;
   font-size: 30px;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -91,16 +96,23 @@ section img {
 
 /*---------------Containers de Eletronicos ------------------*/
 .carrossel{
-  display: flex; /* Não Consegui trocar esse flex por outro */
+   /* Não Consegui trocar esse flex por outro */
   justify-content: center;
   align-items: center;
+  grid-gap: 5vh;
+          display: grid;
+          grid-template-columns: repeat(3, 0.2fr); /* Cria 3 colunas iguais */
+          gap: 20px; /* Espaçamento entre as caixas */
+          padding: 0px 20px 0px 20px;
 }
 
 section.cinza{ /*Atribuitos das margins dos containers cinzas*/
   padding: 15px;
   background-color: #F2F3F4;  
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
+  max-width: 25vw;
+  min-height: 620px;
+  max-height: 620px;
   margin-left: 0.5%;
   margin-bottom: 2%;
 }
@@ -108,19 +120,24 @@ section.cinza:nth-child(1){
   margin-left: 0;
 }
 
+.container {
+  align-items: center;
+}
+
 section.container {
-  display: inline-block;
-  margin-left: 2%; 
+  display: inline-block; 
   border-radius: 5px;
   padding: 20px;
   text-align: left;
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
+  max-width: 25vw;
+  min-height: 580px;
+  max-height: 580px;
 }
-section.container:nth-child(1){
+/* section.container:nth-child(1){
   margin-left: 0;
-}
+} */
 
 img.venda {
   /*max-width: 100%;
@@ -130,9 +147,17 @@ img.venda {
   margin-bottom: 10px;
 }
 
+.titulo {
+  display: flex;
+}
+
 h2 {
   font-size: 18px;
   color: #333;
+}
+
+.conteudo {
+  
 }
 
 p{
@@ -148,8 +173,14 @@ p{
   margin: 0 auto;
 }
 
+.bot {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
 .btn { /*Botão de comprar*/
-  display: inline-block;
+  display: flex;
   padding: 10px 70px;
   background-color: #B71ABA;
   color: #fff;
@@ -157,7 +188,6 @@ p{
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   border-color: #B71ABA;
-  margin-right: 10px;
   margin-bottom: 5px; 
 
 }
@@ -184,6 +214,7 @@ p{
 /*-----------------Footer incio -----------------------------------*/
 
 footer {
+margin-top: 40px;
 background-color: #312847;
 padding: 20px;
 }
