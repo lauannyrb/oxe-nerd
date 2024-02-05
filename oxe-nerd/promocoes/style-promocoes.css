@@ -196,46 +196,46 @@ p {
 /*-----------------Footer incio -----------------------------------*/
 
 footer {
+  margin-top: 40px;
   background-color: #312847;
   padding: 20px;
-}
-
-footer div {
+  }
+  
+  footer div {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-}
-
-footer h2 {
+  }
+  
+  footer h2 {
   margin-right: 10px;
   color: white;
   text-align: center;
-}
-
-footer img {
+  }
+  
+  footer img {
   width: 20px;
   height: 20px;
-  margin-right: -15px;
-}
-
-footer p {
-  margin: 20px;
-  ;
+  margin-right: 5px;
+  }
+  
+  footer p {
+  margin: 10px;;
   color: white;
-}
-
-footer strong {
+  }
+  
+  footer strong {
   display: block;
   text-align: center;
-}
-
-
-/*-----------------Footer fim -----------------------------------*/
+  }
+  
+  
+  /*-----------------Footer fim -----------------------------------*/
 
 .carrossel {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 53px;
+  grid-gap: 53px;
   /* Espaçamento entre os itens */
 }

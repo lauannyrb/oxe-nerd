@@ -36,7 +36,7 @@ formularioComprar();
 
     <!-- Carrossel de Produtos -->
     <section class="carrossel">
-        <?php exibirProdutosPromocao();?>
+        <?php exibirProdutosPromocao4();?>
 
     </section>
     <!-- Fim do Carrossel de Produtos -->
