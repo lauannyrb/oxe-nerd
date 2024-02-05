@@ -34,7 +34,7 @@ usuarioPrecisaLogar();
             <!-- aa -->
             <img src="../images/img_pedido/Like.png" alt="Like">
             <div class="detalhes">
-                <h2>Data da Compra : 13/11/2023</h2>
+                 <h2>Data da Compra : 05/02/2024</h2>
                 <h2>Situação do Pedido : Pedido Confirmado </h2>
                 <h2>Pedido : #2023UN3P</h2>
             </div>                        

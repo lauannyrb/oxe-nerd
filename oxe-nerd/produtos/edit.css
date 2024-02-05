@@ -1,427 +1,241 @@
 
  /*-------------html todo--------------------------- */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: poppins;
-  }
-  
-  /* --------------------------------------------- */
-
-/*----------------header-------------------------*/
-header {
-    background-color: #312847;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo-oxe-nerd {
-    height: 75px;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 40px;
-    font-weight: bold;
-  
-  }
-  
-  a.carrinho {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .carrinho img, .sair{
-    height: 20px;
-    width: auto;
-    margin: 0;
-  }
-  
-  nav a:hover {
-    background-color: #555;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  /* ---------------------------------------------
-
-  /** /* Estilo para centralizar os elementos na tela edit.php */
-        .main {
-          display:flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-        }
-        .description {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;    
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        /* Estilos para as imagens */
-        .description img {
-            max-width: 200px; /* Defina a largura máxima desejada */
-            max-height: 200px; /* Defina a altura máxima desejada */
-        }
-
-        h1 {
-            padding-top: 20px;
-            color: #2d1d55;
-            text-align: center;
-        }
-
-        h3 {
-          margin-bottom: 20px;
-          text-align: center;
-          color: black;
-          font-family: poppins;
-          font-size: 18px;
-          max-width: 600px;
-        }
-
-        .text {
-          margin-bottom: 5px;
-          display: flex;
-          color: #6e0977;
-          font-weight: bold;
-          font-family: poppins;
-          font-size: 15px;
-          text-align: left;
-        }
-
-        .result {
-          text-decoration: none;
-          padding: 5px;
-          text-align: left;
-          display: flex;
-          border-radius: 10px;
-          background-color: #ffffff;
-          font-family: poppins;
-          font-size: 15px;
-          color: black;
-          max-width: 300px;
-        }
-
-        .centralizar {
-            align-items: center;
-            text-align: center;   
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
-            min-width: 650px;
-        }
-        
-        .botoes {
-          align-items: center;
-          justify-content: center;
-          display: flex;
-          margin-top: 30px;
-          gap: 25px;
-
-        }
-
-        .btn { /*Botão de editar e deletar produto*/
-        padding: 10px; /* Defina um valor mínimo de largura para os botões */
-        min-width: 140px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
-        background-color: #B71ABA;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #e067cc;
-        font-size: 15px;
-        font-family: poppins;
-        }
-        .btn:hover {
-        background-color: #f890fa; 
-        }
-
-        .btn2 {
-        padding: 12px 4px; /* Defina um valor mínimo de largura para os botões */
-        min-width: 140px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
-        background-color: #5094A7; /* Cor azul desejada */
-        color: #fff;
-        text-decoration: none;
-        text-align: center;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #3c798a;
-        font-size: 15px;
-        font-family: poppins;
-        }
-
-        .btn2:hover {
-        background-color: #7CBCCE; /* Cor mais clara quando hover (opcional) */
-        } 
-        
- 
-/*-----------------Footer incio -----------------------------------*/
-
-footer {
-  background-color: #312847;
-  padding: 20px;
-  }
-  
-  footer div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  }
-  
-  footer h2 {
-  margin-right: 10px;
-  color: white;
-  text-align: center;
-  }
-  
-  footer img {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  }
-  
-  footer p {
-  margin: 10px;;
-  color: white;
-  }
-  
-  footer strong {
-  display: block;
-  text-align: center;
-  }
-  
-  
-  /*-----------------Footer fim -----------------------------------*/
-
- /*-------------html todo--------------------------- */
  body {
-    margin: 0;
-    padding: 0;
-    font-family: poppins;
-  }
-  
-  /* --------------------------------------------- */
+  margin: 0;
+  padding: 0;
+  font-family: poppins;
+}
+
+/* --------------------------------------------- */
 
 /*----------------header-------------------------*/
 header {
-    background-color: #312847;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo-oxe-nerd {
-    height: 75px;
-    width: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 40px;
-    font-weight: bold;
-  
-  }
-  
-  a.carrinho {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .carrinho img, .sair{
-    height: 20px;
-    width: auto;
-    margin: 0;
-  }
-  
-  nav a:hover {
-    background-color: #555;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  /* ---------------------------------------------
+  background-color: #312847;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  /** /* Estilo para centralizar os elementos na tela edit.php */
-        .main {
-          display:flex;
+.logo-oxe-nerd {
+  height: 75px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 40px;
+  font-weight: bold;
+
+}
+
+a.carrinho {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carrinho img, .sair{
+  height: 20px;
+  width: auto;
+  margin: 0;
+}
+
+nav a:hover {
+  background-color: #555;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+/* ---------------------------------------------
+
+/** /* Estilo para centralizar os elementos na tela edit.php */
+      .description {
+          display: flex;
           justify-content: center;
           align-items: center;
-          height: 100vh;
-        }
-        .description {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;    
-            padding: 20px;
-            border-radius: 5px;
-        }
+          text-align: center;    
+      }
 
-        /* Estilos para as imagens */
-        .description img {
-            max-width: 200px; /* Defina a largura máxima desejada */
-            max-height: 200px; /* Defina a altura máxima desejada */
-        }
+      /* Estilos para as imagens */
+      .description img {
+          align-content: center;
+          max-width: 200px; /* Largura máxima de 500 pixels */
+          max-height: 200px; /* Altura máxima de 300 pixels */
+          min-width: 200px; /* Largura mínima de 100 pixels */
+          min-height: 200px;
+      }
 
-        h1 {
-            padding-top: 20px;
-            color: #2d1d55;
-            text-align: center;
-        }
-
-        h3 {
-          margin-bottom: 20px;
-          text-align: center;
-          color: black;
-          font-family: poppins;
-          font-size: 18px;
-          max-width: 600px;
-        }
-
-        .text {
-          margin-bottom: 5px;
-          display: flex;
-          color: #6e0977;
-          font-weight: bold;
-          font-family: poppins;
-          font-size: 15px;
-          text-align: left;
-        }
-
-        .result {
-          text-decoration: none;
-          padding: 5px;
-          text-align: left;
-          display: flex;
-          border-radius: 10px;
-          background-color: #ffffff;
-          font-family: poppins;
-          font-size: 15px;
-          color: black;
-          max-width: 300px;
-        }
-
-        .centralizar {
-            align-items: center;
-            text-align: center;   
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
-            min-width: 650px;
-        }
-        
-        .botoes {
-          align-items: center;
-          justify-content: center;
-          display: flex;
-          margin-top: 30px;
-          gap: 25px;
-
-        }
-
-        .btn { /*Botão de editar e deletar produto*/
-        padding: 10px; /* Defina um valor mínimo de largura para os botões */
-        min-width: 140px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
-        background-color: #B71ABA;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #e067cc;
-        font-size: 15px;
-        font-family: poppins;
-        }
-        .btn:hover {
-        background-color: #f890fa; 
-        }
-
-        .btn2 {
-        padding: 12px 4px; /* Defina um valor mínimo de largura para os botões */
-        min-width: 140px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
-        background-color: #5094A7; /* Cor azul desejada */
-        color: #fff;
-        text-decoration: none;
+      section {
         text-align: center;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        border-color: #3c798a;
-        font-size: 15px;
-        font-family: poppins;
-        }
+        padding-top: 15px;
+        color: #2d1d55;
+      }
 
-        .btn2:hover {
-        background-color: #7CBCCE; /* Cor mais clara quando hover (opcional) */
-        } 
+      .grid {
+        grid-gap: 5vh;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas iguais */
+        gap: 20px; /* Espaçamento entre as caixas */
+        padding: 0px 20px 0px 20px;
+      }
+
+      .centralizar {
+        display: flex;
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.2);
+        margin-bottom: 40px;
+        min-width: 27vw;
+        min-height: 900px;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .picture{ 
+        display: flex;
+        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        align-content: center;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
         
- 
+      } 
+
+      .new-selector {
+        display: flex;
+      }
+
+      .titulos {
+        display: flex;
+        justify-content: space-around;
+        height: 80px; 
+      }
+      
+      h3 {
+        justify-content: center;
+        margin-bottom: 20px;
+        color: black;
+        font-family: poppins;
+        font-size: 1vw;
+        max-width: 40vh;
+      }
+      
+      .lista {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
+      .text {
+        margin: 10px;
+        color: #6e0977;
+        font-weight: bold;
+        font-family: poppins;
+        font-size: 2vh;
+      }
+
+      .result {
+        text-align: center;
+        text-decoration: none;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        font-family: poppins;
+        font-size: 2.2vh;
+        color: black;
+        min-width: 10vh;
+      }
+      
+      .botoes {
+        justify-content: center;
+        display: flex;
+        margin-top: 30px;
+        gap: 20px;
+
+      }
+
+      .btn { /*Botão de editar e deletar produto*/
+      padding: 10px; /* Defina um valor mínimo de largura para os botões */
+      min-width: 140px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
+      background-color: #B71ABA;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-color: #e067cc;
+      font-size: 15px;
+      font-family: poppins;
+      }
+      .btn:hover {
+      background-color: #f890fa; 
+      }
+
+      .btn2 {
+      padding: 12px 4px; /* Defina um valor mínimo de largura para os botões */
+      min-width: 140px; /* Valor mínimo de largura em pixels (ajuste conforme necessário) */
+      background-color: #5094A7; /* Cor azul desejada */
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-color: #3c798a;
+      font-size: 15px;
+      font-family: poppins;
+      }
+
+      .btn2:hover {
+      background-color: #7CBCCE; /* Cor mais clara quando hover (opcional) */
+      } 
+      
+
 /*-----------------Footer incio -----------------------------------*/
 
 footer {
-  background-color: #312847;
-  padding: 20px;
-  }
-  
-  footer div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  }
-  
-  footer h2 {
-  margin-right: 10px;
-  color: white;
-  text-align: center;
-  }
-  
-  footer img {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  }
-  
-  footer p {
-  margin: 10px;;
-  color: white;
-  }
-  
-  footer strong {
-  display: block;
-  text-align: center;
-  }
-  
-  
+background-color: #312847;
+padding: 20px;
+}
+
+footer div {
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 20px;
+}
+
+footer h2 {
+margin-right: 10px;
+color: white;
+text-align: center;
+}
+
+footer img {
+width: 20px;
+height: 20px;
+margin-right: 5px;
+}
+
+footer p {
+margin: 10px;;
+color: white;
+}
+
+footer strong {
+display: block;
+text-align: center;
+}
+
+
+/*-----------------Footer fim -----------------------------------*/
