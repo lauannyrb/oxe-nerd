@@ -1,51 +1,8 @@
 <?php
-session_start();
-
-// if (!isset($_SESSION['type_user']) || $_SESSION['type_user'] != 'adm') {
-//     // Se o usuário não for um administrador, redirecioná-lo para a página de login
-//     header("Location: ../login/index-login.php");
-//     exit;
-// }
-
-// Verificar se o formulário de logout foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
-    // Encerrar a sessão
-    session_unset();
-    session_destroy();
-    header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['comprar'])) {
-        // Coletar informações do produto do formulário
-        $nome = $_POST['nome'];
-        $preco = $_POST['preco'];
-        $imagem = $_POST['imagem'];
-
-        // Criar uma array associativa para representar o produto
-        $produto = [
-            'nome' => $nome,
-            'preco' => $preco,
-            'imagem' => $imagem,
-        ];
-
-        // Verificar se o carrinho já existe na sessão e criar se necessário
-        if (!isset($_SESSION['carrinho'])) {
-            $_SESSION['carrinho'] = [];
-        }
-
-        // Adicionar o produto ao carrinho
-        $_SESSION['carrinho'][] = $produto;
-    }
-}
-
-// Verificar se o usuário está logado
-$nome_usuario = "Faça login";
-
-if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-    $nome_usuario = $_SESSION['usuario_logado']['nome'];
-}
-
+include "../conexao.php";
+sessao();
+logout();
+verificarAdm();
 ?>
 
 <!DOCTYPE html>
@@ -64,65 +21,17 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
 </head>
 
 <body>
-    <!-- Header  -->
-    <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
-        <nav>
-        <?php
-        if (session_status() == PHP_SESSION_NONE) {
-            // session has not started
-            session_start();
-        }
-
-        include '../conexao.php'; // Arquivo de conexão com o banco de dados
-
-
-        // Verificar conexão
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "SELECT type_user FROM user WHERE type_user='adm'";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                $_SESSION['type_user'] = $row["type_user"];
-            }
-        } else {
-        }
-        $conn->close();
-
-        if (isset($_SESSION['type_user'])) {
-            if ($_SESSION['type_user'] == 'adm') {
-                echo '<a class="" href="../administrador/admin-home.php"> Painel de Controle Adminstrador </a>';
-            } else {
-                echo 'User type: ' . $_SESSION['type_user'];
-            }
-        }
-        ?>
-            <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
-            <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
-            <a class="" href="#"> Eletrônicos </a>
-            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
-            <?php echo "Bem-vindo(a), $nome_usuario"; ?>
-        </a>
-
-        <?php
-        // Adicionar link de logout se o usuário estiver logado
-        if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-            echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
-        }
-        ?>
-
-        <a class="" href="../carrinho/index-carrinho.php">
-            <img class="carrinho" src="../images/carrinho.png" title="carrinho">
-            <?php echo isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0; ?>
-        </a>
-        </nav>
-    </header>
+<header>
+    <img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
+    <nav>
+        <?php painelDeControleAdm(); ?>
+        <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
+        <a class="Promoções" href="../promocoes/index-promocoes.php"> Promoções</a>
+        <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
+        <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
+        <?php exibirLinksUsuario(); ?>
+    </nav>
+</header>
 
     <main>
         <div class="menu-admin"> 

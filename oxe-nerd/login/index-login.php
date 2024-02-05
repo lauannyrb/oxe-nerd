@@ -1,7 +1,6 @@
 <?php
-session_start(); // Coloque isso no início do arquivo
-
-// O resto do seu código PHP
+include "../conexao.php";
+sessao();
 ?>
 
 <!DOCTYPE html>
@@ -24,18 +23,7 @@ session_start(); // Coloque isso no início do arquivo
       
       <form method="post" action="processa_login.php">
         <!-- Exibir mensagem de erro, se houver -->
-        <?php
-        
-        
-          if (isset($_SESSION['login_erro'])) {
-              echo '<div class="mensagem-erro">';
-              echo '<span class="error-icon">❌</span>';
-              echo $_SESSION['login_erro'];
-              echo '</div>';
-              unset($_SESSION['login_erro']);
-          }
-        ?>
-
+        <?php   erroMsg()    ?>
         <label for="email">E-mail</label>
         <input type="email" name="email" required placeholder="Digite o seu e-mail" autofocus>
         <label for="senha">Senha</label>

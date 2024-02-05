@@ -1,23 +1,10 @@
 <?php
-session_start();
-
-// Verificar se o formulário de logout foi enviado
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['logout'])) {
-    // Encerrar a sessão
-    session_unset();
-    session_destroy();
-    header("Location: ../index.php"); // Redirecionar para a página inicial após o logout
-}
-
-// Verificar se o usuário está logado
-$nome_usuario = "Faça login";
-
-if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-    $nome_usuario = $_SESSION['usuario_logado']['nome'];
-}
+include "../conexao.php";
+sessao();
+logout();
+usuarioPrecisaLogar();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,26 +16,17 @@ if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado']))
     <title>Pedido</title>
 </head>
 <body>
-    <header>
-        <a href="../index.php"><img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd"></a>        
-        <nav>
-            <a class="" href="../produtos/cadastro_produtos.php"> Novos produtos </a>
-            <a class="" href="../promocoes/index-promocoes.php"> Promoções </a>
-            <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
-            <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
-            <a class="Login" href="<?php echo isset($_SESSION['usuario_logado']) ? '../perfil/perfil.php' : '../login/index-login.php'; ?>">
-            <?php echo "Bem-vindo(a), $nome_usuario"; ?>
-        </a>
-
-        <?php
-            // Adicionar link de logout se o usuário estiver logado
-            if (isset($_SESSION['usuario_logado']) && is_array($_SESSION['usuario_logado'])) {
-                echo '<a class="" href="?logout=true"> <img class="sair" src="../images/sair-branco.png"> </a>';
-            }
-        ?>
-            <a class="" href="../carrinho/index-carrinho.php"> <img class="carrinho" src="../images/carrinho.png" title="carrinho"> </a>
-        </nav>
-    </header>
+<header>
+    <img class="logo-oxe-nerd" src="../images/oxe-nerd-logo.png" title="Logo da Oxe Nerd">
+    <nav>
+        <?php painelDeControleAdm(); ?>
+        <a class="" href="../Novos-produtos/index-novos-produtos.php"> Novos Produtos  </a>
+        <a class="Promoções" href="../promocoes/index-promocoes.php"> Promoções</a>
+        <a class="" href="../eletronicos/index-eletronicos.php"> Eletrônicos </a>
+        <a class="" href="../personalizados/index-personalizados.php"> Personalizados </a>
+        <?php exibirLinksUsuario(); ?>
+    </nav>
+</header>
 
     <section>
         <h1 class="oba">Oba, o seu pedido foi confirmado!<hr></h1>
