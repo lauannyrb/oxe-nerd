@@ -1,6 +1,7 @@
 <?php
-sessao();
 include '../conexao.php'; // Arquivo de conexão com o banco de dados
+
+sessao();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];

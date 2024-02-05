@@ -29,6 +29,7 @@ function formularioComprar(){
         }
         // Adicionar o produto ao carrinho
         $produto = [
+            'id' => $_POST['id'],
             'nome' => $_POST['nome'],
             'preco' => $_POST['preco'],
             'imagem' => $_POST['imagem'],
@@ -85,6 +86,7 @@ function exibirProdutosPromocao4() {
                 echo '<p>À vista no PIX</p>';
                 echo '<div class="carrossel">';
                 echo '<form method="post">';
+                echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
                 echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
                 echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
                 echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
@@ -117,6 +119,7 @@ function exibirProdutosPromocao() {
             echo '<p>Quantidade disponível: ' . $row['quantidade'] . '</p>'; // Display quantity
             echo '<p>À vista no PIX</p>';
             echo '<form method="post">';
+            echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
             echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
             echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
             echo '<input type="hidden" name="imagem" value="../' . $row['image_path'] . '">';
@@ -154,6 +157,7 @@ function exibirNovosProdutos() {
             echo '<p>À vista no PIX</p>';
             echo '<div class="carrossel">';
             echo '<form method="post">';
+            echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
             echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
             echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
             echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
@@ -317,6 +321,7 @@ function exibirEletronicos(){
                 echo '<p>À vista no PIX</p>';
                 echo '<div class="carrossel">';
                 echo '<form method="post">';
+                echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
                 echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
                 echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
                 echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
@@ -353,6 +358,7 @@ function exibirPersonalizados(){
             echo '<p>À vista no PIX</p>';
             echo '<div class="carrossel">';
             echo '<form method="post">';
+            echo '<input type="hidden" name="id" value="' . $row['id'] . '">'; // Passar o ID do produto
             echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
             echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
             echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
