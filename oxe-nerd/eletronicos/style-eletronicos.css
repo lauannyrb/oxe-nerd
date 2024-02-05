@@ -98,14 +98,14 @@ section img {
   align-items: center;
   grid-gap: 5vh;
           display: grid;
-          grid-template-columns: repeat(3, 0.2fr); /* Cria 3 colunas iguais */
+          grid-template-columns: repeat(4, 0.2fr); /* Cria 3 colunas iguais */
           gap: 20px; /* Espaçamento entre as caixas */
           padding: 0px 20px 0px 20px;
 }
 
 section.cinza{ /*Atributos das margins dos containers cinzas*/
   padding: 15px;
-  background-color: #F2F3F4;  
+  background-color: #F2F3F4;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   max-width: 25vw;
   min-height: 620px;
@@ -122,7 +122,6 @@ section.cinza:nth-child(1){
 }
 
 section.container {
-  display: inline-block; 
   border-radius: 5px;
   padding: 20px;
   text-align: left;
@@ -247,9 +246,4 @@ text-align: center;
 
 
 /*-----------------Footer fim -----------------------------------*/
-.carrossel {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 53px;
-  /* Espaçamento entre os itens */
-}   
+
