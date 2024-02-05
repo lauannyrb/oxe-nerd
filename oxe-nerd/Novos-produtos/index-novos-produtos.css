@@ -8,6 +8,11 @@ body {
 /* --------------------------------------------- */
 
 /*----------------header-------------------------*/
+.cinza {
+  width: 350px;
+  
+}
+
 header {
   background-color: #312847;
   padding: 20px;
@@ -44,8 +49,7 @@ a.carrinho {
   align-items: center;
 }
 
-.carrinho img,
-.sair {
+.carrinho img, .sair{
   height: 20px;
   width: auto;
   margin: 0;
@@ -57,7 +61,6 @@ nav a:hover {
   border-radius: 5px;
   transition: background-color 0.3s;
 }
-
 /* --------------------------------------------- */
 
 /*-----------------section--------------------------*/
@@ -78,12 +81,9 @@ section img {
   margin-bottom: 0;
 }
 
-
-
-/* ----------Eletronicos-----------  */
-nav.titulo {
-  padding-left: 2%;
-  width: 15%;
+/* ----------Personalizados-----------  */
+.titulo {
+  height: 81px;
   font-size: 30px;
   margin-top: 2%;
   margin-bottom: 2%;
@@ -91,50 +91,61 @@ nav.titulo {
   /*border-bottom: 1px solid black;*/
 }
 
-h2.titulo {
-  font-size: 25px;
-  padding-left: 2%;
-  margin-bottom: 2%;
-
-}
-
-/*---------------Containers de Eletronicos ------------------*/
-.carrossel {
-  display: flex;
-  /* Não Consegui trocar esse flex por outro */
+/*---------------Containers de Personalizados ------------------*/
+.carrossel{
+   /* Não Consegui trocar esse flex por outro */
   justify-content: center;
   align-items: center;
-  /*padding-left: 20px;*/
-  /* Deixei comentando pq tava desalinhado  */
+  grid-gap: 5vh;
+          display: grid;
+          grid-template-columns: repeat(3, 0.2fr); /* Cria 3 colunas iguais */
+          gap: 20px; /* Espaçamento entre as caixas */
+          padding: 0px 20px 0px 20px;
 }
 
-z
-
-section.cinza:nth-child(1) {
+section.cinza{ /*Atributos das margins dos containers cinzas*/
+  padding: 15px;
+  background-color: #F2F3F4;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 25vw;
+  min-height: 620px;
+  max-height: 620px;
+  margin-left: 0.5%;
+  margin-bottom: 2%;
+}
+section.cinza:nth-child(1){
   margin-left: 0;
 }
 
+.container {
+  align-items: center;
+}
+
 section.container {
-  display: inline-block;
-  margin-left: 2%;
+  display: inline-block; 
   border-radius: 5px;
   padding: 20px;
   text-align: left;
   background-color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
+  max-width: 25vw;
+  min-height: 580px;
+  max-height: 580px;
 }
-
-section.container:nth-child(1) {
+/* section.container:nth-child(1){
   margin-left: 0;
-}
+} */
 
 img.venda {
   /*max-width: 100%;
-    height: auto;*/
+  height: auto;*/
   width: 300px;
-  height: 300px;
+  height: 250px;
   margin-bottom: 10px;
+}
+
+.titulo {
+  display: flex;
 }
 
 h2 {
@@ -142,7 +153,11 @@ h2 {
   color: #333;
 }
 
-p {
+.conteudo {
+  
+}
+
+p{
   font-size: 14px;
   color: #777;
 }
@@ -151,31 +166,32 @@ p {
   font-size: 25px;
   color: #440F5C;
   /*font-weight: 5000;  Queria muita a intensidade do negrito 
-    mas não foi */
+  mas não foi */
   margin: 0 auto;
-  padding-bottom: 10px;
 }
 
-.btn {
-  /*Botão de comprar*/
-  display: inline-block;
+.bot {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.btn { /*Botão de comprar*/
+  display: flex;
   padding: 10px 70px;
   background-color: #B71ABA;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-  margin-right: 10px;
-  margin-bottom: 5px;
+  border-color: #B71ABA;
+  margin-bottom: 5px; 
 
 }
-
 .btn:hover {
   background-color: #f890fa;
 }
-
-#carrinho {
+#carrinho{
   display: inline;
   background-color: #5094A7;
   width: auto;
@@ -184,10 +200,9 @@ p {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-
-#carrinho:hover {
+#carrinho:hover{
   background-color: #6c99a5;
-}
+}    
 
 /*----------------------------------------------------------*/
 
@@ -196,38 +211,38 @@ p {
 /*-----------------Footer incio -----------------------------------*/
 
 footer {
-  background-color: #312847;
-  padding: 20px;
+margin-top: 40px;
+background-color: #312847;
+padding: 20px;
 }
 
 footer div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 20px;
 }
 
 footer h2 {
-  margin-right: 10px;
-  color: white;
-  text-align: center;
+margin-right: 10px;
+color: white;
+text-align: center;
 }
 
 footer img {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
+width: 20px;
+height: 20px;
+margin-right: 5px;
 }
 
 footer p {
-  margin: 10px;
-  ;
-  color: white;
+margin: 10px;;
+color: white;
 }
 
 footer strong {
-  display: block;
-  text-align: center;
+display: block;
+text-align: center;
 }
 
 
