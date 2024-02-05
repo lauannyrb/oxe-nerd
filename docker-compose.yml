@@ -32,8 +32,6 @@ services:
       #- ./mysql:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Mounting the init.sql file
     # Add other MySQL configurations if necessary
-    networks:
-      - oxe-nerd_default  # Adiciona a referência à rede
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
