@@ -100,28 +100,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comprar'])) {
 
             // Verifica se há produtos
             if ($result->num_rows > 0) {
-                // Loop através dos resultados da consulta
                 while ($row = $result->fetch_assoc()) {
-                    // Exibição dinâmica dos produtos
                     echo '<section class="cinza">';
                     echo '<section class="container">';
-                    echo '<img class="venda" src="../images/' . $row["image_path"] . '" alt="' . $row["name"] . '">';
-                    echo '<h2>' . $row["name"] . '</h2>';
-                    echo '<p><s>R$ ' . $row["old_price"] . '</s></p>';
-                    echo '<p class="preco"><strong>R$ ' . $row["price"] . '</strong></p>';
+                    echo '<img class="venda" src="' . $row['image_path'] . '" alt="' . $row['name'] . '">';
+                    echo '<div class="titulo">';
+                    echo '<h2>' . $row['name'] . '</h2>';
+                    echo '</div>';
+                    echo '<div class="conteudo">';
+                    echo '<p><s>R$ ' . $row['old_price'] . '</s></p>';
+                    echo '<p class="preco"> <strong>R$ ' . $row['price'] . '</strong></p>';
                     echo '<p>Quantidade disponível: ' . $row["quantidade"] . '</p>'; // Display quantity
                     echo '<p>À vista no PIX</p>';
                     echo '<div class="carrossel">';
                     echo '<form method="post">';
-                    echo '<input type="hidden" name="nome" value="' . $row["name"] . '">';
-                    echo '<input type="hidden" name="preco" value="' . $row["price"] . '">';
-                    echo '<input type="hidden" name="imagem" value="../images/' . $row["image_path"] . '">';
+                    echo '<input type="hidden" name="nome" value="' . $row['name'] . '">';
+                    echo '<input type="hidden" name="preco" value="' . $row['price'] . '">';
+                    echo '<input type="hidden" name="imagem" value="' . $row['image_path'] . '">';
+                    echo '</div>';
+                    echo '<div class="bot">';
                     echo '<button class="btn" type="submit" name="comprar">COMPRAR </button>';
+                    echo '</div>';
                     echo '</form>';
                     echo '</div>';
                     echo '</section>';
                     echo '</section>';
                 }
+                
             } else {
                 echo "Nenhum produto encontrado.";
             }

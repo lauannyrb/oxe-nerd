@@ -107,26 +107,34 @@ body {
     padding: 15px;
     background-color: #F2F3F4;  
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
+    max-width: 25vw;
+    min-height: 620px;
+    max-height: 620px;
     margin-left: 0.5%;
     margin-bottom: 2%;
   }
   section.cinza:nth-child(1){
     margin-left: 0;
   }
+
+  .container {
+    align-items: center;
+  }
+
   section.container {
-    display: inline-block;
-    margin-left: 2%; 
+    display: inline-block; 
     border-radius: 5px;
     padding: 20px;
     text-align: left;
     background-color: #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
+   max-width: 25vw;
+    min-height: 580px;
+    max-height: 580px;
   }
-  section.container:nth-child(1){
+  /*section.container:nth-child(1){
     margin-left: 0;
-  }
+  }*/
   
   img.venda {
     /*max-width: 100%;
@@ -135,10 +143,18 @@ body {
     height: 300px;
     margin-bottom: 10px;
   }
+
+  .titulo {
+    display: flex;
+  }
   
   h2 {
     font-size: 18px;
     color: #333;
+  }
+  
+  .conteudo {
+    
   }
   
   p{
@@ -155,18 +171,22 @@ body {
     padding-bottom: 10px;
   }
   
+  .bot {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+
   .btn { /*Botão de comprar*/
-    display: inline-block;
+    display: flex;
     padding: 10px 70px;
     background-color: #B71ABA;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-    margin-right: 10px;
+    border-color: #B71ABA;
     margin-bottom: 5px; 
-  
   }
   .btn:hover {
     background-color: #f890fa;
