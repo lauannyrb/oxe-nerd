@@ -13,6 +13,7 @@ body {
   
 }
 
+
 header {
   background-color: #312847;
   padding: 20px;
@@ -81,7 +82,9 @@ section img {
   margin-bottom: 0;
 }
 
-/* ----------Personalizados-----------  */
+
+
+/* ----------Eletronicos-----------  */
 .titulo {
   height: 81px;
   font-size: 30px;
@@ -91,7 +94,7 @@ section img {
   /*border-bottom: 1px solid black;*/
 }
 
-/*---------------Containers de Personalizados ------------------*/
+/*---------------Containers de Eletronicos ------------------*/
 .carrossel{
    /* Não Consegui trocar esse flex por outro */
   justify-content: center;
@@ -103,7 +106,7 @@ section img {
           padding: 0px 20px 0px 20px;
 }
 
-section.cinza{ /*Atributos das margins dos containers cinzas*/
+section.cinza{ /*Atribuitos das margins dos containers cinzas*/
   padding: 15px;
   background-color: #F2F3F4;  
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -121,8 +124,7 @@ section.cinza:nth-child(1){
   align-items: center;
 }
 
-section.container {
-  display: inline-block; 
+section.container { 
   border-radius: 5px;
   padding: 20px;
   text-align: left;
