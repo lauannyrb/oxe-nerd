@@ -2,8 +2,6 @@
 
 Bem-vindo ao repositório do **Oxe Nerd**, um site de vendas dedicado aos amantes da cultura nerd! Aqui você encontrará uma variedade incrível de produtos, desde copos temáticos até cadeiras gamers de última geração, tudo para satisfazer sua paixão pelo universo geek.
 
-**Visite o site oficial:** [https://lauannyrb.github.io/oxe-nerd/](https://lauannyrb.github.io/oxe-nerd/)
-
 ### Tecnologias que Dão Vida ao Oxe Nerd ⚙️
 
 - **Front-end:** HTML, CSS e JavaScript para uma experiência de navegação interativa.
