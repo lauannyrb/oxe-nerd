@@ -1,89 +1,69 @@
-# Oxe nerd
-Bem-vindo ao repositório do projeto do nosso site de vendas de produtos nerds! Neste projeto, estaremos desenvolvendo um site onde os usuários poderão consultar uma variedade de produtos relacionados ao universo nerd, incluindo copos, cadeiras gamers, colares, pulseiras, camisas e muito mais. Este arquivo README fornecerá uma visão geral do projeto e guiará você nas etapas necessárias para configurar e executar o site.
+## Oxe Nerd: Seu Destino para Produtos Nerds! 🚀
 
-Acesse o site oficial da [OXE NERD](https://lauannyrb.github.io/oxe-nerd/) 
+Bem-vindo ao repositório do **Oxe Nerd**, um site de vendas dedicado aos amantes da cultura nerd! Aqui você encontrará uma variedade incrível de produtos, desde copos temáticos até cadeiras gamers de última geração, tudo para satisfazer sua paixão pelo universo geek.
 
-## Funcionalidades do Site
+**Visite o site oficial:** [https://lauannyrb.github.io/oxe-nerd/](https://lauannyrb.github.io/oxe-nerd/)
 
-O site de vendas de produtos nerds terá as seguintes funcionalidades:
+### Tecnologias que Dão Vida ao Oxe Nerd ⚙️
 
-1. Catálogo de produtos: Os usuários poderão visualizar uma ampla variedade de produtos nerds disponíveis para compra.
-2. Páginas de produtos: Cada produto terá sua própria página com detalhes, imagens e informações adicionais.
-3. Carrinho de compras: Os usuários poderão adicionar produtos ao carrinho de compras, ajustar as quantidades e finalizar a compra.
+- **Front-end:** HTML, CSS e JavaScript para uma experiência de navegação interativa.
+- **Back-end:** PHP para gerenciar a lógica do site e as interações com o banco de dados.
+- **Docker:** Para facilitar a configuração e o desenvolvimento do ambiente.
+- **MySQL:** Banco de dados robusto para armazenar informações de produtos, usuários e pedidos.
 
-## Tecnologias Utilizadas
+### Prepare Seu Ambiente de Desenvolvimento 🛠️
 
-O site de vendas de produtos nerds será desenvolvido utilizando as seguintes tecnologias:
+1. **Clone o Repositório:**
+   ```bash
+   git clone https://github.com/lauannyrb/oxe-nerd.git
+   ```
 
-- **Front-end**: Utilizaremos HTML, CSS e JavaScript puro para criar a interface do usuário interativa e responsiva.
+2. **Acesse a Pasta do Projeto:**
+   ```bash
+   cd oxe-nerd
+   ```
 
-## Configuração do Ambiente de Desenvolvimento
+3. **Suba os Containers com Docker Compose:**
+   ```bash
+   docker-compose up --build
+   ```
 
-Para configurar o ambiente de desenvolvimento e executar o site em sua máquina local, siga as etapas abaixo:
+4. **Acesse o Site:**
+   Abra o navegador e acesse `http://localhost:8080` 
 
-1. Clone este repositório para o seu ambiente local.
-`git clone https://github.com/lauannyrb/oxe-nerd.git`
+### Acesso Administrativo 🔑
 
-2. Navegue até o diretório raiz do projeto, onde ele foi clonado.
-3. Abra o arquivo `index.php` em seu navegador para visualizar o site.
+- **Usuário:** adm@oxenerd.com
+- **Senha:** adm
 
-## Contribuição
+**Funcionalidades Administrativas:**
 
-Se você gostaria de contribuir para o projeto, siga estas etapas:
+- Adicionar novos produtos ao catálogo.
+- Gerenciar perfis de usuários cadastrados.
 
-1. Faça um fork deste repositório.
-2. Crie uma branch com a sua feature ou correção: `git checkout -b minha-feature`.
-3. Faça commit das suas alterações: `git commit -m 'Adicionar minha feature'`.
-4. Envie a branch para o repositório remoto: `git push origin minha-feature`.
-5. Abra um pull request para que possamos avaliar suas alterações.
+**Observação:** Usuários regulares (não administradores) podem visualizar a lista de produtos e criar seus próprios perfis, mas não têm acesso às funcionalidades administrativas.
 
+### Conheça a Equipe por Trás do Oxe Nerd 🧠
 
-## Time de desenvolvimento:
+**Desenvolvimento:**
+
 - Lauanny Rodrigues
-- Leticia Tamarindo 
+- Leticia Tamarindo
 - Cayc Custodio
 - Elias Neves
 - Jonas Oliveira
 - Renan Carvalho
 
-
-## Protótipo
-
-Link para visualização do proótipo no Figma do site:
-
-https://www.figma.com/file/F28ioo99Q4N2RDjPZUBgUh/Untitled?type=design&node-id=0%3A1&t=V2n2WpbPonMfioAS-1
-
-Equipe de designe:
+**Design:**
 
 - Lauanny Rodrigues
 - Elias Neves
 - Renan Carvalho
 - Jonas Oliveira
-- Leticia Tamarindo 
+- Leticia Tamarindo
 - Cayc Custodio
 - Mayara Costa
 
+### Explore o Protótipo no Figma 🎨
 
-## Query de criação do banco: 
-
-* Tabela 'user':
-
-
-        CREATE TABLE `oxe-nerd`.`user` (`id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `nickname` VARCHAR(50) NOT NULL , `email` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `date` DATE NOT NULL , `type_user` VARCHAR(50) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
-
-## Rodar o docker-compose: 
-
-* comando :
-
-
-        docker-compose up --build
-
-## Query de criação do perfil de ADM:
-
-        INSERT INTO `user` (`name`, `nickname`, `email`, `password`, `date`, `type_user`)
-        VALUES ('admin', 'adm', 'adm@oxenerd.com', '$2y$10$uVY0sLwBgg8UoXNhJGB0IOp2HaSZpdv9rePtzvlp6AnKAQywIZodm', NOW(), 'adm');
-
-  - Usuário:
-    - adm@oxenerd.com
-  - Senha:
-    - adm
+[https://www.figma.com/file/F28ioo99Q4N2RDjPZUBgUh/Untitled?type=design&node-id=0%3A1&t=V2n2WpbPonMfioAS-1](https://www.figma.com/file/F28ioo99Q4N2RDjPZUBgUh/Untitled?type=design&node-id=0%3A1&t=V2n2WpbPonMfioAS-1)
